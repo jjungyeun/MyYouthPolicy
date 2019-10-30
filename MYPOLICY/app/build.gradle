@@ -27,4 +27,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'//http(s) 통신 기능 제공 패키지
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'//json 파일 파싱 기능 제공 패키지
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0' //http 통신 내용 log로 확인할 수 있는 interceptor 제공 패키지ㅇ
+    implementation 'com.facebook.stetho:stetho:1.5.0' //okhttp가 통신하는 것을 chrome 개발자 도구에서 확인할 수 있도록 해 주는 패키지
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0' //okhttp가 통신하는 것을 chrome 개발자 도구에서 확인할 수 있도록 해 주는 패키지
 }
