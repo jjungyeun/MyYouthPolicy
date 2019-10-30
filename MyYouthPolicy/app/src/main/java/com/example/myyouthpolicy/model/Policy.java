@@ -1,4 +1,4 @@
-package com.example.firebase_20190925.model;
+package com.example.myyouthpolicy.model;
 
 import java.util.Date;
 

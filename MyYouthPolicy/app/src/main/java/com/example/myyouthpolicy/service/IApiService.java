@@ -1,8 +1,6 @@
-package com.example.firebase_20190925.service;
+package com.example.myyouthpolicy.service;
 
-import com.example.firebase_20190925.model.Policy;
-import com.example.firebase_20190925.model.Realdata;
-import com.example.firebase_20190925.model.UserModel;
+import com.example.myyouthpolicy.model.Policy;
 
 import java.util.ArrayList;
 
@@ -14,6 +12,4 @@ public interface IApiService {
     @GET("policy/show_all_policies")
     Call<ArrayList<Policy>> showAllPolicies();
 
-    @GET("policy/show_all_policies")
-    Call<ResponseBody> showAllPolicies2();
 }
