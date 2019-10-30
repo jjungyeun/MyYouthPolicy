@@ -8,6 +8,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface IApiService {
-//    @GET("policy/show_all_policies")
-//    Call<ArrayList<Policy>> showAllPolicies();
+    @GET("policy/show_all_policies")
+    Call<ArrayList<Policy>> showAllPolicies();
 }

@@ -1,5 +1,7 @@
 package com.example.mypolicy;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -86,12 +88,19 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(this,SearchActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(this,DownloadActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_tools) {
+            Intent intent = new Intent(this,ProfileActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
