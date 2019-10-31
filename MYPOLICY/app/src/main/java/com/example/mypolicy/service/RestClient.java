@@ -21,7 +21,7 @@ public class RestClient {
 
     public RestClient(String baseUrl) {
         //json 파싱 시, formatting을 하기 위한 Gson객체 설정
-        Gson gson = new GsonBuilder().create();
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create();
 
         //통신 data 로깅을 위한 인터셉터 설정
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
