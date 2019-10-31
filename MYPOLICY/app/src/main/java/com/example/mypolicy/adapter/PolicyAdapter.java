@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mypolicy.DataParser;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.Policy;
 
@@ -18,12 +19,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
+    DataParser dataParser;
+//    dataParser=new DataParser()
    String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
    String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
    String[] eng_day={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
    String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
 
-    private ArrayList<Policy> pList;
+    static ArrayList<Policy> pList;
     public PolicyAdapter(ArrayList<Policy> list) {
         pList = list;
     }
@@ -48,35 +51,44 @@ Log.d("d",""+pList.get(position).getApply_start());
             }
         });
         holder.policyName.setText(pList.get(position).getTitle());
-        if(pList.get(position).getApply_start()==null) holder.applyStart.setText("없음");
-        if(pList.get(position).getApply_end()==null) holder.applyEnd.setText("없음");
+        if(pList.get(position).getApply_start()==null) holder.applyStart.setText("공고후 확인 신청 바람");
+        if(pList.get(position).getApply_end()==null) holder.applyEnd.setText("공고후 확인 신청 바람");
         if(pList.get(position).getApply_end()!=null &&pList.get(position).getApply_start()!=null)
         {
             String start=pList.get(position).getApply_start().toString();
             String end=pList.get(position).getApply_end().toString();
-
             holder.applyStart.setText(date_parse(start));
             holder.applyEnd.setText(date_parse(end));
 
         }
-//        holder.policyName.setText(pList.get(position).getTitle());
+        holder.policyName.setText(pList.get(position).getTitle());
 
     }
 
     private String date_parse(String rawDate) {
-        //Log.d("길이",""+rawDate.);
-        StringBuffer sb=new StringBuffer();
 
+        StringBuffer sb=new StringBuffer();
+        String copyrawDate=rawDate;
+        String copyrawDate2=rawDate;
+        String[] year=copyrawDate2.split("\\s");
+        sb.append(year[5]);
+        sb.append("년");
+        sb.append(" ");
         for(int i=0;i<12;i++)
         {
             //Log.d("결과","여긴");
-            if(rawDate.contains(eng_mon[i]))
+            if(rawDate.contains(eng_mon[i]))//월
             {
                 sb.append(kor_mon[i]);
                 Log.d("결과",""+sb);
 
             }
         }
+        sb.append(" ");
+        String[] words=copyrawDate.split("\\s");
+        sb.append(words[2]);
+        sb.append("일");
+        sb.append(" ");
         for(int i=0;i<7;i++)
         {
             if(rawDate.contains(eng_day[i]))
