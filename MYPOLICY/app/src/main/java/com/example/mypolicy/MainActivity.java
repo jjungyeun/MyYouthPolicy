@@ -128,24 +128,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(mContext, MainActivity.class);
                 startActivity(intent);
                 closeMenu();
+                finish();
             }
 
             @Override
             public void btnSearch() {
                 Intent intent = new Intent(mContext,SearchActivity.class);
                 startActivity(intent);
+                closeMenu();
+                finish();
             }
 
             @Override
             public void btnDownload() {
                 Intent intent = new Intent(mContext,DownloadActivity.class);
                 startActivity(intent);
+                closeMenu();
+                finish();
             }
 
             @Override
             public void btnProfile() {
                 Intent intent = new Intent(mContext,ProfileActivity.class);
                 startActivity(intent);
+                closeMenu();
+                finish();
             }
 
             @Override
@@ -153,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sharedPreferences.edit().clear().apply();
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
+                closeMenu();
                 finish();
             }
         });

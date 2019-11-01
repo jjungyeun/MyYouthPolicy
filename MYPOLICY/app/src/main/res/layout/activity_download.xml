@@ -1,12 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/id_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/rl_001"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btn_menu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="15dp"
+                android:background="@drawable/ic_menu"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_title"
+                android:textColor="@color/colorLight"
+                android:layout_marginLeft="50dp"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+
+        <!--        액티비티 레이아웃 넣는 곳          -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rl_001">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="다운로드"
+                android:textSize="190dp"
+                />
+
+        </LinearLayout>
+        <!--        액티비티 레이아웃 넣는 곳          -->
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_silde"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="다운로드"
-        android:textSize="190dp"
-        />
+        android:visibility="gone">
 
-</LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.75"/>
+
+        <FrameLayout
+            android:id="@+id/view_sildebar"
+            android:layout_width="280dp"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>
