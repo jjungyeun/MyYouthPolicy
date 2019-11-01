@@ -83,17 +83,20 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorLight"
+            android:background="@color/colorPrimary"
             android:text="취소"/>
 
 
         <Button
             android:id="@+id/btn_register_join"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorLight"
+            android:background="@color/colorPrimary"
             android:text="가입"/>
     </LinearLayout>
 

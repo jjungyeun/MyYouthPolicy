@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("password", et_userPW.getText().toString());
         userInfo.put("name", et_userName.getText().toString());
-        userInfo.put("age",Integer.parseInt(et_userAge.getText().toString()));
+        userInfo.put("age",et_userAge.getText().toString());
         db.collection("user")
                 .document(et_userEmail.getText().toString())
                 .set(userInfo)

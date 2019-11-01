@@ -36,19 +36,140 @@
         </LinearLayout>
 
         <!--        액티비티 레이아웃 넣는 곳          -->
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rl_001">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="프로필"
-                android:textSize="190dp"
-                />
+                android:padding="20dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="이메일"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/et_profile_email"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="false"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/et_profile_pw"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="이름"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/et_profile_name"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="나이"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/et_profile_age"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="지역"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/et_profile_region"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="관심사"
+                    android:textSize="20sp"/>
+
+                <Spinner
+                    android:id="@+id/sp_profile_interest"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#BABDCE"
+                    android:spinnerMode="dropdown" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_profile_cancel"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorLight"
+                        android:background="@color/colorPrimary"
+                        android:text="취소"/>
+
+
+                    <Button
+                        android:id="@+id/btn_profile_change"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorLight"
+                        android:background="@color/colorPrimary"
+                        android:text="변경"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
         <!--        액티비티 레이아웃 넣는 곳          -->
 
     </RelativeLayout>
