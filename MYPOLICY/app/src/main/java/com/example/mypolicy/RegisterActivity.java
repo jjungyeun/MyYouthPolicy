@@ -8,10 +8,17 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText et_userEmail, et_userPW, et_userName, et_userAge;
     Button btn_cancel, btn_join;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         et_userEmail = findViewById(R.id.et_register_email);
         et_userPW = findViewById(R.id.et_register_pw);
@@ -78,6 +87,25 @@ public class RegisterActivity extends AppCompatActivity {
     // user 정보 db에 넣기
     public void successRegister(FirebaseUser user){
 
+        Map<String, Object> userInfo = new HashMap<>();
+        userInfo.put("password", et_userPW.getText().toString());
+        userInfo.put("name", et_userName.getText().toString());
+        userInfo.put("age",Integer.parseInt(et_userAge.getText().toString()));
+        db.collection("user")
+                .document(et_userEmail.getText().toString())
+                .set(userInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
 
         finish();
     }
