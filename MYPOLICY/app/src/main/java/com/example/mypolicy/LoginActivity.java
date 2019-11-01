@@ -47,23 +47,30 @@ public class LoginActivity extends AppCompatActivity {
                 String userEmail = et_userEmail.getText().toString();
                 String userPW = et_userPW.getText().toString();
 
-                mAuth.signInWithEmailAndPassword(userEmail, userPW)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    successLogIn(user);
-                                } else {
-                                    // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                    Toast.makeText(LoginActivity.this, "로그인 실패",
-                                            Toast.LENGTH_SHORT).show();
+                if(userEmail.isEmpty()||userPW.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mAuth.signInWithEmailAndPassword(userEmail, userPW)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        // Sign in success, update UI with the signed-in user's information
+                                        Log.d(TAG, "signInWithEmail:success");
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        successLogIn(user);
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                        Toast.makeText(LoginActivity.this, "로그인 실패",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
+
+
             }
         });
         btn_register.setOnClickListener(new View.OnClickListener() {
