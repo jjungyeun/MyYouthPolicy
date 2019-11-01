@@ -1,13 +1,85 @@
 package com.example.mypolicy;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    private final String TAG ="RegisterActivity";
+
+    EditText et_userEmail, et_userPW, et_userName, et_userAge;
+    Button btn_cancel, btn_join;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        et_userEmail = findViewById(R.id.et_register_email);
+        et_userPW = findViewById(R.id.et_register_pw);
+        et_userName = findViewById(R.id.et_register_name);
+        et_userAge = findViewById(R.id.et_register_age);
+        btn_cancel = findViewById(R.id.btn_register_cancel);
+        btn_join = findViewById(R.id.btn_register_join);
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        btn_join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String userEmail = et_userEmail.getText().toString();
+                String userPW = et_userPW.getText().toString();
+
+                mAuth.createUserWithEmailAndPassword(userEmail, userPW)
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail: success");
+                                    Toast.makeText(RegisterActivity.this, "회원가입 성공. 로그인 해주세요!", Toast.LENGTH_SHORT).show();
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    successRegister(user);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                    Toast.makeText(RegisterActivity.this, "회원가입 실패",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+            }
+        });
+
     }
+
+    // user 정보 db에 넣기
+    public void successRegister(FirebaseUser user){
+
+
+        finish();
+    }
+
 }
