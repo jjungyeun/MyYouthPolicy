@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -39,14 +41,26 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private String TAG = "DetailPolicyActivity";
 
     private Context mContext = DetailPolicyActivity.this;
+    /*상세정보*/
+    private TextView tv_title;
+    private TextView tv_detail;
+    private TextView tv_applyStart;
+    private TextView tv_applyEnd;
+    private TextView tv_age_start;
+    private TextView tv_age_end;
+    private TextView tv_location;
+    private TextView tv_uri;
 
     private ViewGroup mainLayout;   //사이드 나왔을때 클릭방지할 영역
     private ViewGroup viewLayout;   //전체 감싸는 영역
     private ViewGroup sideLayout;   //사이드바만 감싸는 영역
+    private TextView tv_review_blank;
 
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
     private RecyclerView mRecyclerView;
+    private int reviewLength=0;
+    private String reviewLengthString;
     SharedPreferences sharedPreferences;
 
     Intent intent;
@@ -58,6 +72,17 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         init();
 
         mRecyclerView=findViewById(R.id.recyclerView);
+        tv_review_blank=findViewById(R.id.tv_review_blank);
+
+        tv_age_start=findViewById(R.id.tv_age_start);
+        tv_age_end=findViewById(R.id.tv_age_end);
+        tv_title=findViewById(R.id.tv_policy_name);
+        tv_applyStart=findViewById(R.id.tv_apply_start);
+        tv_applyEnd=findViewById(R.id.tv_apply_end);
+        tv_detail=findViewById(R.id.tv_policy_detail);
+        tv_location=findViewById(R.id.tv_location);
+        tv_uri=findViewById(R.id.tv_uri);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
         addSideView();  //사이드바 add
@@ -78,10 +103,67 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                     String tmp=new Gson().toJson(response.body());
 
                     Log.d("각각정보",""+position+tmp);
-                }
+                    //파싱코드
+                    try{
+                        JSONArray jsonArray=new JSONArray(tmp);
+                        JSONObject jsonObject=jsonArray.getJSONObject(0);
+                        String title=jsonObject.getString("title");
+                        tv_title.setText(title);
 
-                private void setUI() {
+                        String contents=jsonObject.getString("contents");
+                        tv_detail.setText(contents);
 
+                        String age=Integer.toString(jsonObject.getInt("start_age"));
+                        if(age.equals("0"))
+                        {
+                            tv_age_start.setText("제한없음");
+                        }
+                        else
+                        tv_age_start.setText(age+"살");
+
+                        String age_end=Integer.toString(jsonObject.getInt("end_age"));
+                        if(age_end.equals("0"))
+                        {
+                            tv_age_end.setText("제한없음");
+                        }
+                        else
+                        tv_age_end.setText(age_end+"살");
+
+                        String url=jsonObject.getString("uri");
+                        tv_uri.setText(url);
+
+                        if(jsonObject.length()==8)//지원날짜 끝날짜 없을떄
+                        {
+                            tv_applyStart.setText("지원날짜 상관없음");
+                            tv_applyEnd.setText("지원날짜 상관없음");
+                        }
+                        else if(jsonObject.length()==9)
+                        {
+                            Log.d("각각하나",""+jsonObject.getString("apply_start"));
+                            Log.d("각각하나",""+jsonObject.getString("apply_end"));
+                        }
+                        else
+                        {
+
+                        }
+
+
+//                        String applyStart=jsonObject.getString("apply_start");
+//                        if( applyStart==null)
+//                        {
+//                            tv_applyStart.setText("기한제한 없음");
+//                        }
+
+
+
+
+
+                        //Log.d("각각정보세부",""+jsonObject);
+
+                    }catch(JSONException e)
+                    {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -94,21 +176,26 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
             e.printStackTrace();
         }
 
-        try{
+        try{// 댓글 통신 retrofit
             reviewcall.enqueue(new Callback<ArrayList<Review>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Review>> call, Response<ArrayList<Review>> response) {
                     String tmp=new Gson().toJson(response.body());
-
-                    ReviewAdapter ra=new ReviewAdapter(response.body());
-                    mRecyclerView.setAdapter(ra);
                     try {//정보길이
                         JSONArray jsonArray = new JSONArray(tmp);
-                        Log.d("리뷰길이",""+jsonArray.length());
+                        reviewLength=jsonArray.length();
+                        Log.d("길이",""+reviewLength);
+                        reviewLengthString=Integer.toString(reviewLength);
+                        Log.d("길이2",""+reviewLengthString);
+                        tv_review_blank.setText(reviewLengthString);
+
                     }catch (JSONException j)
                     {
                         j.printStackTrace();
                     }
+                    ReviewAdapter ra=new ReviewAdapter(response.body());
+                    mRecyclerView.setAdapter(ra);
+
                     Log.d("리뷰값",""+position+tmp);
                 }
 
@@ -121,6 +208,9 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         {
             t.printStackTrace();
         }
+
+
+
     }
 
     @Override

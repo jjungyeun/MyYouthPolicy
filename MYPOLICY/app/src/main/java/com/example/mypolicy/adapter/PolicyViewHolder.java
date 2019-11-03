@@ -27,6 +27,7 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
     public TextView startAge;
     public TextView detailContent;
     public TextView location;
+    public TextView endAge;
     public PolicyViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -34,7 +35,8 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
         applyStart=(TextView)itemView.findViewById(R.id.tv_apply_start);
         applyEnd=(TextView)itemView.findViewById(R.id.tv_apply_end);
         uri=(TextView)itemView.findViewById(R.id.tv_uri);
-        startAge=(TextView)itemView.findViewById(R.id.tv_age);
+        startAge=(TextView)itemView.findViewById(R.id.tv_age_start);
+        endAge=(TextView)itemView.findViewById(R.id.tv_age_end);
         detailContent=(TextView)itemView.findViewById(R.id.tv_policy_detail);
         location=(TextView)itemView.findViewById(R.id.tv_location);
 

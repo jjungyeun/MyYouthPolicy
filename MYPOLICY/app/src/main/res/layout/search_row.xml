@@ -25,7 +25,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="7"
-                card_view:cardBackgroundColor="#123456"
+                card_view:cardBackgroundColor="@color/colorPrimary"
                 card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
