@@ -48,6 +48,8 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
 //                Bundle extras=new Bundle();
 
                 intent.putExtra("position",getAdapterPosition());
+
+
 //                String title=policyName.getText().toString();
 //                String apply_Start=applyStart.getText().toString();
 //                String apply_End=applyEnd.getText().toString();

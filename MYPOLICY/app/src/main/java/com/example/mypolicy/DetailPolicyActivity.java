@@ -14,8 +14,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypolicy.adapter.PolicyAdapter;
+import com.example.mypolicy.adapter.ReviewAdapter;
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.Review;
 import com.example.mypolicy.service.IApiService;
@@ -43,7 +46,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
-
+    private RecyclerView mRecyclerView;
     SharedPreferences sharedPreferences;
 
     Intent intent;
@@ -52,25 +55,21 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_policy);
-
         init();
+
+        mRecyclerView=findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
         addSideView();  //사이드바 add
 
         intent=getIntent();
         position=intent.getIntExtra("position",1);
 
-        Log.d("값",""+intent.getIntExtra("position",1));
-        Log.d("값2",""+intent.getStringExtra("Title"));
-        Log.d("값2",""+intent.getStringExtra("applyStart"));
-//        Log.d("값2",""+intent.getStringExtra("applyEnd"));
-//        Log.d("값2",""+intent.getStringExtra("uri"));
-//        Log.d("값2",""+intent.getStringExtra("StartAge"));
-//        Log.d("값2",""+intent.getStringExtra("detailContent"));
-//        Log.d("값2",""+intent.getStringExtra("location"));
+
         IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
         Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
         Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
+
 
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
@@ -100,7 +99,10 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                 @Override
                 public void onResponse(Call<ArrayList<Review>> call, Response<ArrayList<Review>> response) {
                     String tmp=new Gson().toJson(response.body());
-                    try {
+
+                    ReviewAdapter ra=new ReviewAdapter(response.body());
+                    mRecyclerView.setAdapter(ra);
+                    try {//정보길이
                         JSONArray jsonArray = new JSONArray(tmp);
                         Log.d("리뷰길이",""+jsonArray.length());
                     }catch (JSONException j)
@@ -137,20 +139,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         if(isMenuShow){
             closeMenu();
         }else{
-
-            if(isExitFlag){
-                finish();
-            } else {
-
-                isExitFlag = true;
-                Toast.makeText(this, "뒤로가기를 한번더 누르시면 앱이 종료됩니다.",  Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        isExitFlag = false;
-                    }
-                }, 2000);
-            }
+            finish();
         }
     }
 

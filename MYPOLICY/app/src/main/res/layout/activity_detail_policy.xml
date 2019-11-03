@@ -247,10 +247,24 @@
                 android:layout_height="wrap_content"
                 android:text="저장"
                 android:layout_below="@id/linearLayout"/>
+            <TextView
+                android:id="@+id/tv_review_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체 댓글 개수"
+                android:layout_below="@id/btn_policy_save"/>
+
+            <TextView
+                android:id="@+id/tv_review_blank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="33개"
+                android:layout_below="@id/btn_policy_save"
+                android:layout_toRightOf="@id/btn_policy_save"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_below="@+id/btn_policy_save"
+                android:layout_below="@+id/tv_review_num"
                 android:layout_above="@+id/linearLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
