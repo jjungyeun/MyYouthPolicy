@@ -36,19 +36,95 @@
         </LinearLayout>
 
         <!--        액티비티 레이아웃 넣는 곳          -->
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rl_001">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="프로필"
-                android:textSize="190dp"
-                />
+                android:padding="20dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="111@naver.com"
+                    android:textSize="20sp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#424242"
+                    android:layout_marginTop="15dp"/>
+
+                <TableLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:background="#929292"
+                    android:padding="1dp"
+                    android:layout_marginTop="20dp"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:background="#929292">
+                        <TextView
+                            android:id="@+id/btn_edit_personal_info"
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="7dp"
+                            android:layout_margin="0.5dp"
+                            android:textSize="17sp"
+                            android:text="개인정보 수정"
+                            />
+                    </TableRow>
+                    <TableRow
+                        android:background="#929292">
+                        <TextView
+                            android:id="@+id/btn_edit_interest"
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="7dp"
+                            android:layout_margin="0.5dp"
+                            android:textSize="17sp"
+                            android:text="관심 정책 수정"/>
+                    </TableRow>
+                    <TableRow
+                        android:background="#929292">
+                        <TextView
+                            android:id="@+id/btn_request"
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="7dp"
+                            android:layout_margin="0.5dp"
+                            android:textSize="17sp"
+                            android:text="관리자에게 문의"/>
+                    </TableRow>
+                    <TableRow
+                        android:background="#929292">
+                        <TextView
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="7dp"
+                            android:layout_margin="0.5dp"
+                            android:textSize="17sp"
+                            android:text="고객센터"/>
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
         <!--        액티비티 레이아웃 넣는 곳          -->
 
     </RelativeLayout>

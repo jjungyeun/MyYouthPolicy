@@ -11,11 +11,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -32,13 +49,32 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     SharedPreferences sharedPreferences;
 
+    TextView tv_profile_email;
+    TextView btn_edit_info, btn_edit_interest, btn_request;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         init();
-        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
         addSideView();  //사이드바 add
+
+        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+
+        tv_profile_email = findViewById(R.id.tv_profile_email);
+        btn_edit_info = findViewById(R.id.btn_edit_personal_info);
+        btn_edit_interest = findViewById(R.id.btn_edit_interest);
+        btn_request = findViewById(R.id.btn_request);
+
+        tv_profile_email.setText(sharedPreferences.getString("userEmail",null));
+
+        btn_edit_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, EditPersonalInfoActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -82,7 +118,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         mainLayout = findViewById(R.id.id_main);
         viewLayout = findViewById(R.id.fl_silde);
         sideLayout = findViewById(R.id.view_sildebar);
-
     }
 
     private void addSideView(){
