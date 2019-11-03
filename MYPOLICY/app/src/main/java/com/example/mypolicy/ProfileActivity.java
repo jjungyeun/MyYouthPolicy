@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,14 +48,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean isExitFlag = false;
 
     SharedPreferences sharedPreferences;
-    FirebaseFirestore db;
 
-    Spinner dropdown;
-    ArrayAdapter<String> adapter;
-    String[] interests = new String[]{"취업지원", "국가장학", "의료복지", "주거지원", "생활복지"};
-
-    EditText et_userEmail, et_userPW, et_userName, et_userAge, et_userRegion;
-    Button btn_cancel, btn_change;
+    TextView tv_profile_email;
+    TextView btn_edit_info, btn_edit_interest, btn_request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,60 +59,20 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         init();
         addSideView();  //사이드바 add
 
-        dropdown = findViewById(R.id.sp_profile_interest);
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, interests);
-        dropdown.setAdapter(adapter);
+        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
 
-        btn_cancel = findViewById(R.id.btn_profile_cancel);
-        btn_change = findViewById(R.id.btn_profile_change);
+        tv_profile_email = findViewById(R.id.tv_profile_email);
+        btn_edit_info = findViewById(R.id.btn_edit_personal_info);
+        btn_edit_interest = findViewById(R.id.btn_edit_interest);
+        btn_request = findViewById(R.id.btn_request);
 
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
+        tv_profile_email.setText(sharedPreferences.getString("userEmail",null));
+
+        btn_edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, MainActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, EditPersonalInfoActivity.class);
                 startActivity(intent);
-                finish();
-            }
-        });
-
-        btn_change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String userPW = et_userPW.getText().toString();
-                String userName = et_userName.getText().toString();
-                String userAge = et_userAge.getText().toString();
-                String userRegion = et_userRegion.getText().toString();
-
-                if(userPW.isEmpty()||userName.isEmpty()||userAge.isEmpty()){
-                    Toast.makeText(mContext, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Map<String, Object> userInfo = new HashMap<>();
-                    userInfo.put("password", userPW);
-                    userInfo.put("name", userName);
-                    userInfo.put("age",userAge);
-                    userInfo.put("region", userRegion);
-                    db.collection("user")
-                            .document(et_userEmail.getText().toString())
-                            .set(userInfo)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "DocumentSnapshot successfully written!");
-                                    Toast.makeText(mContext, "변경되었습니다.", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(mContext, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error writing document", e);
-                                }
-                            });
-                }
-
             }
         });
 
@@ -157,42 +113,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private void init(){
 
-        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
-        db = FirebaseFirestore.getInstance();
-
         findViewById(R.id.btn_menu).setOnClickListener(this);
 
         mainLayout = findViewById(R.id.id_main);
         viewLayout = findViewById(R.id.fl_silde);
         sideLayout = findViewById(R.id.view_sildebar);
-
-        et_userEmail = findViewById(R.id.et_profile_email);
-        et_userPW = findViewById(R.id.et_profile_pw);
-        et_userName = findViewById(R.id.et_profile_name);
-        et_userAge = findViewById(R.id.et_profile_age);
-        et_userRegion = findViewById(R.id.et_profile_region);
-
-        et_userEmail.setText(sharedPreferences.getString("userEmail",null));
-        DocumentReference userInfo = db.collection("user").document(sharedPreferences.getString("userEmail",null));
-        userInfo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                        et_userName.setText(document.get("name").toString());
-                        et_userAge.setText(document.get("age").toString());
-                        if(document.get("region")!=null)
-                            et_userRegion.setText(document.get("region").toString());
-                    } else {
-                        Log.d(TAG, "No such document");
-                    }
-                } else {
-                    Log.d(TAG, "get failed with ", task.getException());
-                }
-            }
-        });
     }
 
     private void addSideView(){
