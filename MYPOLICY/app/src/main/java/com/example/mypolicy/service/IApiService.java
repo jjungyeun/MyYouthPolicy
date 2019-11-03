@@ -1,6 +1,7 @@
 package com.example.mypolicy.service;
 
 import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.model.Review;
 
 import java.util.ArrayList;
 
@@ -14,4 +15,7 @@ public interface IApiService {
 
     @GET("policy/{number}")
     Call<ArrayList<Policy>>showselectedPolicy(@Path("number") int number);
+
+    @GET("review/{number}")
+    Call<ArrayList<Review>> showReview(@Path("number") int number);
 }
