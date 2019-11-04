@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,13 +27,18 @@ import com.example.mypolicy.model.Review;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +57,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private TextView tv_age_end;
     private TextView tv_location;
     private TextView tv_uri;
+    private TextView tv_time;
+    private EditText et_comment;
 
     private ViewGroup mainLayout;   //사이드 나왔을때 클릭방지할 영역
     private ViewGroup viewLayout;   //전체 감싸는 영역
@@ -59,9 +68,14 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
     private RecyclerView mRecyclerView;
+    private Button reviewInsert;
     private int reviewLength=0;
+    private String commentData;
     private String reviewLengthString;
+    final HashMap<String,Object> hashMap=new HashMap<>();
     SharedPreferences sharedPreferences;
+    long now;
+    IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
 
     Intent intent;
     int position;
@@ -70,10 +84,11 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_policy);
         init();
-
+        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
         mRecyclerView=findViewById(R.id.recyclerView);
         tv_review_blank=findViewById(R.id.tv_review_blank);
 
+        et_comment=findViewById(R.id.et_comment);
         tv_age_start=findViewById(R.id.tv_age_start);
         tv_age_end=findViewById(R.id.tv_age_end);
         tv_title=findViewById(R.id.tv_policy_name);
@@ -82,6 +97,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         tv_detail=findViewById(R.id.tv_policy_detail);
         tv_location=findViewById(R.id.tv_location);
         tv_uri=findViewById(R.id.tv_uri);
+        tv_time=findViewById(R.id.tv_time);
+        reviewInsert=findViewById(R.id.btn_review_insert);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
@@ -89,12 +106,17 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
         intent=getIntent();
         position=intent.getIntExtra("position",1);
+//================================시간할것=================================================//
+//        now=System.currentTimeMillis();
+//        Date date=new Date(now);
+//        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        String formatDate = sdfNow.format(date);
+//        Log.d("현재시간",""+formatDate);
+//        tv_time.setText(formatDate);
 
 
-        IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
         Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
         Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
-
 
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
@@ -209,7 +231,38 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
             t.printStackTrace();
         }
 
+        reviewInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hashMap.put("review_uID",sharedPreferences.getString("userEmail",null));
+                hashMap.put("p_code",position);
+                commentData=et_comment.getText().toString();
+                hashMap.put("contents",commentData);
 
+
+
+//        hashMap.put("review_uID","iwls1234@naver.com");
+//        hashMap.put("p_code",0);
+//        hashMap.put("contents","성공했어");
+                Call<JSONObject> postReview=iApiService.postReview(hashMap);
+                try{
+                    postReview.enqueue(new Callback<JSONObject>() {
+                        @Override
+                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                            Log.d("성공",""+response.body());
+                        }
+
+                        @Override
+                        public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                        }
+                    });
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
