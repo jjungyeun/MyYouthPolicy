@@ -305,36 +305,43 @@
                         </TableLayout>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btn_policy_save"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@color/colorPrimaryLight"
-                android:textColor="@color/colorLight"
-                android:textSize="20sp"
-                android:text="정책 저장"/>
-
                     <LinearLayout
+                        android:layout_height="40dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
-                        <TextView
-                            android:id="@+id/tv_review_num"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="10dp"
-                            android:text="전체 댓글 개수"/>
-
-                        <TextView
-                            android:id="@+id/tv_review_blank"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="33개"
-                            android:textColor="@color/colorPrimaryLight"
-                            android:layout_below="@id/btn_policy_save"/>
+                        android:layout_margin="10dp"
+                        android:background="#DAE6EE">
+                        <Button
+                            android:id="@+id/btn_policy_save"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:layout_margin="2.5dp"
+                            android:background="@drawable/btn_save_selector"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            android:text="정책 저장"/>
                     </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/tv_review_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="전체 댓글 개수"/>
+
+                    <TextView
+                        android:id="@+id/tv_review_blank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="33개"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:layout_below="@id/btn_policy_save"/>
+                </LinearLayout>
 
 
 
