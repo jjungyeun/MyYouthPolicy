@@ -3,8 +3,10 @@ package com.example.mypolicy;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +31,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText et_userEmail, et_userPW, et_userName, et_userAge;
     Button btn_cancel, btn_join;
+    LinearLayout ll;
+    InputMethodManager imm;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -46,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
         et_userAge = findViewById(R.id.et_register_age);
         btn_cancel = findViewById(R.id.btn_register_cancel);
         btn_join = findViewById(R.id.btn_register_join);
+
+        ll = findViewById(R.id.ll_register);
+        imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +96,14 @@ public class RegisterActivity extends AppCompatActivity {
                 }
 
 
+            }
+        });
+
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imm.hideSoftInputFromWindow(et_userEmail.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(et_userPW.getWindowToken(), 0);
             }
         });
 

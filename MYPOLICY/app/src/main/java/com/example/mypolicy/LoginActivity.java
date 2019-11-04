@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,8 +24,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private final String TAG ="LoginActivity";
 
-    private Button btn_register,btn_login;
+    Button btn_register,btn_login;
     EditText et_userEmail, et_userPW;
+    LinearLayout ll;
+    InputMethodManager imm;
+
     private FirebaseAuth mAuth;
 
     SharedPreferences sharedPreferences;
@@ -40,6 +45,10 @@ public class LoginActivity extends AppCompatActivity {
         et_userPW = findViewById(R.id.et_login_pw);
         btn_register=findViewById(R.id.btn_goto_register);
         btn_login=findViewById(R.id.btn_login);
+
+        ll = findViewById(R.id.ll_login);
+        imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +87,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imm.hideSoftInputFromWindow(et_userEmail.getWindowToken(), 0);
+                imm.hideSoftInputFromWindow(et_userPW.getWindowToken(), 0);
             }
         });
     }
