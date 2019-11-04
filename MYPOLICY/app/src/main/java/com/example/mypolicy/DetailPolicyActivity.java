@@ -107,11 +107,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         intent=getIntent();
         position=intent.getIntExtra("position",1);
 //================================시간할것=================================================//
-//        now=System.currentTimeMillis();
-//        Date date=new Date(now);
-//        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        String formatDate = sdfNow.format(date);
-//        Log.d("현재시간",""+formatDate);
+
 //        tv_time.setText(formatDate);
 
 
@@ -234,10 +230,18 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         reviewInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                now=System.currentTimeMillis();
+                Date date=new Date(now);
+                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                final String formatDate = sdfNow.format(date);
+                Log.d("현재시간",""+formatDate);
+
                 hashMap.put("review_uID",sharedPreferences.getString("userEmail",null));
                 hashMap.put("p_code",position);
                 commentData=et_comment.getText().toString();
                 hashMap.put("contents",commentData);
+                Log.d("현재현재시간",""+formatDate);
+                hashMap.put("review_time",formatDate);
 
 
 
