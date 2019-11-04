@@ -36,22 +36,22 @@
         </LinearLayout>
 
         <!--        액티비티 레이아웃 넣는 곳          -->
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rl_001"
             >
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_above="@+id/linearLayout2">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
 
                     <LinearLayout
@@ -59,237 +59,294 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
                         android:orientation="horizontal">
 
-
-                        <androidx.cardview.widget.CardView
-                            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                        <TableLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="7"
-                            card_view:cardBackgroundColor="@color/colorPrimary"
-                            card_view:cardCornerRadius="4dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-
-                                <LinearLayout
+                            android:background="#929292"
+                            android:padding="1dp"
+                            android:shrinkColumns="2"
+                            android:stretchColumns="0,2">
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:text="정책명"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="정책명 : "
-                                        android:textColor="@android:color/white" />
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                                    <TextView
-                                        android:id="@+id/tv_policy_name"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="청년지원 프로젝트"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/tv_policy_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:text="청년지원 프로젝트"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="상세내용"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="상세내용 : "
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                                        android:textColor="@android:color/white" />
-
-                                    <TextView
-                                        android:id="@+id/tv_policy_detail"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="묭묭묭"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/tv_policy_detail"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="시작날짜 : "
-                                        android:textColor="@android:color/white" />
-
-                                    <TextView
-                                        android:id="@+id/tv_apply_start"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="2019년 10월 1일"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-                                <LinearLayout
+                                    android:text="묭묭묭"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:text="시작날짜"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="종료날짜 : "
-                                        android:textColor="@android:color/white" />
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                                    <TextView
-                                        android:id="@+id/tv_apply_end"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="2019년 12월 1일"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/tv_apply_start"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="지원나이 : "
-
-                                        android:textColor="@android:color/white" />
-
-                                    <TextView
-                                        android:id="@+id/tv_age_start"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="20살"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-                                <LinearLayout
+                                    android:text="2019년 10월 1일"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:text="종료날짜"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="마감나이 : "
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                                        android:textColor="@android:color/white" />
-
-                                    <TextView
-                                        android:id="@+id/tv_age_end"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="23살"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/tv_apply_end"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="지역 : "
-
-                                        android:textColor="@android:color/white" />
-
-                                    <TextView
-                                        android:id="@+id/tv_location"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="서울"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
-
-                                <LinearLayout
+                                    android:text="2019년 12월 1일"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:text="지원나이"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="URI : "
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                                        android:textColor="@android:color/white" />
+                                <TextView
+                                    android:id="@+id/tv_age_start"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="20살"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="마감나이"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                                    <TextView
-                                        android:id="@+id/tv_uri"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:text="www.naver.com"
-                                        android:textColor="@android:color/white" />
-                                </LinearLayout>
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
 
-                            </LinearLayout>
-                        </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/tv_age_end"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="23살"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE"
+                                android:layout_marginBottom="1dp">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="지역"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3" />
-                    </LinearLayout>
-                </RelativeLayout>
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
+
+                                <TextView
+                                    android:id="@+id/tv_location"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="서울"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+                            <TableRow
+                                android:background="#DAE6EE">
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="URI"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    android:layout_marginRight="1dp"
+                                    />
+
+                                <View
+                                    android:background="#929292"
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"/>
+
+                                <TextView
+                                    android:id="@+id/tv_uri"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="www.naver.com"
+                                    android:textColor="@color/colorPrimary"
+                                    android:background="#ffffff"
+                                    android:padding="7dp"
+                                    android:textSize="17sp"
+                                    />
+                            </TableRow>
+
+                        </TableLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn_policy_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="저장"
-                android:layout_below="@id/linearLayout"/>
-            <TextView
-                android:id="@+id/tv_review_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 댓글 개수"
-                android:layout_below="@id/btn_policy_save"/>
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimaryLight"
+                android:textColor="@color/colorLight"
+                android:textSize="20sp"
+                android:text="정책 저장"/>
 
-            <TextView
-                android:id="@+id/tv_review_blank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="33개"
-                android:layout_below="@id/btn_policy_save"
-                android:layout_toRightOf="@id/btn_policy_save"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/tv_review_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:text="전체 댓글 개수"/>
+
+                        <TextView
+                            android:id="@+id/tv_review_blank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="33개"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:layout_below="@id/btn_policy_save"/>
+                    </LinearLayout>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
-                android:layout_below="@+id/tv_review_num"
-                android:layout_above="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="250dp"/>
+
+                </LinearLayout>
+
+            </ScrollView>
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
