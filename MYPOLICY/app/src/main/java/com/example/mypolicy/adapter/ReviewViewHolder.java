@@ -12,10 +12,12 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
     public TextView id;
     public TextView comment;
+    public TextView time;
     public ReviewViewHolder(@NonNull View itemView) {
         super(itemView);
 
         id=(TextView)itemView.findViewById(R.id.tv_comment_id);
         comment=(TextView)itemView.findViewById(R.id.tv_comment_content);
+        time=(TextView)itemView.findViewById(R.id.tv_time);
     }
 }

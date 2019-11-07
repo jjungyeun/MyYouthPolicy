@@ -14,20 +14,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mypolicy.adapter.PolicyAdapter;
 import com.example.mypolicy.adapter.ReviewAdapter;
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.Review;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +35,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,6 +69,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private String commentData;
     private String reviewLengthString;
     final HashMap<String,Object> hashMap=new HashMap<>();
+    final HashMap<String,Object> hashMap2=new HashMap<>();
     SharedPreferences sharedPreferences;
     long now;
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
@@ -113,6 +110,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
         Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
         Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
+
+
 
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
@@ -227,6 +226,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
             t.printStackTrace();
         }
 
+
+
         reviewInsert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,8 +241,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                 hashMap.put("p_code",position);
                 commentData=et_comment.getText().toString();
                 hashMap.put("contents",commentData);
-                Log.d("현재현재시간",""+formatDate);
-                hashMap.put("review_time",formatDate);
+
 
 
 

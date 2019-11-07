@@ -8,9 +8,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,4 +28,6 @@ public interface IApiService {
     @FormUrlEncoded
     @POST("review/write_review")
     Call<JSONObject> postReview(@FieldMap HashMap<String,Object> parameters);
+
+
 }

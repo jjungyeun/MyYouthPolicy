@@ -7,7 +7,7 @@ public class Review {
     int p_code;
     String review_uID;
     String contents;
-    Date req_time;
+    Date review_time;
 
     public int getReview_code() {
         return review_code;
@@ -41,11 +41,11 @@ public class Review {
         this.contents = contents;
     }
 
-    public Date getReq_time() {
-        return req_time;
+    public Date getReview_time() {
+        return review_time;
     }
 
-    public void setReq_time(Date req_time) {
-        this.req_time = req_time;
+    public void setReview_time(Date review_time) {
+        this.review_time = review_time;
     }
 }

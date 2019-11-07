@@ -30,6 +30,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
         holder.id.setText(rList.get(position).getReview_uID());
         holder.comment.setText(rList.get(position).getContents());
+
+
     }
 
     @Override

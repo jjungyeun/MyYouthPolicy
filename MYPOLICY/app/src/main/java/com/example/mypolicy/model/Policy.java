@@ -1,5 +1,7 @@
 package com.example.mypolicy.model;
 
+import android.widget.EditText;
+
 import java.util.Date;
 
 public class Policy {
