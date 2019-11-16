@@ -25,6 +25,7 @@ import com.example.mypolicy.model.Review;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,8 +69,10 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private int reviewLength=0;
     private String commentData;
     private String reviewLengthString;
+    private Button policySaveButton;
     final HashMap<String,Object> postReviewhashMap=new HashMap<>();//댓글을 보내는
     final HashMap<String,Object> getReviewhashMap=new HashMap<>();//댓글을 보는
+    final HashMap<String,Object> postSavehashMap=new HashMap<>();
     SharedPreferences sharedPreferences;
     long now;
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
@@ -95,6 +98,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         tv_location=findViewById(R.id.tv_location);
         tv_uri=findViewById(R.id.tv_uri);
         tv_time=findViewById(R.id.tv_time);
+        policySaveButton=findViewById(R.id.btn_policy_save);
         reviewInsert=findViewById(R.id.btn_review_insert);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -111,9 +115,9 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
       //  Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
         Call<ArrayList<Review>> reviewCall=iApiService.postShowReview(getReviewhashMap);
+        final Call<JSONObject> postSaveCall=iApiService.storeinMyList(Integer.toString(position));
 
-
-
+        //각각 에 대한 상세정보 받는부분
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
                 @Override
@@ -251,6 +255,40 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         }
                     });
                 }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        //*****************************저장하는 기능*************************************//
+        policySaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                now=System.currentTimeMillis();
+                Date date=new Date(now);
+                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                final String formatDate = sdfNow.format(date);
+                Log.d("현재시간",""+formatDate);
+
+                postSavehashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                postReviewhashMap.put("s_p_code",position);
+                commentData=et_comment.getText().toString();
+                postReviewhashMap.put("contents",commentData);
+                try {
+                    postSaveCall.enqueue(new Callback<JSONObject>() {
+                        @Override
+                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                        }
+                    });
+                }
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }

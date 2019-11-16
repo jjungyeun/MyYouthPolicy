@@ -52,8 +52,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="2dp"
                             android:text="청년지원 프로젝트"
-                            android:textSize="18sp"
-                            android:textColor="@color/colorPrimary" />
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <LinearLayout

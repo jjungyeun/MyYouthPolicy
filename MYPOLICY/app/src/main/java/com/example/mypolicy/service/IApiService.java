@@ -40,4 +40,24 @@ public interface IApiService {
     @POST("review/delete_review")
     Call<JSONObject> deleteReview(@FieldMap HashMap<String,Object> parameters);
 
+    //저장하는 부분
+    @FormUrlEncoded
+    @POST("my_list/store_in_mylist")
+    Call<JSONObject> storeinMyList(@FieldMap String parameters);
+
+    //저장한걸 전부 보는 부분
+    @FormUrlEncoded
+    @POST("my_list/show_all_mylist")
+    Call<JSONObject> showallMyList(@FieldMap HashMap<String,Object> parameters);
+
+    //저장한걸 지우는 부분
+    @FormUrlEncoded
+    @POST("my_list/delete")
+    Call<JSONObject> deleteMyList(@FieldMap HashMap<String,Object> parameters);
+
+    //시간순으로 저장한걸 보는 부분
+    @FormUrlEncoded
+    @POST("my_list/ordered_mylist")
+    Call<JSONObject> orderedMyList(@FieldMap HashMap<String,Object> parameters);
+
 }

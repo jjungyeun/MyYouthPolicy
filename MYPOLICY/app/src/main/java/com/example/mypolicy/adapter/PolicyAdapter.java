@@ -16,15 +16,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     DataParser dataParser;
-//    dataParser=new DataParser()
-   String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-   String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
-   String[] eng_day={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
-   String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
+    //    dataParser=new DataParser()
+    String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+    String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
+    String[] eng_day={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+    String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
 
     public ArrayList<Policy> pList;
     public StringBuffer tossSB=new StringBuffer();
@@ -41,7 +42,8 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, final int position) {
 //        String format=(pList.get(position).getApply_start());
-
+        Log.d("d",""+pList.get(position).getApply_start());
+        Log.d("d",""+pList.get(position).getApply_end());
         holder.policyName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
