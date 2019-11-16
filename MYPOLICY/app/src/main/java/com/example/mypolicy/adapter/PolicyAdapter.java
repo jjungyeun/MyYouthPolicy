@@ -41,8 +41,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, final int position) {
 //        String format=(pList.get(position).getApply_start());
-Log.d("d",""+pList.get(position).getApply_start());
-        Log.d("d",""+pList.get(position).getApply_end());
+
         holder.policyName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

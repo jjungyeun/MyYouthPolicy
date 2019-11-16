@@ -25,9 +25,19 @@ public interface IApiService {
     @GET("review/{number}")//정책당 사람들 리뷰
     Call<ArrayList<Review>> showReview(@Path("number") int number);
 
+
+    @FormUrlEncoded
+    @POST("review/selected_review")
+    Call<ArrayList<Review>> postShowReview(@FieldMap HashMap<String,Object> parameters);
+
+
     @FormUrlEncoded
     @POST("review/write_review")
     Call<JSONObject> postReview(@FieldMap HashMap<String,Object> parameters);
 
+
+    @FormUrlEncoded
+    @POST("review/delete_review")
+    Call<JSONObject> deleteReview(@FieldMap HashMap<String,Object> parameters);
 
 }
