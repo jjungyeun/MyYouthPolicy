@@ -130,7 +130,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 sp_si.setAdapter(adapter);
                 sp_si.setSelection(0);
-                Toast.makeText(mContext, "선택 지역: "+search_region.get(0)+"-"+search_region.get(1), Toast.LENGTH_SHORT).show();
+                selectRegion();
             }
 
             @Override
@@ -144,7 +144,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String region = parent.getItemAtPosition(position).toString();
                 search_region.set(1,region);
-                Toast.makeText(mContext, "선택 지역: "+search_region.get(0)+"-"+search_region.get(1), Toast.LENGTH_SHORT).show();
+                selectRegion();
             }
 
             @Override
@@ -152,6 +152,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+    }
+
+    // 서버로 query 보내기
+    private void selectRegion(){
+        //Toast.makeText(mContext, search_region.get(0)+"-"+search_region.get(1), Toast.LENGTH_SHORT).show();
     }
 
     @Override
