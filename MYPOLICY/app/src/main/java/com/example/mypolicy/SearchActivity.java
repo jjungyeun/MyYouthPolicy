@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +48,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     private String mClassName = getClass().getName().trim();
     private RecyclerView mRecyclerView;
+
+    Spinner sp_do, sp_si;
+    ArrayList<String> search_region = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,73 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         {
             e.printStackTrace();
         }
+
+
+        sp_do = findViewById(R.id.sp_do);
+        sp_si = findViewById(R.id.sp_si);
+        search_region.add("전체");
+        search_region.add("전체");
+
+        sp_do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String region = parent.getItemAtPosition(position).toString();
+                search_region.set(0,region);
+                search_region.set(1,"전체");
+                ArrayAdapter adapter= ArrayAdapter.createFromResource(
+                        getApplicationContext(),
+                        R.array.전체,
+                        android.R.layout.simple_list_item_1);
+                switch (region){
+                    case "서울":
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.서울,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                    case "경기":
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.경기,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                    default:
+
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.전체,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                }
+                sp_si.setAdapter(adapter);
+                sp_si.setSelection(0);
+                selectRegion();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        sp_si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String region = parent.getItemAtPosition(position).toString();
+                search_region.set(1,region);
+                selectRegion();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    // 서버로 query 보내기
+    private void selectRegion(){
+        //Toast.makeText(mContext, search_region.get(0)+"-"+search_region.get(1), Toast.LENGTH_SHORT).show();
     }
 
     @Override
