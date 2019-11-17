@@ -44,7 +44,6 @@ router.post("/test", function (req, res, next) {
     }
 
 
-
     //4. 분야 (4개도 세분화해서 ㄱㄱ)
     //4.0. 상관 없음.
     //4.1. Employment_Sup(취업지원) - 취업지원금, 서류/면접 지원, 취업지원 프로그램
@@ -57,61 +56,81 @@ router.post("/test", function (req, res, next) {
     // 4.2 이랑 4.4에 관련된 거 찾고 싶으면 "00101"
     // "4.0. 상관없음"이면 "1xxxx" > x는 0이든 1이든 상관없다는 의미
 
+    
+    // var recv_category = req.body.category;
+
+    // //console.log('category:' + recv_category);
+
+    // var recv_Employment_sup;
+    // var recv_Startup_sup;
+    // var recv_Life_welfare;
+    // var recv_Residential_finance;
+
+    // if (recv_category[0] == 1) {
+    //     recv_Employment_sup = 1;
+    //     recv_Startup_sup = 1;
+    //     recv_Life_welfare = 1;
+    //     recv_Residential_finance = 1;
+    // }
+    // else {
+    //     recv_Employment_sup = recv_category[1];
+    //     recv_Startup_sup = recv_category[2];
+    //     recv_Life_welfare = recv_category[3];
+    //     recv_Residential_finance = recv_category[4];
+    // }
+
+
+    // var temp_info = ' (';
+
+    // if (recv_Employment_sup == 1) {
+    //     //console.log('recv_Employment_sup:' + recv_Employment_sup);
+    //     temp_info = temp_info + 'Employment_sup = 1 OR ';
+    //     //console.log(temp_info);
+    // }
+    // if (recv_Startup_sup == 1) {
+    //     //console.log('recv_Startup_sup:' + recv_Startup_sup);
+    //     temp_info = temp_info + 'Startup_sup = 1 OR ';
+    //     //console.log(temp_info);
+    // }
+    // if (recv_Life_welfare == 1) {
+    //     //console.log('recv_Life_welfare:' + recv_Life_welfare);
+    //     temp_info = temp_info + 'Life_welfare = 1 OR ';
+    //     //console.log(temp_info);
+    // }
+    // if (recv_Residential_finance == 1) {
+    //     //console.log('recv_Residential_finance:' + recv_Residential_finance);
+    //     temp_info = temp_info + 'Residential_finance = 1 OR ';
+    //     //console.log(temp_info);
+    // }
+    // //console.log(temp_info);
+    // var category_SQL = temp_info.substring(0, temp_info.length - 3);
+    // category_SQL = category_SQL + ') ';
+
+    // //console.log('category_info:' + category_info);
+
+    // //console.log('recv_Employment_sup:' + recv_Employment_sup);
+    // //console.log('recv_Startup_sup:' + recv_Startup_sup);
+    // //console.log('recv_Life_welfare:' + recv_Life_welfare);
+    // //console.log('recv_Residential_finance:' + recv_Residential_finance);
+
+    // -------------------- 4. 분야 -----------------------
+    var categoryList = ["Employment_sup", "Startup_sup", "Life_welfare", "Residential_finance"];
+    var category_SQL_temp = "(";
+
+    // req.body.category : "01010" (string)
     var recv_category = req.body.category;
 
-    //console.log('category:' + recv_category);
-
-    var recv_Employment_sup;
-    var recv_Startup_sup;
-    var recv_Life_welfare;
-    var recv_Residential_finance;
-
-    if (recv_category[0] == 1) {
-        recv_Employment_sup = 1;
-        recv_Startup_sup = 1;
-        recv_Life_welfare = 1;
-        recv_Residential_finance = 1;
+    if(recv_category[0] == 1){
+        recv_category = "11111";
     }
-    else {
-        recv_Employment_sup = recv_category[1];
-        recv_Startup_sup = recv_category[2];
-        recv_Life_welfare = recv_category[3];
-        recv_Residential_finance = recv_category[4];
+    
+    for(var i=1;i<5;i++){
+        if(recv_category[i]==1){
+            category_SQL_temp += categoryList[i-1] + " = 1 OR ";
+        }
     }
-
-
-    var temp_info = ' (';
-
-    if (recv_Employment_sup == 1) {
-        //console.log('recv_Employment_sup:' + recv_Employment_sup);
-        temp_info = temp_info + 'Employment_sup = 1 OR ';
-        //console.log(temp_info);
-    }
-    if (recv_Startup_sup == 1) {
-        //console.log('recv_Startup_sup:' + recv_Startup_sup);
-        temp_info = temp_info + 'Startup_sup = 1 OR ';
-        //console.log(temp_info);
-    }
-    if (recv_Life_welfare == 1) {
-        //console.log('recv_Life_welfare:' + recv_Life_welfare);
-        temp_info = temp_info + 'Life_welfare = 1 OR ';
-        //console.log(temp_info);
-    }
-    if (recv_Residential_finance == 1) {
-        //console.log('recv_Residential_finance:' + recv_Residential_finance);
-        temp_info = temp_info + 'Residential_finance = 1 OR ';
-        //console.log(temp_info);
-    }
-    //console.log(temp_info);
-    var category_SQL = temp_info.substring(0, temp_info.length - 3);
-    category_SQL = category_SQL + ') ';
-
-    //console.log('category_info:' + category_info);
-
-    //console.log('recv_Employment_sup:' + recv_Employment_sup);
-    //console.log('recv_Startup_sup:' + recv_Startup_sup);
-    //console.log('recv_Life_welfare:' + recv_Life_welfare);
-    //console.log('recv_Residential_finance:' + recv_Residential_finance);
+    category_SQL_temp = category_SQL_temp.substr(0, category_SQL_temp.length-3) + ") ";
+    category_SQL = category_SQL_temp;
 
 
     //5. 연령 - 
