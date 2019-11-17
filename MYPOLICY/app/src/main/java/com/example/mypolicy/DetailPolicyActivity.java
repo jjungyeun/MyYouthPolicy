@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -107,15 +108,16 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
         intent=getIntent();
         position=intent.getIntExtra("position",1);
+        Log.d("피코드","꺼낸"+position);
 //================================시간할것=================================================//
 
 
 
 
-        Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
+        final Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
       //  Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
-        Call<ArrayList<Review>> reviewCall=iApiService.postShowReview(getReviewhashMap);
-        final Call<JSONObject> postSaveCall=iApiService.storeinMyList(Integer.toString(position));
+        final Call<ArrayList<Review>> reviewCall=iApiService.postShowReview(getReviewhashMap);
+         final Call<JSONObject> postSaveCall=iApiService.storeinMyList(postSavehashMap);
 
         //각각 에 대한 상세정보 받는부분
         try{
@@ -246,6 +248,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                     postReview.enqueue(new Callback<JSONObject>() {
                         @Override
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                            Toast.makeText(DetailPolicyActivity.this, "댓글 작성완료", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -265,20 +268,15 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         policySaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                now=System.currentTimeMillis();
-                Date date=new Date(now);
-                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                final String formatDate = sdfNow.format(date);
-                Log.d("현재시간",""+formatDate);
-
                 postSavehashMap.put("uID",sharedPreferences.getString("userEmail",null));
-                postReviewhashMap.put("s_p_code",position);
-                commentData=et_comment.getText().toString();
-                postReviewhashMap.put("contents",commentData);
+                postSavehashMap.put("s_p_code",position);
+
                 try {
                     postSaveCall.enqueue(new Callback<JSONObject>() {
                         @Override
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                            Log.d("저장","결과"+new Gson().toJson(response.body()));
+                            Toast.makeText(DetailPolicyActivity.this, "정책 저장완료", Toast.LENGTH_SHORT).show();
 
                         }
 

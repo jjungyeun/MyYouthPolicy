@@ -2,6 +2,7 @@ package com.example.mypolicy.service;
 
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.Review;
+import com.example.mypolicy.model.StoreData;
 
 import org.json.JSONObject;
 
@@ -43,12 +44,12 @@ public interface IApiService {
     //저장하는 부분
     @FormUrlEncoded
     @POST("my_list/store_in_mylist")
-    Call<JSONObject> storeinMyList(@FieldMap String parameters);
+    Call<JSONObject> storeinMyList(@FieldMap HashMap<String,Object> parameters);
 
     //저장한걸 전부 보는 부분
     @FormUrlEncoded
     @POST("my_list/show_all_mylist")
-    Call<JSONObject> showallMyList(@FieldMap HashMap<String,Object> parameters);
+    Call<ArrayList<StoreData>> showallMyList(@FieldMap HashMap<String,Object> parameters);
 
     //저장한걸 지우는 부분
     @FormUrlEncoded

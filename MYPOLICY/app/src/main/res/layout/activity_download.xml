@@ -34,20 +34,15 @@
 
         </RelativeLayout>
 
+
         <!--        액티비티 레이아웃 넣는 곳          -->
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/rl_001">
+            android:layout_below="@+id/rl_001"
+            />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="다운로드"
-                android:textSize="190dp"
-                />
-
-        </LinearLayout>
         <!--        액티비티 레이아웃 넣는 곳          -->
 
     </RelativeLayout>
