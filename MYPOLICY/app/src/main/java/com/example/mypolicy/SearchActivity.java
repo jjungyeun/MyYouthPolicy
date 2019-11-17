@@ -135,14 +135,31 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 String txt = "";
                                 selected_categories = "선택한 카테고리: ";
-                                for(Integer j=0;j<5;j++){
-                                    if(selected[j]){
-                                        txt+="1";
-                                        selected_categories += categories[j] + ", ";
+                                if(selected[0]){
+                                    txt = "10000";
+                                    selected_categories += "전체";
+                                    for(int j = 1;j<5;j++){
+                                        selected[j] = false;
                                     }
-                                    else
-                                        txt+="0";
                                 }
+                                else {
+                                    for(int j=0;j<5;j++){
+                                        if(selected[j]){
+                                            txt += "1";
+                                            selected_categories += categories[j] + ", ";
+                                        }
+                                        else
+                                            txt += "0";
+                                    }
+                                    if(txt.equals("00000")){
+                                        txt = "10000";
+                                        selected_categories = "";
+                                    }
+                                    else {
+                                        selected_categories = selected_categories.substring(0,selected_categories.length()-2);
+                                    }
+                                }
+
                                 //Toast.makeText(mContext, txt, Toast.LENGTH_SHORT).show();
                                 search_category = txt;
                                 tv_categories.setText(selected_categories);

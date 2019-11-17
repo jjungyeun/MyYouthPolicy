@@ -3,7 +3,7 @@
     <color name="colorPrimary">#053963</color>
     <color name="colorPrimaryLight">#0D5FA3</color>
     <color name="colorPrimaryDark">#042b4a</color>
-    <color name="colorAccent">#e4012e</color>
+    <color name="colorAccent">#053963</color>
     <color name="colorLight">#FDFBF3</color>
 
     <drawable name="btn_save_selected">#DAE6EE</drawable>
