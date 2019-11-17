@@ -82,7 +82,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp">
+                    android:padding="7dp">
                     <TextView
                         android:id="@+id/tv_categories"
                         android:layout_width="match_parent"
@@ -91,9 +91,14 @@
                         />
                 </LinearLayout>
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#929292"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:padding="5dp">
@@ -124,9 +129,14 @@
                     </LinearLayout>
                 </LinearLayout>
 
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#929292"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
                     android:padding="5dp">
@@ -135,33 +145,22 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_search"/>
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
                         android:text="나이"/>
                     <EditText
                         android:id="@+id/et_search_age"
-                        android:layout_width="match_parent"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:inputType="numberDecimal"
                         android:background="@drawable/search_box"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:padding="5dp">
-                    <ImageView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_search"/>
-                    <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
                         android:textSize="17sp"
                         android:text="키워드"/>
                     <EditText
@@ -171,7 +170,13 @@
                         android:layout_marginLeft="10dp"
                         android:padding="5dp"
                         android:background="@drawable/search_box"/>
+
                 </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#929292"/>
 
                 <Button
                     android:id="@+id/btn_search"

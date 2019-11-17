@@ -15,6 +15,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     final String[] categories = new String[]{"전체","취업지원","창업지원","생활/복지","주거/금융"};
     Button btn_select_category, btn_search;
     TextView tv_categories;
+    EditText et_age, et_keyword;
     Spinner sp_do, sp_si;
     ArrayList<String> search_region = new ArrayList<>();
     String search_category = "10000";
@@ -107,6 +109,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         btn_search = findViewById(R.id.btn_search);
         sp_do = findViewById(R.id.sp_do);
         sp_si = findViewById(R.id.sp_si);
+        et_age = findViewById(R.id.et_search_age);
+        et_keyword = findViewById(R.id.et_search_keyword);
 
         btn_select_category.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -240,19 +244,19 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                searchStart();
+                int age = Integer.parseInt(et_age.getText().toString());
+                String keyword = et_keyword.getText().toString();
+
+                // ------------------ 서버로 req 보내기 --------------------------
+                // 정책유형: search_category (String - ex: "00101")
+                // 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})
+                // 나이: age (int)
+                // 키워드: keyword (String)
+
+
+
             }
         });
-    }
-
-    // 서버로 query 보내기
-    private void searchStart(){
-        // 정책유형: search_category (String - ex: "00101")
-        // 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})
-        //Toast.makeText(mContext, search_region.get(0)+"-"+search_region.get(1), Toast.LENGTH_SHORT).show();
-        String str = "카테고리: "+ search_category;
-        str += "\n지역: "+ search_region.get(0)+"-"+search_region.get(1);
-        Toast.makeText(mContext, str, Toast.LENGTH_SHORT).show();
     }
 
     @Override
