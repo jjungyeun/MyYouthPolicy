@@ -32,9 +32,7 @@ public class StoreViewHolder extends RecyclerView.ViewHolder {
     public TextView tv_Pcode;
     public Button btn_storeDelete;
     private TextView tv_sharedId;
-    SharedPreferences sharedPreferences;
-    IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
-    final HashMap<String,Object> deleteDataMap=new HashMap<>();
+
 
 
     public StoreViewHolder(@NonNull View itemView) {

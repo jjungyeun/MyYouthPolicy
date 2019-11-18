@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypolicy.DetailPolicyActivity;
+import com.example.mypolicy.DownloadActivity;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.StoreData;
@@ -125,7 +126,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
                     e.printStackTrace();
                 }
                 Toast.makeText(view.getContext(), "삭제완료", Toast.LENGTH_SHORT).show();
-                
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DownloadActivity.class);
+                context.startActivity(intent);
+
             }
         });
     }

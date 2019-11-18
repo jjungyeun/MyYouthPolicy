@@ -32,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,6 +64,9 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private ViewGroup sideLayout;   //사이드바만 감싸는 영역
     private TextView tv_review_blank;
 
+    private int startflag=0;
+    private int endflag=0;
+
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
     private RecyclerView mRecyclerView;
@@ -71,15 +75,22 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private String commentData;
     private String reviewLengthString;
     private Button policySaveButton;
+    private String apply_Start_String="";
+    private String apply_End_String="";
     final HashMap<String,Object> postReviewhashMap=new HashMap<>();//댓글을 보내는
     final HashMap<String,Object> getReviewhashMap=new HashMap<>();//댓글을 보는
     final HashMap<String,Object> postSavehashMap=new HashMap<>();
+
     SharedPreferences sharedPreferences;
     long now;
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
 
     Intent intent;
     int position;
+
+    SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    SimpleDateFormat stringToDateFormat=new SimpleDateFormat("yyyyMMdd");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +113,12 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         policySaveButton=findViewById(R.id.btn_policy_save);
         reviewInsert=findViewById(R.id.btn_review_insert);
 
+        final String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+        final String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
+        String[] eng_day={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+        String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
+        final StringBuilder startSB=new StringBuilder();
+        final StringBuilder endSB=new StringBuilder();
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
@@ -116,11 +133,11 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
 
         final Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(position);
-      //  Call<ArrayList<Review>> reviewcall=iApiService.showReview(position);
         final Call<ArrayList<Review>> reviewCall=iApiService.postShowReview(getReviewhashMap);
          final Call<JSONObject> postSaveCall=iApiService.storeinMyList(postSavehashMap);
 
         //각각 에 대한 상세정보 받는부분
+
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
                 @Override
@@ -157,20 +174,56 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         String url=jsonObject.getString("uri");
                         tv_uri.setText(url);
 
-//                        if(jsonObject.length()==8)//지원날짜 끝날짜 없을떄
-//                        {
-//                            tv_applyStart.setText("지원날짜 상관없음");
-//                            tv_applyEnd.setText("지원날짜 상관없음");
-//                        }
-//                        else if(jsonObject.length()==9)
-//                        {
-//                            Log.d("각각하나",""+jsonObject.getString("apply_start"));
-//                            Log.d("각각하나",""+jsonObject.getString("apply_end"));
-//                        }
-//                        else
-//                        {
-//
-//                        }
+                        //==========================시작날짜,종료날짜=================================/
+
+
+                        /* ===========jsonOBejct에서 apply_start 키 값이 있는지 체크================  */
+                        if(jsonObject.has("apply_start")) {
+                            apply_Start_String=jsonObject.getString("apply_start");
+                            String [] splited=apply_Start_String.split("\\s");
+                            startSB.append(splited[2]+"년 ");
+                            Log.d("시작 플래그","  리플레이스 전"+splited[1]);
+                            splited[1]=splited[1].replace(",","");
+                            Log.d("시작 플래그","  리플레이스 후"+splited[1]);
+
+                            for(int i=0;i<eng_mon.length;i++)
+                            {
+                                if(splited[0].equals(eng_mon[i]))
+                                {
+                                    startSB.append(kor_mon[i]);
+                                }
+                            }
+                            startSB.append(splited[1]+"일");
+
+                           tv_applyStart.setText(startSB.toString());
+                        }
+                        else {
+                            tv_applyStart.setText("공고후 확인 신청 바람");
+                            Log.d("시작 플래그", "" + "시작 없음");
+                        }
+
+                        /* ===========jsonOBejct에서 apply_end 키 값이 있는지 체크================  */
+                        if(jsonObject.has("apply_end")) {
+                            apply_End_String=jsonObject.getString("apply_end");
+                            String [] splited2=apply_End_String.split("\\s");
+                            endSB.append(splited2[2]+"년 ");
+                            splited2[1]=splited2[1].replace(",","");
+
+                            for(int i=0;i<eng_mon.length;i++)
+                            {
+                                if(splited2[0].equals(eng_mon[i]))
+                                {
+                                    endSB.append(kor_mon[i]);
+                                }
+                            }
+                            endSB.append(splited2[1]+"일");
+
+                            tv_applyEnd.setText(endSB.toString());
+                        }
+                        else {
+                            tv_applyEnd.setText("공고후 확인 신청 바람");
+                            Log.d("끝 플래그", "" + "끝없음");
+                        }
 
 
                     }catch(JSONException e)
@@ -183,13 +236,13 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                 public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
 
                 }
+
             });
         }catch(Exception e)
         {
             e.printStackTrace();
         }
 
-        Log.d("오는",""+position);
         //댓글 정보 가져 오는 코드
         try{
             getReviewhashMap.put("p_code",position);
@@ -232,7 +285,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
             public void onClick(View view) {
                 now=System.currentTimeMillis();
                 Date date=new Date(now);
-                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy년 MM월 dd일");
                 final String formatDate = sdfNow.format(date);
                 Log.d("현재시간",""+formatDate);
 
