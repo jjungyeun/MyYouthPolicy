@@ -61,4 +61,9 @@ public interface IApiService {
     @POST("my_list/ordered_mylist")
     Call<JSONObject> orderedMyList(@FieldMap HashMap<String,Object> parameters);
 
+    //search에서 검색조건
+    @FormUrlEncoded
+    @POST("search/test")
+    Call<ArrayList<Policy>> postSearchKeyword(@FieldMap HashMap<String,Object> parameters);
+
 }

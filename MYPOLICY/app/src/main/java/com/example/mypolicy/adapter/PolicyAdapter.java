@@ -8,19 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mypolicy.DataParser;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.Policy;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
-    DataParser dataParser;
     //    dataParser=new DataParser()
     String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};

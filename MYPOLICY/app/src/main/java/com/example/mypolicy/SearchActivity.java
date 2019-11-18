@@ -29,9 +29,13 @@ import com.example.mypolicy.adapter.PolicyAdapter;
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,7 +58,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     private String mClassName = getClass().getName().trim();
     private RecyclerView mRecyclerView;
-
+    final HashMap <String,Object> searchHashMap=new HashMap<>();
     final String[] categories = new String[]{"전체","취업지원","창업지원","생활/복지","주거/금융"};
     Button btn_select_category, btn_search;
     TextView tv_categories;
@@ -78,6 +82,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
         Call<ArrayList<Policy>> call=iApiService.showAllPolicies();
+        final Call<ArrayList<Policy>> postSearchcall=iApiService.postSearchKeyword(searchHashMap);
 
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
@@ -247,6 +252,26 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 int age = Integer.parseInt(et_age.getText().toString());
                 String keyword = et_keyword.getText().toString();
 
+                searchHashMap.put("location",search_region);
+                searchHashMap.put("category",search_category);
+                searchHashMap.put("age",age);
+                searchHashMap.put("keyword",keyword);
+                try {
+                    postSearchcall.enqueue(new Callback<ArrayList<Policy>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+                            Log.d("SearchActivity", "검색결과" + new Gson().toJson(response.body()));
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+                            t.printStackTrace();
+                        }
+                    });
+                }catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
                 // ------------------ 서버로 req 보내기 --------------------------
                 // 정책유형: search_category (String - ex: "00101")
                 // 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})

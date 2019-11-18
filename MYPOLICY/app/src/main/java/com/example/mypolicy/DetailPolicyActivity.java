@@ -80,7 +80,6 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     final HashMap<String,Object> postReviewhashMap=new HashMap<>();//댓글을 보내는
     final HashMap<String,Object> getReviewhashMap=new HashMap<>();//댓글을 보는
     final HashMap<String,Object> postSavehashMap=new HashMap<>();
-
     SharedPreferences sharedPreferences;
     long now;
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
