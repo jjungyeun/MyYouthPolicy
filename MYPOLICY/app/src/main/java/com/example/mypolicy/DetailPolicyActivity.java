@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -192,6 +193,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                                     startSB.append(kor_mon[i]);
                                 }
                             }
+                            startSB.append(" ");
                             startSB.append(splited[1]+"일");
 
                            tv_applyStart.setText(startSB.toString());
@@ -215,6 +217,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                                     endSB.append(kor_mon[i]);
                                 }
                             }
+                            endSB.append(" ");
                             endSB.append(splited2[1]+"일");
 
                             tv_applyEnd.setText(endSB.toString());
@@ -301,7 +304,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                     postReview.enqueue(new Callback<JSONObject>() {
                         @Override
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-                            Toast.makeText(DetailPolicyActivity.this, "댓글 작성완료", Toast.LENGTH_SHORT).show();
+                            Toasty.info(DetailPolicyActivity.this, "댓글 작성완료!!", Toast.LENGTH_SHORT, true).show();
 
                         }
 
@@ -329,8 +332,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         @Override
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                             Log.d("저장","결과"+new Gson().toJson(response.body()));
-                            Toast.makeText(DetailPolicyActivity.this, "정책 저장완료", Toast.LENGTH_SHORT).show();
-
+                            Toasty.info(DetailPolicyActivity.this, "정책 저장 완료!!", Toast.LENGTH_SHORT, true).show();
                         }
 
                         @Override

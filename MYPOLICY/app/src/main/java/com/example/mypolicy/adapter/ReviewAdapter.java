@@ -73,7 +73,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
             if(sb.toString().contains(eng_day[i]))
                 result.append(kor_day[i]);
         }
-        Log.d("뭐가나오니2",""+result);
     }
 
     @Override

@@ -47,23 +47,9 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
                 Log.d("포지션",""+getAdapterPosition());
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
-//                Bundle extras=new Bundle();
+
 
                 intent.putExtra("position",getAdapterPosition());
-
-
-//                String title=policyName.getText().toString();
-//                String apply_Start=applyStart.getText().toString();
-//                String apply_End=applyEnd.getText().toString();
-//                String URL= uri.getText().toString();
-//                String start_Age=startAge.getText().toString();
-//                String detail_Content=detailContent.getText().toString();
-//                String Location=location.getText().toString();
-//
-//                extras.putString("Title",title);extras.putString("applyStart",apply_Start);
-//                intent.putExtras(extras);
-
-
                 context.startActivity(intent);
             }
 

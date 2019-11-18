@@ -29,6 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -125,8 +126,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
                 {
                     e.printStackTrace();
                 }
-                Toast.makeText(view.getContext(), "삭제완료", Toast.LENGTH_SHORT).show();
-                Context context=view.getContext();
+                Toasty.error(view.getContext(), "삭제완료!!", Toast.LENGTH_SHORT, true).show();                Context context=view.getContext();
                 Intent intent=new Intent(context, DownloadActivity.class);
                 context.startActivity(intent);
 

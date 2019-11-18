@@ -21,7 +21,9 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
 
     public ArrayList<Policy> pList;
-    public StringBuffer tossSB=new StringBuffer();
+    public StringBuilder startSB=new StringBuilder();
+    public StringBuilder endSB=new StringBuilder();
+
     public PolicyAdapter(ArrayList<Policy> list) {
         pList = list;
     }
@@ -46,7 +48,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             }
         });
         holder.policyName.setText(pList.get(position).getTitle());
-        tossSB.append(pList.get(position).getTitle());
+    //    tossSB.append(pList.get(position).getTitle());
         if(pList.get(position).getApply_start()==null) holder.applyStart.setText("공고후 확인 신청 바람");
         if(pList.get(position).getApply_end()==null) holder.applyEnd.setText("공고후 확인 신청 바람");
         if(pList.get(position).getApply_end()!=null &&pList.get(position).getApply_start()!=null)

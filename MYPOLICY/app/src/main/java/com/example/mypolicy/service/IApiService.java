@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -64,6 +65,7 @@ public interface IApiService {
     //search에서 검색조건
     @FormUrlEncoded
     @POST("search/test")
-    Call<ArrayList<Policy>> postSearchKeyword(@FieldMap HashMap<String,Object> parameters);
+    Call<JSONObject> postSearchKeyword(@Field("location")ArrayList<String> location,@Field("category") String category
+    , @Field("age")int age, @Field("keyword") String keyword);
 
 }

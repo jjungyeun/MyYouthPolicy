@@ -80,9 +80,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
         Call<ArrayList<Policy>> call=iApiService.showAllPolicies();
-        final Call<ArrayList<Policy>> postSearchcall=iApiService.postSearchKeyword(searchHashMap);
+
 
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
@@ -245,26 +245,27 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int age = Integer.parseInt(et_age.getText().toString());
                 String keyword = et_keyword.getText().toString();
 
-                searchHashMap.put("location",search_region);
-                searchHashMap.put("category",search_category);
-                searchHashMap.put("age",age);
-                searchHashMap.put("keyword",keyword);
+                final Call<JSONObject> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
+                Log.d("모르겠다",""+search_region);
+                Log.d("모르겠다",""+search_category);
+                Log.d("모르겠다",""+age);
+                Log.d("모르겠다",""+keyword);
+
                 try {
-                    postSearchcall.enqueue(new Callback<ArrayList<Policy>>() {
+                    postSearchcall.enqueue(new Callback<JSONObject>() {
                         @Override
-                        public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                             Log.d("SearchActivity", "검색결과" + new Gson().toJson(response.body()));
                         }
 
                         @Override
-                        public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+                        public void onFailure(Call<JSONObject> call, Throwable t) {
                             t.printStackTrace();
                         }
                     });
@@ -272,11 +273,11 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 {
                     e.printStackTrace();
                 }
-                // ------------------ 서버로 req 보내기 --------------------------
-                // 정책유형: search_category (String - ex: "00101")
-                // 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})
-                // 나이: age (int)
-                // 키워드: keyword (String)
+//                 ------------------ 서버로 req 보내기 --------------------------
+//                 정책유형: search_category (String - ex: "00101")
+//                 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})
+//                 나이: age (int)
+//                 키워드: keyword (String)
 
 
 
