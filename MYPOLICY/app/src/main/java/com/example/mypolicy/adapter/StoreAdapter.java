@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -34,7 +35,7 @@ import retrofit2.Response;
 public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
 
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
-
+    SharedPreferences sharedPreferences;
     final HashMap<String,Object> deleteDataMap=new HashMap<>();
     final Call<JSONObject> deleteCall=iApiService.deleteMyList(deleteDataMap);
 
@@ -96,6 +97,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
                 context.startActivity(intent);
             }
         });
+        sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
+//        Log.d("쉐어드",""+sharedPreferences.getString("userEmail",null));
+
 
         holder.btn_storeDelete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +107,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
 
                 try{
 //                    Log.d("유아이디","ㅠㅠ"+sharedPreferences.getString("userEmail",null));
-//                    deleteDataMap.put("uID",sharedPreferences.getString("userEmail",null));
+                    deleteDataMap.put("uID",sharedPreferences.getString("userEmail",null));
                     deleteDataMap.put("s_p_code",pcode);
                     deleteCall.enqueue(new Callback<JSONObject>() {
                         @Override
@@ -120,6 +124,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
                 {
                     e.printStackTrace();
                 }
+                Toast.makeText(view.getContext(), "삭제완료", Toast.LENGTH_SHORT).show();
+                
             }
         });
     }

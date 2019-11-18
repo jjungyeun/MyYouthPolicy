@@ -102,6 +102,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         policySaveButton=findViewById(R.id.btn_policy_save);
         reviewInsert=findViewById(R.id.btn_review_insert);
 
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
         addSideView();  //사이드바 add
