@@ -1,17 +1,42 @@
 package com.example.mypolicy.model;
 
+import java.util.Date;
+
 public class SearchData {
-//    private int p_code;
-//    private String title;
-//    private String uri;
-//    private Date apply_start;
-//    private Date apply_end;
-//    private int start_age;
-//    private int end_age;
-//    private String contents;
-//    private String application_target;
-//    private Date crawing_date;
-//    private int expiration_flag;
-//    private String do;
-//    private String si;
+    private int p_code;
+    private String title;
+    private Date apply_start;
+    private Date apply_end;
+
+    public int getP_code() {
+        return p_code;
+    }
+
+    public void setP_code(int p_code) {
+        this.p_code = p_code;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Date getApply_start() {
+        return apply_start;
+    }
+
+    public void setApply_start(Date apply_start) {
+        this.apply_start = apply_start;
+    }
+
+    public Date getApply_end() {
+        return apply_end;
+    }
+
+    public void setApply_end(Date apply_end) {
+        this.apply_end = apply_end;
+    }
 }

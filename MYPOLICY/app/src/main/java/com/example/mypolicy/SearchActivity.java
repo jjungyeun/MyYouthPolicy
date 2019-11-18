@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mypolicy.adapter.PolicyAdapter;
 import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.model.SearchData;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
 import com.google.gson.Gson;
@@ -35,8 +36,11 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -64,7 +68,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     TextView tv_categories;
     EditText et_age, et_keyword;
     Spinner sp_do, sp_si;
-    ArrayList<String> search_region = new ArrayList<>();
+    ArrayList<String> search_region =new ArrayList<>();
     String search_category = "10000";
     String selected_categories = "";
 
@@ -251,21 +255,21 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 int age = Integer.parseInt(et_age.getText().toString());
                 String keyword = et_keyword.getText().toString();
 
-                final Call<JSONObject> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
+                final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
                 Log.d("모르겠다",""+search_region);
                 Log.d("모르겠다",""+search_category);
                 Log.d("모르겠다",""+age);
                 Log.d("모르겠다",""+keyword);
 
                 try {
-                    postSearchcall.enqueue(new Callback<JSONObject>() {
+                    postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
                         @Override
-                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
                             Log.d("SearchActivity", "검색결과" + new Gson().toJson(response.body()));
                         }
 
                         @Override
-                        public void onFailure(Call<JSONObject> call, Throwable t) {
+                        public void onFailure(Call<ArrayList<SearchData>> call, Throwable t) {
                             t.printStackTrace();
                         }
                     });
