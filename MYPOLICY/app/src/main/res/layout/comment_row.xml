@@ -6,14 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginBottom="10dp"
-    android:padding="7dp"
-    android:background="#ECEEF3">
+    android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:padding="7dp"
         >
         <TextView
             android:id="@+id/tv_comment_id"
@@ -21,7 +20,7 @@
             android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="y@google.com"
-            android:textColor="@color/colorPrimary"
+            android:textColor="#C8053963"
             />
 
         <TextView
@@ -30,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:textColor="#BEBEBE"
             android:text="2019년 XX월 XX일" />
     </RelativeLayout>
 
@@ -37,7 +37,8 @@
         android:id="@+id/tv_comment_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
+        android:background="@drawable/review_box"
+        android:padding="10dp"
         android:textSize="17sp"
         android:textColor="#6F7688"
         android:text="내용내용내용내용내용내용내용내용내용내용내용내용"

@@ -36,277 +36,274 @@
 
         <!--        액티비티 레이아웃 넣는 곳          -->
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_below="@id/rl_001"
             >
 
+            <TextView
+                android:id="@+id/tv_policy_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="25sp"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:text="제목"
+                />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="서울 강남구"
+                android:textColor="#2E2E2E"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:layout_marginTop="20dp"
+                android:background="#E4E9EE"/>
+
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/linearLayout2">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:paddingRight="10dp"
-                        android:orientation="horizontal">
-
-                        <TableLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#929292"
-                            android:padding="1dp"
-                            android:shrinkColumns="2"
-                            android:stretchColumns="0,2">
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="정책명"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
-                                    />
+                            android:paddingTop="15dp"
+                            android:paddingLeft="15dp"
+                            android:textColor="#2E2E2E"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            android:text="상세 정보"
+                            />
 
-                                <View
-                                    android:background="#929292"
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="7dp"
+                            android:orientation="vertical"
+                            >
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:id="@+id/tv_policy_name"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="청년지원 프로젝트"
-                                    android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
-                                    android:padding="7dp"
-                                    android:textSize="17sp"
-                                    />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="상세내용"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
-                                    />
-
-                                <View
-                                    android:background="#929292"
-                                    android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
-
-                                <TextView
-                                    android:id="@+id/tv_policy_detail"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="묭묭묭"
-                                    android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
-                                    android:padding="7dp"
-                                    android:textSize="17sp"
-                                    />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
-                                <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="시작날짜"
-                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="15sp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
                                     android:id="@+id/tv_apply_start"
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="2019년 10월 1일"
                                     android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="16sp"
                                     />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="종료날짜"
-                                    android:textColor="@color/colorPrimaryDark"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
+                                    android:textSize="15sp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
                                     android:id="@+id/tv_apply_end"
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="2019년 12월 1일"
                                     android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="16sp"
                                     />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="지원나이"
-                                    android:textColor="@color/colorPrimaryDark"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
+                                    android:textSize="15sp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
                                     android:id="@+id/tv_age_start"
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="20살"
                                     android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="16sp"
                                     />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="마감나이"
-                                    android:textColor="@color/colorPrimaryDark"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
+                                    android:textSize="15sp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
                                     android:id="@+id/tv_age_end"
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="23살"
                                     android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="16sp"
                                     />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE"
-                                android:layout_marginBottom="1dp">
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:text="지역"
-                                    android:textColor="@color/colorPrimaryDark"
+                                    android:text="상세내용"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
+                                    android:textSize="15sp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
-                                    android:id="@+id/tv_location"
-                                    android:layout_width="match_parent"
+                                    android:id="@+id/tv_policy_detail"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
-                                    android:text="서울"
+                                    android:text="묭묭묭"
                                     android:textColor="@color/colorPrimary"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="16sp"
                                     />
-                            </TableRow>
-                            <TableRow
-                                android:background="#DAE6EE">
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                >
                                 <TextView
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="URI"
-                                    android:textColor="@color/colorPrimaryDark"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
-                                    android:layout_marginRight="1dp"
+                                    android:textSize="15sp"
                                     />
 
                                 <View
-                                    android:background="#929292"
+                                    android:background="#C7C7C7"
                                     android:layout_width="1dp"
-                                    android:layout_height="match_parent"/>
+                                    android:layout_height="18dp"
+                                    android:layout_gravity="center_vertical"/>
 
                                 <TextView
                                     android:id="@+id/tv_uri"
-                                    android:layout_width="match_parent"
+                                    android:layout_weight="4"
+                                    android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:text="www.naver.com"
                                     android:textColor="@color/colorPrimary"
                                     android:linksClickable="true"
                                     android:textColorLink="@color/colorPrimaryLight"
                                     android:autoLink="web"
-                                    android:background="#ffffff"
+                                    android:layout_marginLeft="5dp"
                                     android:padding="7dp"
-                                    android:textSize="17sp"
+                                    android:textSize="15sp"
                                     />
-                            </TableRow>
+                            </LinearLayout>
 
-                        </TableLayout>
-            </LinearLayout>
+                        </LinearLayout>
 
                     <LinearLayout
                         android:layout_height="40dp"
@@ -316,14 +313,29 @@
                         <Button
                             android:id="@+id/btn_policy_save"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
+                            android:layout_height="33dp"
                             android:layout_margin="2.5dp"
                             android:background="@drawable/btn_save_selector"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:text="정책 저장"/>
                     </LinearLayout>
 
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="7dp"
+                        android:background="#E4E9EE"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        android:paddingLeft="15dp"
+                        android:textColor="#2E2E2E"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:text="정책 리뷰"
+                        />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -334,6 +346,7 @@
                         android:id="@+id/tv_review_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:layout_marginRight="10dp"
                         android:text="전체 댓글 개수"/>
 
@@ -341,10 +354,42 @@
                         android:id="@+id/tv_review_blank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="33개"
-                        android:textColor="@color/colorPrimaryLight"
-                        android:layout_below="@id/btn_policy_save"/>
+                        android:text="33"
+                        android:textColor="@color/colorPrimaryLight"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="개"
+                        android:textColor="@color/colorPrimaryLight"/>
                 </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:paddingBottom="5dp"
+                        >
+                        <EditText
+                            android:id="@+id/et_comment"
+                            android:layout_weight="5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:padding="7dp"
+                            android:background="@drawable/btn_review"
+                            android:layout_marginRight="5dp"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:hint="댓글 작성"/>
+                        <Button
+                            android:id="@+id/btn_review_insert"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/btn_review"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:text="전송"/>
+                    </LinearLayout>
 
 
 
@@ -357,28 +402,36 @@
 
             </ScrollView>
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                >
-                <EditText
-                    android:id="@+id/et_comment"
-                    android:layout_weight="5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:hint="댓글 작성"/>
-                <Button
-                    android:id="@+id/btn_review_insert"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="확인"/>
-            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:id="@+id/linearLayout2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="55dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_alignParentBottom="true"-->
+<!--                android:background="#F0F5FF"-->
+<!--                android:padding="7dp"-->
+<!--                >-->
+<!--                <EditText-->
+<!--                    android:id="@+id/et_comment"-->
+<!--                    android:layout_weight="5"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:background="@drawable/btn_review"-->
+<!--                    android:layout_marginRight="5dp"-->
+<!--                    android:textColor="@color/colorPrimaryDark"-->
+<!--                    android:hint="댓글 작성"/>-->
+<!--                <Button-->
+<!--                    android:id="@+id/btn_review_insert"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="@drawable/btn_review"-->
+<!--                    android:textColor="@color/colorPrimaryDark"-->
+<!--                    android:text="전송"/>-->
+<!--            </LinearLayout>-->
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <!--        액티비티 레이아웃 넣는 곳          -->
 
