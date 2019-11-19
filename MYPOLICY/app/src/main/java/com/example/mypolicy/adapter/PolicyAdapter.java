@@ -1,5 +1,7 @@
 package com.example.mypolicy.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mypolicy.DetailPolicyActivity;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.Policy;
 
@@ -38,6 +41,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, final int position) {
 //        String format=(pList.get(position).getApply_start());
         Log.d("d",""+pList.get(position).getApply_start());
+        final int pcode=pList.get(position).getP_code();
         Log.d("d",""+pList.get(position).getApply_end());
         holder.policyName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +93,17 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
         }
 
         holder.policyName.setText(pList.get(position).getTitle());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+                intent.putExtra("position",pcode);
+                Log.d("주소주소",""+pcode);
+                context.startActivity(intent);
+            }
+        });
 
     }
 

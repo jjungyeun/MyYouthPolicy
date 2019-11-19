@@ -177,7 +177,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         String url=jsonObject.getString("uri");
                         tv_uri.setText(url);
 
-                        //==========================시작날짜,종료날짜=================================/
+                        tv_location.setText(jsonObject.getInt("end_age"));
 
 
                         /* ===========jsonOBejct에서 apply_start 키 값이 있는지 체크================  */

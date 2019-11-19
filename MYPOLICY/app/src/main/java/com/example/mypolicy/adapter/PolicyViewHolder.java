@@ -28,6 +28,7 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
     public TextView detailContent;
     public TextView location;
     public TextView endAge;
+    public TextView pCode;
     public PolicyViewHolder(@NonNull View itemView) {
         super(itemView);
 
@@ -39,28 +40,8 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
         endAge=(TextView)itemView.findViewById(R.id.tv_age_end);
         detailContent=(TextView)itemView.findViewById(R.id.tv_policy_detail);
         location=(TextView)itemView.findViewById(R.id.tv_location);
+        pCode=(TextView)itemView.findViewById(R.id.tv_pcode);
 
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("포지션",""+getAdapterPosition());
-                Context context=view.getContext();
-                Intent intent=new Intent(context, DetailPolicyActivity.class);
-
-
-                intent.putExtra("position",getAdapterPosition());
-                context.startActivity(intent);
-            }
-
-
-        });
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                Log.d("롱포지션", ""+ getAdapterPosition());
-                return false;
-            }
-        });
     }
 }
