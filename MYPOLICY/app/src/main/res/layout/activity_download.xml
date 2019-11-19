@@ -36,11 +36,40 @@
 
 
         <!--        액티비티 레이아웃 넣는 곳          -->
+
+        <RelativeLayout
+            android:id="@+id/rl_002"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_001">
+
+            <Spinner
+                android:id="@+id/sp_si"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:entries="@array/sorting"
+                />
+
+        </RelativeLayout>
+
+<!--        <FrameLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0.7dp"-->
+<!--            android:layout_marginLeft="7dp"-->
+<!--            android:layout_marginRight="7dp"-->
+<!--            android:background="#929292"-->
+<!--            android:layout_below="@+id/rl_002"/>-->
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rl_001"
+            android:padding="5dp"
+            android:layout_below="@+id/rl_002"
+
             />
 
         <!--        액티비티 레이아웃 넣는 곳          -->

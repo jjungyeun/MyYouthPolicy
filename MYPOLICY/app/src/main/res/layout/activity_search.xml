@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_search"/>
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
                         android:text="지역"/>
@@ -118,13 +118,13 @@
                         android:orientation="horizontal">
                         <Spinner
                             android:id="@+id/sp_do"
-                            android:layout_weight="1"
+                            android:layout_weight="4"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:entries="@array/region"/>
                         <Spinner
                             android:id="@+id/sp_si"
-                            android:layout_weight="1"
+                            android:layout_weight="6"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:autofillHints="소분류"/>
