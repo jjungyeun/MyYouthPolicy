@@ -1,7 +1,9 @@
 package com.example.mypolicy.adapter;
 
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -59,7 +61,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StoreViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final StoreViewHolder holder, final int position) {
         holder.tv_title.setText(sList.get(position).getTitle());
         Log.d("저장위치","위치"+sList.get(position).getP_code());
         final int pcode=sList.get(position).getP_code();
@@ -105,30 +107,50 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
 
         holder.btn_storeDelete.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
-                try{
+                final Context context=view.getContext();
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("삭제하시겠습니까?")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                try{
 //                    Log.d("유아이디","ㅠㅠ"+sharedPreferences.getString("userEmail",null));
-                    deleteDataMap.put("uID",sharedPreferences.getString("userEmail",null));
-                    deleteDataMap.put("s_p_code",pcode);
-                    deleteCall.enqueue(new Callback<JSONObject>() {
-                        @Override
-                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                                    deleteDataMap.put("uID",sharedPreferences.getString("userEmail",null));
+                                    deleteDataMap.put("s_p_code",pcode);
+                                    deleteCall.enqueue(new Callback<JSONObject>() {
+                                        @Override
+                                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
 
-                        }
+                                        }
 
-                        @Override
-                        public void onFailure(Call<JSONObject> call, Throwable t) {
+                                        @Override
+                                        public void onFailure(Call<JSONObject> call, Throwable t) {
 
-                        }
-                    });
-                }catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-                Toasty.error(view.getContext(), "삭제완료!!", Toast.LENGTH_SHORT, true).show();                Context context=view.getContext();
-                Intent intent=new Intent(context, DownloadActivity.class);
-                context.startActivity(intent);
+                                        }
+                                    });
+                                }catch (Exception e)
+                                {
+                                    e.printStackTrace();
+                                }
+                                Toasty.error(context, "삭제완료!!", Toast.LENGTH_SHORT, true).show();                Context context=view.getContext();
+                                Intent intent=new Intent(context, DownloadActivity.class);
+                                context.startActivity(intent);
+
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+
+
 
             }
         });
