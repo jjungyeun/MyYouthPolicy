@@ -277,30 +277,21 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     age = Integer.parseInt(selected_age);
 
                 String keyword = et_keyword.getText().toString();
+                Bundle extras=new Bundle();
+                Intent intent=new Intent(SearchActivity.this,SearchKeywordActivity.class);
+                extras.putStringArrayList("search_region",search_region);
+                extras.putString("search_category",search_category);
+                extras.putInt("age",age);
+                extras.putString("keyword",keyword);
+                intent.putExtras(extras);
+                startActivity(intent);
+//                final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
+//                Log.d("모르겠다","search_region: "+search_region);
+//                Log.d("모르겠다","search_category: "+search_category);
+//                Log.d("모르겠다","age: "+age);
+//                Log.d("모르겠다","keyword: "+keyword);
 
-                final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
-                Log.d("모르겠다","search_region: "+search_region);
-                Log.d("모르겠다","search_category: "+search_category);
-                Log.d("모르겠다","age: "+age);
-                Log.d("모르겠다","keyword: "+keyword);
 
-                try {
-                    postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
-                        @Override
-                        public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
-//                            PolicyAdapter pa=new PolicyAdapter(response.body());
-//                            mRecyclerView.setAdapter(pa);
-                        }
-
-                        @Override
-                        public void onFailure(Call<ArrayList<SearchData>> call, Throwable t) {
-                            t.printStackTrace();
-                        }
-                    });
-                }catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
 //                 ------------------ 서버로 req 보내기 --------------------------
 //                 정책유형: search_category (String - ex: "00101")
 //                 지역: search_region (ArrayList<String> - ex: {"서울", "강남구"})

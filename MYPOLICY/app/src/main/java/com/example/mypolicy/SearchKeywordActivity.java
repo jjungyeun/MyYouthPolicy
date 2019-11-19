@@ -15,6 +15,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mypolicy.model.SearchData;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SearchKeywordActivity  extends AppCompatActivity implements View.OnClickListener{
     private String TAG = "SearchKeywordActivity";
 
@@ -28,6 +39,8 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
     private Boolean isExitFlag = false;
 
     SharedPreferences sharedPreferences;
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+
 
 
     @Override
@@ -40,6 +53,33 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
 
         addSideView();  //사이드바 add
 
+        Bundle extras = getIntent().getExtras();
+
+        ArrayList<String>search_region=extras.getStringArrayList("search_region");
+        String search_category=extras.getString("search_category");
+        int age=extras.getInt("age");
+        String keyword=extras.getString("keyword");
+
+        final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
+        Log.d("뽑아낸","정보"+search_region+"  "+search_category+"  "+age+"  "+keyword);
+        try {
+            postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
+                @Override
+                public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
+                    Log.d("뽑아낸","전체정보"+new Gson().toJson(response.body()));
+//                            PolicyAdapter pa=new PolicyAdapter(response.body());
+//                            mRecyclerView.setAdapter(pa);
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<SearchData>> call, Throwable t) {
+                    t.printStackTrace();
+                }
+            });
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
