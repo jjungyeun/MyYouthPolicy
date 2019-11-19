@@ -318,6 +318,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                             // 댓글창 비우고 키보드 내리기
                             et_comment.setText("");
                             imm.hideSoftInputFromWindow(et_comment.getWindowToken(), 0);
+
+
                         }
 
                         @Override

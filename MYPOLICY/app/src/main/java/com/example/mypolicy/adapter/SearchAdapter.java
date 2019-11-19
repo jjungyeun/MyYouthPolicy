@@ -51,7 +51,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
         holder.region.setText(sList.get(position).getRegion());//String이라 문제 없음
 
         int pCode=sList.get(position).getP_code();
-        
+
         holder.p_code.setText(Integer.toString(pCode));//int를 String으로 파싱
         holder.category.setText(sList.get(position).getCategory());
 
