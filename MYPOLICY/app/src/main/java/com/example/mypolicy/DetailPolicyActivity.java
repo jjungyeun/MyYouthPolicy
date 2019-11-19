@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -64,6 +65,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private ViewGroup viewLayout;   //전체 감싸는 영역
     private ViewGroup sideLayout;   //사이드바만 감싸는 영역
     private TextView tv_review_blank;
+    InputMethodManager imm;
 
     private int startflag=0;
     private int endflag=0;
@@ -112,6 +114,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         tv_time=findViewById(R.id.tv_time);
         policySaveButton=findViewById(R.id.btn_policy_save);
         reviewInsert=findViewById(R.id.btn_review_insert);
+        imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
         final String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
         final String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
@@ -306,6 +309,9 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                             Toasty.info(DetailPolicyActivity.this, "댓글 작성완료!!", Toast.LENGTH_SHORT, true).show();
 
+                            // 댓글창 비우고 키보드 내리기
+                            et_comment.setText("");
+                            imm.hideSoftInputFromWindow(et_comment.getWindowToken(), 0);
                         }
 
                         @Override
@@ -317,6 +323,9 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                 {
                     e.printStackTrace();
                 }
+
+
+
             }
         });
 
