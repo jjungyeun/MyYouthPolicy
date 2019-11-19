@@ -33,10 +33,7 @@
                     android:padding="10dp"
                     android:orientation="vertical">
 
-<<<<<<< HEAD
 
-=======
->>>>>>> e7744d2d275f08aa636d6fef5dcb559e910f6212
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

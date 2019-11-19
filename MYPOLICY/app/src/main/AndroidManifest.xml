@@ -22,7 +22,7 @@
         <activity android:name=".DownloadActivity"/>
         <activity android:name=".ProfileActivity"/>
         <activity android:name=".RegisterActivity"/>
-        <activity android:name=".DetailPolicyActivity"/>
+        <activity android:name=".DetailPolicyActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".EditPersonalInfoActivity"/>
         <activity android:name=".SearchKeywordActivity"/>
         <activity android:name=".MainActivity"/>

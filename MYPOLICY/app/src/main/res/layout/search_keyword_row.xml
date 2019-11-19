@@ -57,10 +57,18 @@
                         android:layout_height="wrap_content"
                         android:text="서울시 강남구"/>
                     <TextView
-                        android:id="@+id/tv_match_score"
+                        android:id="@+id/tv_search_match_score"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:text="매치스코어"
+                        android:visibility="invisible"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_search_pcode"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:text="피코드"
                         android:visibility="invisible"
                         />
                 </LinearLayout>
@@ -79,7 +87,7 @@
                         android:textColor="@color/colorPrimary" />
 
                     <TextView
-                        android:id="@+id/tv_policy_name"
+                        android:id="@+id/tv_search_policy_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
@@ -101,7 +109,7 @@
                         android:textColor="@color/colorPrimaryLight" />
 
                     <TextView
-                        android:id="@+id/tv_apply_start"
+                        android:id="@+id/tv_search_apply_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"
@@ -122,7 +130,7 @@
                         android:textColor="@color/colorPrimaryLight" />
 
                     <TextView
-                        android:id="@+id/tv_apply_end"
+                        android:id="@+id/tv_search_apply_end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="2dp"

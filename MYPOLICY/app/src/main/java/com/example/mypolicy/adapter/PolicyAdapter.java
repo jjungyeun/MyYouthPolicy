@@ -51,11 +51,11 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
         String apply_start=""; String apply_end="";
         if(pList.get(position).getApply_start()==null &&pList.get(position).getApply_end()==null) {
-            holder.applyStart.setText("공고후 확인 신청 바람");
-            holder.applyEnd.setText("공고후 확인 신청 바람");
+            holder.applyStart.setText("공고 확인 후 신청 바람");
+            holder.applyEnd.setText("공고 확인 후 신청 바람");
         }
         else if(pList.get(position).getApply_start()==null&&pList.get(position).getApply_end()!=null) {
-            holder.applyStart.setText("공고후 확인 신청 바람");
+            holder.applyStart.setText("공고 확인 후 신청 바람");
             apply_end=pList.get(position).getApply_end().toString();
             apply_end=date_parse(apply_end);
 
@@ -68,7 +68,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             Log.d("날짜",""+apply_start);
 
             holder.applyStart.setText(apply_start);
-            holder.applyEnd.setText("공고후 확인 신청 바람");
+            holder.applyEnd.setText("공고 확인 후 신청 바람");
         }
 
         else

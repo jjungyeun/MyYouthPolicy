@@ -14,7 +14,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mypolicy.adapter.PolicyAdapter;
+import com.example.mypolicy.adapter.SearchAdapter;
 import com.example.mypolicy.model.SearchData;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
@@ -40,7 +44,7 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
 
     SharedPreferences sharedPreferences;
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
-
+    private RecyclerView mRecyclerView;
 
 
     @Override
@@ -52,6 +56,9 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
 
         addSideView();  //사이드바 add
+
+        mRecyclerView=findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Bundle extras = getIntent().getExtras();
 
@@ -67,8 +74,8 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
                 @Override
                 public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
                     Log.d("뽑아낸","전체정보"+new Gson().toJson(response.body()));
-//                            PolicyAdapter pa=new PolicyAdapter(response.body());
-//                            mRecyclerView.setAdapter(pa);
+                    SearchAdapter sa=new SearchAdapter(response.body());
+                    mRecyclerView.setAdapter(sa);
                 }
 
                 @Override
