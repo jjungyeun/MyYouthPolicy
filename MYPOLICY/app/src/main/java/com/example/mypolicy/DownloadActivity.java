@@ -67,7 +67,8 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         btn_store_delte=findViewById(R.id.btn_store_delete);
         final Call<ArrayList<StoreData>> storeDataCall=iApiService.showallMyList(showStoreDataMap);
-        final Call<JSONObject> deleteCall=iApiService.deleteMyList(deleteDataMap);
+
+
        //=========================서버에서 저장한거 가져오는 코드=========================//
         try {
             showStoreDataMap.put("uID",sharedPreferences.getString("userEmail",null));

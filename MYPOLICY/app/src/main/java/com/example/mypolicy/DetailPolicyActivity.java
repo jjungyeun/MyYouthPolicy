@@ -56,7 +56,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     private TextView tv_applyEnd;
     private TextView tv_age_start;
     private TextView tv_age_end;
-    private TextView tv_location;
+    private TextView tv_dor;
+    private TextView tv_si;
     private TextView tv_uri;
     private TextView tv_time;
     private EditText et_comment;
@@ -109,7 +110,8 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         tv_applyStart=findViewById(R.id.tv_apply_start);
         tv_applyEnd=findViewById(R.id.tv_apply_end);
         tv_detail=findViewById(R.id.tv_policy_detail);
-        tv_location=findViewById(R.id.tv_location);
+        tv_dor=findViewById(R.id.tv_location_dor);
+        tv_si=findViewById(R.id.tv_location_si);
         tv_uri=findViewById(R.id.tv_uri);
         tv_time=findViewById(R.id.tv_time);
         policySaveButton=findViewById(R.id.btn_policy_save);
@@ -177,7 +179,11 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         String url=jsonObject.getString("uri");
                         tv_uri.setText(url);
 
-                        tv_location.setText(jsonObject.getInt("end_age"));
+                        String dor=jsonObject.getString("dor");
+                        tv_dor.setText(dor);
+
+                        String si=jsonObject.getString("si");
+                        tv_si.setText(si);
 
 
                         /* ===========jsonOBejct에서 apply_start 키 값이 있는지 체크================  */

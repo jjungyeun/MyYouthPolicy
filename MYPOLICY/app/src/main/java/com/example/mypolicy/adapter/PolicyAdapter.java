@@ -94,7 +94,10 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
         holder.policyName.setText(pList.get(position).getTitle());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Context context=view.getContext();
