@@ -7,6 +7,10 @@ public class SearchData {
     private String title;
     private Date apply_start;
     private Date apply_end;
+    private String category;
+    private String region;
+    private int match_score;
+
 
     public int getP_code() {
         return p_code;
@@ -38,5 +42,29 @@ public class SearchData {
 
     public void setApply_end(Date apply_end) {
         this.apply_end = apply_end;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public int getMatch_score() {
+        return match_score;
+    }
+
+    public void setMatch_score(int match_score) {
+        this.match_score = match_score;
     }
 }
