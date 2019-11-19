@@ -48,54 +48,81 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             }
         });
         holder.policyName.setText(pList.get(position).getTitle());
-    //    tossSB.append(pList.get(position).getTitle());
-        if(pList.get(position).getApply_start()==null) holder.applyStart.setText("공고후 확인 신청 바람");
-        if(pList.get(position).getApply_end()==null) holder.applyEnd.setText("공고후 확인 신청 바람");
-        if(pList.get(position).getApply_end()!=null &&pList.get(position).getApply_start()!=null)
-        {
-            String start=pList.get(position).getApply_start().toString();
-            String end=pList.get(position).getApply_end().toString();
-            holder.applyStart.setText(date_parse(start));
-            holder.applyEnd.setText(date_parse(end));
 
+        String apply_start=""; String apply_end="";
+        if(pList.get(position).getApply_start()==null &&pList.get(position).getApply_end()==null) {
+            holder.applyStart.setText("공고후 확인 신청 바람");
+            holder.applyEnd.setText("공고후 확인 신청 바람");
         }
+        else if(pList.get(position).getApply_start()==null&&pList.get(position).getApply_end()!=null) {
+            holder.applyStart.setText("공고후 확인 신청 바람");
+            apply_end=pList.get(position).getApply_end().toString();
+            apply_end=date_parse(apply_end);
+
+            holder.applyEnd.setText(apply_end);
+        }
+
+        else if(pList.get(position).getApply_start()!=null&&pList.get(position).getApply_end()==null) {
+            apply_start=pList.get(position).getApply_start().toString();
+            apply_start=date_parse(apply_start);
+            Log.d("날짜",""+apply_start);
+
+            holder.applyStart.setText(apply_start);
+            holder.applyEnd.setText("공고후 확인 신청 바람");
+        }
+
+        else
+        {
+            apply_start=pList.get(position).getApply_start().toString();
+            apply_end=pList.get(position).getApply_end().toString();
+            apply_start=date_parse(apply_start);
+            apply_end=date_parse(apply_end);
+
+
+            Log.d("날짜",""+apply_start);
+            Log.d("날짜",""+apply_end);
+          //  Log.d("날짜",""+pList.get(position).getApply_start().toString());
+
+//
+            holder.applyStart.setText(apply_start);
+            holder.applyEnd.setText(apply_end);
+        }
+
         holder.policyName.setText(pList.get(position).getTitle());
 
     }
 
     private String date_parse(String rawDate) {
+        StringBuilder sb=new StringBuilder();
+        Log.d("원본","data"+rawDate);
 
-        StringBuffer sb=new StringBuffer();
-        String copyrawDate=rawDate;
-        String copyrawDate2=rawDate;
-        String[] year=copyrawDate2.split("\\s");
-        sb.append(year[5]);
-        sb.append("년");
-        sb.append(" ");
-        for(int i=0;i<12;i++)
+        String [] words=rawDate.split("\\s");
+        for(int i=0;i<words.length;i++){
+            Log.d("원본","split"+i+words[i]);
+        }
+//*********************************년도****************************************//
+        String year=words[5];
+       // Log.d("원본","년도"+year);
+        sb.append(year); sb.append("년 ");
+
+        //*********************************월****************************************//
+        String month=words[1];
+        for(int i=0;i<eng_mon.length;i++)
         {
-            //Log.d("결과","여긴");
-            if(rawDate.contains(eng_mon[i]))//월
+            if(month.equals(eng_mon[i]))
             {
                 sb.append(kor_mon[i]);
-                Log.d("결과",""+sb);
-
+                sb.append(" ");
+                break;
             }
         }
-        sb.append(" ");
-        String[] words=copyrawDate.split("\\s");
-        sb.append(words[2]);
-        sb.append("일");
-        sb.append(" ");
-        for(int i=0;i<7;i++)
-        {
-            if(rawDate.contains(eng_day[i]))
-            {
-                sb.append(kor_day[i]);
-                Log.d("결과",""+sb);
 
-            }
-        }
+        //*********************************일****************************************//
+        String day=words[2];
+
+        sb.append(day);sb.append("일");
+        sb.append(" ");
+
 
         return sb.toString();
     }

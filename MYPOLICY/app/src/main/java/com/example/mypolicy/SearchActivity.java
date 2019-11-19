@@ -40,6 +40,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -93,6 +94,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
                     try{
+                        Log.d("시작로그",""+new Gson().toJson(response.body()));
                         PolicyAdapter pa=new PolicyAdapter(response.body());
                         mRecyclerView.setAdapter(pa);
                     }catch(Exception e)
@@ -252,6 +254,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toasty.info(SearchActivity.this, "검색중입니다....", Toast.LENGTH_SHORT, true).show();
+
                 int age = Integer.parseInt(et_age.getText().toString());
                 String keyword = et_keyword.getText().toString();
 
@@ -265,7 +269,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                     postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
                         @Override
                         public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
-                            Log.d("SearchActivity", "검색결과" + new Gson().toJson(response.body()));
+//                            PolicyAdapter pa=new PolicyAdapter(response.body());
+//                            mRecyclerView.setAdapter(pa);
                         }
 
                         @Override
