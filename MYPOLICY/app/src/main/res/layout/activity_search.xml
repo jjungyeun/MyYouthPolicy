@@ -113,7 +113,9 @@
                         android:text="지역"/>
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
                         <Spinner
                             android:id="@+id/sp_do"
                             android:layout_weight="1"
@@ -145,22 +147,19 @@
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_search"/>
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
                         android:text="나이"/>
-                    <EditText
-                        android:id="@+id/et_search_age"
-                        android:layout_width="60dp"
+                    <Spinner
+                        android:id="@+id/sp_age"
+                        android:layout_width="105dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:padding="5dp"
-                        android:inputType="numberDecimal"
-                        android:background="@drawable/search_box"/>
+                        android:entries="@array/age"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="5dp"
                         android:textSize="17sp"
                         android:text="키워드"/>
                     <EditText

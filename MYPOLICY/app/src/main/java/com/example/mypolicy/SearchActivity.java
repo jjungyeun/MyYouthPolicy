@@ -67,11 +67,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     final String[] categories = new String[]{"전체","취업지원","창업지원","생활/복지","주거/금융"};
     Button btn_select_category, btn_search;
     TextView tv_categories;
-    EditText et_age, et_keyword;
-    Spinner sp_do, sp_si;
+    EditText et_keyword;
+    Spinner sp_do, sp_si, sp_age;
     ArrayList<String> search_region =new ArrayList<>();
     String search_category = "10000";
     String selected_categories = "";
+    String selected_age = "전체";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +121,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         btn_search = findViewById(R.id.btn_search);
         sp_do = findViewById(R.id.sp_do);
         sp_si = findViewById(R.id.sp_si);
-        et_age = findViewById(R.id.et_search_age);
+        sp_age = findViewById(R.id.sp_age);
         et_keyword = findViewById(R.id.et_search_keyword);
 
         btn_select_category.setOnClickListener(new View.OnClickListener() {
@@ -251,19 +252,37 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+
+        sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selected_age = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                selected_age = "전체";
+            }
+        });
+
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toasty.info(SearchActivity.this, "검색중입니다....", Toast.LENGTH_SHORT, true).show();
 
-                int age = Integer.parseInt(et_age.getText().toString());
+                int age;
+                if(selected_age.equals("전체"))
+                    age = 0;
+                else
+                    age = Integer.parseInt(selected_age);
+
                 String keyword = et_keyword.getText().toString();
 
                 final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);
-                Log.d("모르겠다",""+search_region);
-                Log.d("모르겠다",""+search_category);
-                Log.d("모르겠다",""+age);
-                Log.d("모르겠다",""+keyword);
+                Log.d("모르겠다","search_region: "+search_region);
+                Log.d("모르겠다","search_category: "+search_category);
+                Log.d("모르겠다","age: "+age);
+                Log.d("모르겠다","keyword: "+keyword);
 
                 try {
                     postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
