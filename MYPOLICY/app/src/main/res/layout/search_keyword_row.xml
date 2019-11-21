@@ -78,13 +78,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="2dp"
-                        android:text="정책명 : "
-                        android:textSize="18sp"
-                        android:textColor="@color/colorPrimary" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_margin="2dp"-->
+                        <!--android:text="정책명 : "-->
+                        <!--android:textSize="18sp"-->
+                        <!--android:textColor="@color/colorPrimary" />-->
 
                     <TextView
                         android:id="@+id/tv_search_policy_name"

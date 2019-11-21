@@ -44,13 +44,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
 
-        final int pcode=sList.get(position).getP_code();
-
+        final int pCode=sList.get(position).getP_code();
+        Log.d("피코드피코드피코드",""+pCode);
 
         holder.title.setText(sList.get(position).getTitle());//String이라 문제 없음
         holder.region.setText(sList.get(position).getRegion());//String이라 문제 없음
 
-        int pCode=sList.get(position).getP_code();
+
 
         holder.p_code.setText(Integer.toString(pCode));//int를 String으로 파싱
         holder.category.setText(sList.get(position).getCategory());
@@ -97,19 +97,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
             holder.apply_start.setText(applyStart);
             holder.apply_end.setText(applyEnd);
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Context context=view.getContext();
-                    Intent intent=new Intent(context, DetailPolicyActivity.class);
-                    intent.putExtra("position",pcode);
-                    Log.d("주소주소",""+pcode);
-                    context.startActivity(intent);
-                }
-            });
         }
-//        holder.apply_start.setText(sList.get(position).getApply_start().toString());
-//        holder.apply_end.setText(sList.get(position).getApply_end().toString());
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+                intent.putExtra("position",pCode);
+                Log.d("주소주소",""+pCode);
+                context.startActivity(intent);
+            }
+        });
 
 
     }

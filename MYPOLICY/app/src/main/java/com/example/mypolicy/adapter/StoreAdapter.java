@@ -96,6 +96,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
             public void onClick(View view) {
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
+
                 intent.putExtra("position",pcode);
 
                 context.startActivity(intent);
