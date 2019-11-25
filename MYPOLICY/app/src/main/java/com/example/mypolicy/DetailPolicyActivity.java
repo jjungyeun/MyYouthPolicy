@@ -89,7 +89,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
 
     Intent intent;
-    int position;
+    long position;
 
     SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
     SimpleDateFormat stringToDateFormat=new SimpleDateFormat("yyyyMMdd");
@@ -130,7 +130,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
         addSideView();  //사이드바 add
 
         intent=getIntent();
-        position=intent.getIntExtra("position",1);
+        position=intent.getLongExtra("position",1);
         Log.d("피코드","꺼낸"+position);
 //================================시간할것=================================================//
 
@@ -454,6 +454,14 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
             public void btnLogout() {
                 sharedPreferences.edit().clear().apply();
                 Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+                closeMenu();
+                finish();
+            }
+            @Override
+            public void btnTop() {
+
+                Intent intent = new Intent(mContext, RankingActivity.class);
                 startActivity(intent);
                 closeMenu();
                 finish();

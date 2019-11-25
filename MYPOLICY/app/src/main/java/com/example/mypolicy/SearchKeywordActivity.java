@@ -181,6 +181,17 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
                 closeMenu();
                 finish();
             }
+
+            @Override
+            public void btnTop() {
+
+                Intent intent = new Intent(mContext, RankingActivity.class);
+                startActivity(intent);
+                closeMenu();
+                finish();
+            }
+
+
         });
     }
 

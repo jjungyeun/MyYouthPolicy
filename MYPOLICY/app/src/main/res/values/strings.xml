@@ -6,5 +6,6 @@
     <string name="menu_search">Search</string>
     <string name="menu_download">My List</string>
     <string name="menu_profile">Profile</string>
-    <string name="menu_logout">로그아웃</string>
+    <string name="menu_top20">Top 20</string>
+    <string name="menu_logout">Logout</string>
 </resources>

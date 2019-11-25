@@ -3,7 +3,7 @@ package com.example.mypolicy.model;
 import java.util.Date;
 
 public class SearchData {
-    private int p_code;
+    private long p_code;
     private String title;
     private Date apply_start;
     private Date apply_end;
@@ -12,11 +12,11 @@ public class SearchData {
     private int match_score;
 
 
-    public int getP_code() {
+    public long getP_code() {
         return p_code;
     }
 
-    public void setP_code(int p_code) {
+    public void setP_code(long p_code) {
         this.p_code = p_code;
     }
 

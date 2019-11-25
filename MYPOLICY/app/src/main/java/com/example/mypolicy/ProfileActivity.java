@@ -181,6 +181,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 closeMenu();
                 finish();
             }
+
+            @Override
+            public void btnTop() {
+
+                Intent intent = new Intent(mContext, RankingActivity.class);
+                startActivity(intent);
+                closeMenu();
+                finish();
+            }
         });
     }
 

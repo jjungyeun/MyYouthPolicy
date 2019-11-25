@@ -44,7 +44,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
 
-        final int pCode=sList.get(position).getP_code();
+        final long pCode=sList.get(position).getP_code();
         Log.d("피코드피코드피코드",""+pCode);
 
         holder.title.setText(sList.get(position).getTitle());//String이라 문제 없음
@@ -52,11 +52,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
 
 
 
-        holder.p_code.setText(Integer.toString(pCode));//int를 String으로 파싱
+        holder.p_code.setText(Long.toString(pCode));//int를 String으로 파싱
         holder.category.setText(sList.get(position).getCategory());
 
-        int matchScore=sList.get(position).getMatch_score();
-        holder.match_score.setText(Integer.toString(matchScore));//int를 String으로 파싱
+        long matchScore=sList.get(position).getMatch_score();
+        holder.match_score.setText(Long.toString(matchScore));//int를 String으로 파싱
 
         String applyStart=""; String applyEnd="";
         if(sList.get(position).getApply_start()==null &&sList.get(position).getApply_end()==null) {

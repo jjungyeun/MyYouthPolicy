@@ -408,6 +408,15 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 closeMenu();
                 finish();
             }
+
+            @Override
+            public void btnTop() {
+
+                Intent intent = new Intent(mContext, RankingActivity.class);
+                startActivity(intent);
+                closeMenu();
+                finish();
+            }
         });
     }
 

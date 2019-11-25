@@ -5,7 +5,7 @@ import android.widget.EditText;
 import java.util.Date;
 
 public class Policy {
-    int p_code;
+    long p_code;
     String title;
     String uri;
     Date apply_start;
@@ -20,27 +20,11 @@ public class Policy {
     String dor;
     String si;
 
-    public String getDor() {
-        return dor;
-    }
-
-    public void setDor(String dor) {
-        this.dor = dor;
-    }
-
-    public String getSi() {
-        return si;
-    }
-
-    public void setSi(String si) {
-        this.si = si;
-    }
-
-    public int getP_code() {
+    public long getP_code() {
         return p_code;
     }
 
-    public void setP_code(int p_code) {
+    public void setP_code(long p_code) {
         this.p_code = p_code;
     }
 
@@ -130,5 +114,21 @@ public class Policy {
 
     public void setExpiration_flag(int expiration_flag) {
         this.expiration_flag = expiration_flag;
+    }
+
+    public String getDor() {
+        return dor;
+    }
+
+    public void setDor(String dor) {
+        this.dor = dor;
+    }
+
+    public String getSi() {
+        return si;
+    }
+
+    public void setSi(String si) {
+        this.si = si;
     }
 }

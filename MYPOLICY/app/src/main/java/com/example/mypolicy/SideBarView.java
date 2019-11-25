@@ -22,6 +22,7 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
         void btnSearch();
         void btnDownload();
         void btnProfile();
+        void btnTop();
         void btnLogout();
     }
 
@@ -40,6 +41,7 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
         findViewById(R.id.menu_search).setOnClickListener(this);
         findViewById(R.id.menu_download).setOnClickListener(this);
         findViewById(R.id.menu_profile).setOnClickListener(this);
+        findViewById(R.id.menu_top20).setOnClickListener(this);
         findViewById(R.id.menu_logout).setOnClickListener(this);
 
     }
@@ -50,6 +52,7 @@ public class SideBarView extends RelativeLayout implements View.OnClickListener 
             case R.id.menu_home : listener.btnHome(); break;
             case R.id.menu_search : listener.btnSearch(); break;
             case R.id.menu_download : listener.btnDownload(); break;
+            case R.id.menu_top20: listener.btnTop(); break;
             case R.id.menu_profile : listener.btnProfile(); break;
             case R.id.menu_logout : listener.btnLogout(); break;
             default: break;

@@ -25,10 +25,10 @@ public interface IApiService {
     Call<ArrayList<Policy>> showAllPolicies();
 
     @GET("policy/{number}")//세부 공공정책 사항
-    Call<ArrayList<Policy>>showselectedPolicy(@Path("number") int number);
+    Call<ArrayList<Policy>>showselectedPolicy(@Path("number") long number);
 
     @GET("review/{number}")//정책당 사람들 리뷰
-    Call<ArrayList<Review>> showReview(@Path("number") int number);
+    Call<ArrayList<Review>> showReview(@Path("number") long number);
 
 
     @FormUrlEncoded

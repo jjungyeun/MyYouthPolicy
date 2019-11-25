@@ -64,9 +64,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
     public void onBindViewHolder(@NonNull final StoreViewHolder holder, final int position) {
         holder.tv_title.setText(sList.get(position).getTitle());
         Log.d("저장위치","위치"+sList.get(position).getP_code());
-        final int pcode=sList.get(position).getP_code();
+        final long pcode=sList.get(position).getP_code();
         Log.d("피코","드"+pcode);
-        holder.tv_Pcode.setText(Integer.toString(pcode));
+        holder.tv_Pcode.setText(Long.toString(pcode));
 
 
         if(sList.get(position).getApply_start()==null &&sList.get(position).getApply_end()==null) {

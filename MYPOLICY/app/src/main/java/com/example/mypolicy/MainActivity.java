@@ -165,6 +165,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 closeMenu();
                 finish();
             }
+
+            @Override
+            public void btnTop() {
+                Intent intent = new Intent(mContext, RankingActivity.class);
+                startActivity(intent);
+                closeMenu();
+                finish();
+            }
+
         });
     }
 

@@ -3,25 +3,25 @@ package com.example.mypolicy.model;
 import java.util.Date;
 
 public class Review {
-    int review_code;
-    int p_code;
+    long review_code;
+    long p_code;
     String review_uID;
     String contents;
     Date review_time;
 
-    public int getReview_code() {
+    public long getReview_code() {
         return review_code;
     }
 
-    public void setReview_code(int review_code) {
+    public void setReview_code(long review_code) {
         this.review_code = review_code;
     }
 
-    public int getP_code() {
+    public long getP_code() {
         return p_code;
     }
 
-    public void setP_code(int p_code) {
+    public void setP_code(long p_code) {
         this.p_code = p_code;
     }
 
