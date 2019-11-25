@@ -4,7 +4,7 @@
     <string name="menu_title">나만의 청년 정책</string>
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
-    <string name="menu_download">Download</string>
+    <string name="menu_download">My List</string>
     <string name="menu_profile">Profile</string>
     <string name="menu_logout">로그아웃</string>
 </resources>
