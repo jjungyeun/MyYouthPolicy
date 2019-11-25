@@ -55,8 +55,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
         holder.p_code.setText(Long.toString(pCode));//int를 String으로 파싱
         holder.category.setText(sList.get(position).getCategory());
 
-        long matchScore=sList.get(position).getMatch_score();
-        holder.match_score.setText(Long.toString(matchScore));//int를 String으로 파싱
+        int matchScore=sList.get(position).getMatch_score();
+        holder.match_score.setText(Integer.toString(matchScore));//int를 String으로 파싱
 
         String applyStart=""; String applyEnd="";
         if(sList.get(position).getApply_start()==null &&sList.get(position).getApply_end()==null) {

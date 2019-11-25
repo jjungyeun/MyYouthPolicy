@@ -339,13 +339,15 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
         //*****************************저장하는 기능*************************************//
         policySaveButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                Log.d("저장 피코드 로그",""+position);
                 postSavehashMap.put("uID",sharedPreferences.getString("userEmail",null));
                 postSavehashMap.put("s_p_code",position);
 
                 try {
-                    postSaveCall.enqueue(new Callback<JSONObject>() {
+                    postSaveCall.clone().enqueue(new Callback<JSONObject>() {
                         @Override
                         public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                             Log.d("저장","결과"+new Gson().toJson(response.body()));
