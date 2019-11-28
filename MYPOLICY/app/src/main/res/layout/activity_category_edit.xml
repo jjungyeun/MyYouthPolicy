@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_below="@+id/rl_002"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="20dp"
             android:orientation="vertical">
 
@@ -47,9 +47,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="카테고리 별로 본인이 관심있어하는 카테고리에 점수를 메겨주세요"
+                    android:text="카테고리 별로 본인이 관심있어하는 만큼 점수를 매겨주세요"
                     android:textStyle="bold"
                     android:textSize="20dp"
+                    android:textAlignment="center"
                     android:focusableInTouchMode="false"
                     />
             </LinearLayout>
@@ -61,119 +62,235 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취업지원"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/tv_job_score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:focusableInTouchMode="false"
-                />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="창업지원"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tv_business_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:focusableInTouchMode="false"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="생활/복지"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tv_life_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:focusableInTouchMode="false"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="주거/금융"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/tv_house_score"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:focusableInTouchMode="false"
-                    />
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_profile_cancel"
+                <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorLight"
-                    android:background="@color/colorPrimary"
-                    android:text="취소"/>
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="취업지원"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/btn_profile_change"
-                    android:layout_marginLeft="10dp"
+                <LinearLayout
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorLight"
-                    android:background="@color/colorPrimary"
-                    android:text="확인"/>
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:id="@+id/btn_job_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_minus2"/>
+                    <TextView
+                        android:id="@+id/tv_job_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:focusableInTouchMode="false"
+                        />
+                    <ImageView
+                        android:id="@+id/btn_job_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_plus2"/>
+                </LinearLayout>
+
+
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="창업지원"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:id="@+id/btn_business_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_minus2"/>
+                    <TextView
+                        android:id="@+id/tv_business_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:focusableInTouchMode="false"
+                        />
+                    <ImageView
+                        android:id="@+id/btn_business_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_plus2"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="생활/복지"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:id="@+id/btn_life_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_minus2"/>
+                    <TextView
+                        android:id="@+id/tv_life_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:focusableInTouchMode="false"
+                        />
+                    <ImageView
+                        android:id="@+id/btn_life_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_plus2"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="주거/금융"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryDark"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    >
+
+                    <ImageView
+                        android:id="@+id/btn_house_minus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_minus2"/>
+                    <TextView
+                        android:id="@+id/tv_house_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:focusableInTouchMode="false"
+                        />
+                    <ImageView
+                        android:id="@+id/btn_house_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_btn_plus2"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
 
         </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        >
+
+        <Button
+            android:id="@+id/btn_category_cancel"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorLight"
+            android:background="@color/colorPrimary"
+            android:text="취소"/>
+
+
+        <Button
+            android:id="@+id/btn_category_ok"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorLight"
+            android:background="@color/colorPrimary"
+            android:text="확인"/>
+    </LinearLayout>
 </RelativeLayout>
