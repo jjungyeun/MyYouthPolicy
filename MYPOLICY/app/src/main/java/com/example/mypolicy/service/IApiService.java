@@ -1,6 +1,7 @@
 package com.example.mypolicy.service;
 
 import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.model.RankingData;
 import com.example.mypolicy.model.Review;
 import com.example.mypolicy.model.SearchData;
 import com.example.mypolicy.model.StoreData;
@@ -70,5 +71,17 @@ public interface IApiService {
     @POST("search/test")
     Call<ArrayList<SearchData>> postSearchKeyword(@Field("location") ArrayList<String> location, @Field("category") String category
     , @Field("age")int age, @Field("keyword") String keyword);
+
+    //조회수 별 일일 Top20
+    @GET("sorting/day_views")
+    Call<ArrayList<RankingData>> sortDayViews();
+
+    //조회수 별 주별 Top20
+    @GET("sorting/week_views")
+    Call<ArrayList<RankingData>> sortWeekViews();
+
+    //조회수 별 달별 Top20
+    @GET("sorting/month_views")
+    Call<ArrayList<RankingData>> sortMonthViews();
 
 }

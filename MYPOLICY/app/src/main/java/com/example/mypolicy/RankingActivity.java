@@ -11,12 +11,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.model.RankingData;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RankingActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,8 +47,15 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
     SharedPreferences sharedPreferences;
 
+    private String mClassName = getClass().getName().trim();
+    private RecyclerView mRecyclerView;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+
+    Button btn_day_ranking;
+    Button btn_week_ranking;
+    Button btn_month_ranking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +67,69 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
 
         addSideView();  //사이드바 add
+
+        btn_day_ranking=findViewById(R.id.btn_day_ranking);
+        btn_week_ranking=findViewById(R.id.btn_week_ranking);
+        btn_month_ranking=findViewById(R.id.btn_month_ranking);
+
+        mRecyclerView=findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+        final Call<ArrayList<RankingData>> rankingdayCall=iApiService.sortDayViews();
+        final Call<ArrayList<RankingData>> rankingweekCall=iApiService.sortWeekViews();
+        final Call<ArrayList<RankingData>> rankingmonthCall=iApiService.sortMonthViews();
+
+        btn_day_ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rankingdayCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
+                        Log.d("랭킹데이터","day"+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<RankingData>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
+        btn_week_ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rankingweekCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
+                        Log.d("랭킹데이터","week"+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<RankingData>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
+        btn_month_ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rankingmonthCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
+                        Log.d("랭킹데이터","month"+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<RankingData>> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
