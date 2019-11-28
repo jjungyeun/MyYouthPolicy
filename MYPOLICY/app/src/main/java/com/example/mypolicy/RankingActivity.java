@@ -24,14 +24,21 @@ import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.RankingData;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
+import com.google.android.gms.common.util.Hex;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.models.BarModel;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,25 +93,60 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         final Call<ArrayList<RankingData>> rankingmonthCall=iApiService.sortMonthViews();
 
         //그래프
-        BarChart mBarChart=findViewById(R.id.barChart);
-        mBarChart.addBar(new BarModel(2.3f, 0xFF123456));
-        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
-        mBarChart.addBar(new BarModel(3.3f, 0xFF563456));
-        mBarChart.addBar(new BarModel(1.1f, 0xFF873F56));
-        mBarChart.addBar(new BarModel(2.7f, 0xFF56B7F1));
-        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
-        mBarChart.addBar(new BarModel(0.4f, 0xFF1FF4AC));
-        mBarChart.addBar(new BarModel(4.f,  0xFF1BA4E6));
+        final BarChart mBarChart=findViewById(R.id.barChart);
 
-        mBarChart.startAnimation();
+
 
         btn_day_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mBarChart.clearChart();
                 rankingdayCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
                     @Override
                     public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
-                        Log.d("랭킹데이터","day"+new Gson().toJson(response.body()));
+                        Log.d("랭킹데이터","week"+new Gson().toJson(response.body()));
+                        String rankingData=new Gson().toJson(response.body());
+                        Map<String,String> dayMapTitle=new HashMap<>();
+                        Map<String,Integer> dayMapValue=new HashMap<>();
+                        dayMapTitle.clear();
+                        dayMapValue.clear();
+                        try {
+                            JSONArray jsonArray=new JSONArray(rankingData);
+                            String mapString="";
+                            int mapKeyValue=0;
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+                                mapString=jsonObject.getString("title");
+                                mapKeyValue=Integer.parseInt(jsonObject.get("views").toString());
+                                dayMapTitle.put("title"+i,mapString);
+                                dayMapValue.put("value"+i,mapKeyValue);
+                                Log.d("제이슨 타이틀",""+mapString);
+                                Log.d("제이슨 타이틀2",""+mapKeyValue);
+                            }
+
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
+
+                                mBarChart.addBar(new BarModel(dayMapTitle.get("title"+i),(float)dayMapValue.get("value"+i), 0xFF56B7F1));
+
+//                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
+//                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
+//                                mBarChart.addBar(new BarModel("야",0.4f, 0xFF1FF4AC));
+//                                mBarChart.addBar(new BarModel("야",4.f,  0xFF1BA4E6));
+                                if(i==5)break;
+                            }
+                            mBarChart.startAnimation();
+
+
+                        }catch(JSONException j)
+                        {
+                            j.printStackTrace();
+                        }
+                        RankingAdapter ra=new RankingAdapter(response.body());
+                        mRecyclerView.setAdapter(ra);
                     }
 
                     @Override
@@ -118,10 +160,51 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         btn_week_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mBarChart.clearChart();
                 rankingweekCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
                     @Override
                     public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
                         Log.d("랭킹데이터","week"+new Gson().toJson(response.body()));
+                        String rankingData=new Gson().toJson(response.body());
+                        Map<String,String> weekMapTitle=new HashMap<>();
+                        Map<String,Integer> weekMapValue=new HashMap<>();
+                        weekMapTitle.clear();
+                        weekMapValue.clear();
+                        try {
+                            JSONArray jsonArray=new JSONArray(rankingData);
+                            String mapString="";
+                            int mapKeyValue=0;
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+                                mapString=jsonObject.getString("title");
+                                mapKeyValue=Integer.parseInt(jsonObject.get("views").toString());
+                                weekMapTitle.put("title"+i,mapString);
+                                weekMapValue.put("value"+i,mapKeyValue);
+                                Log.d("제이슨 타이틀",""+mapString);
+                                Log.d("제이슨 타이틀2",""+mapKeyValue);
+                            }
+
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                Log.d("제이슨 타이틀3",""+weekMapTitle.get("title"+i)+"   "+weekMapTitle.get("title"+i));
+
+                                mBarChart.addBar(new BarModel(weekMapTitle.get("title"+i),(float)weekMapValue.get("value"+i), 0xFF56B7F1));
+
+//                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
+//                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
+//                                mBarChart.addBar(new BarModel("야",0.4f, 0xFF1FF4AC));
+//                                mBarChart.addBar(new BarModel("야",4.f,  0xFF1BA4E6));
+                                if(i==5)break;
+                            }
+                            mBarChart.startAnimation();
+
+
+                        }catch(JSONException j)
+                        {
+                            j.printStackTrace();
+                        }
                         RankingAdapter ra=new RankingAdapter(response.body());
                         mRecyclerView.setAdapter(ra);
                     }
@@ -135,12 +218,56 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         btn_month_ranking.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                mBarChart.clearChart();
                 rankingmonthCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
                     @Override
                     public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
-                        Log.d("랭킹데이터","month"+new Gson().toJson(response.body()));
+                        Log.d("랭킹데이터","week"+new Gson().toJson(response.body()));
+                        String rankingData=new Gson().toJson(response.body());
+                        Map<String,String> monthMapTitle=new HashMap<>();
+                        Map<String,Integer> monthMapValue=new HashMap<>();
+                        monthMapTitle.clear();
+                        monthMapValue.clear();
+                        try {
+                            JSONArray jsonArray=new JSONArray(rankingData);
+                            String mapString="";
+                            int mapKeyValue=0;
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+                                mapString=jsonObject.getString("title");
+                                mapKeyValue=Integer.parseInt(jsonObject.get("views").toString());
+                                monthMapTitle.put("title"+i,mapString);
+                                monthMapValue.put("value"+i,mapKeyValue);
+                                Log.d("제이슨 타이틀",""+mapString);
+                                Log.d("제이슨 타이틀2",""+mapKeyValue);
+                            }
+
+                            for(int i=0;i<jsonArray.length();i++)
+                            {
+                                Log.d("제이슨 타이틀3",""+monthMapTitle.get("title"+i)+"   "+monthMapTitle.get("title"+i));
+
+                                mBarChart.addBar(new BarModel(monthMapTitle.get("title"+i),(float)monthMapValue.get("value"+i), 0xFF56B7F1));
+
+//                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
+//                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
+//                                mBarChart.addBar(new BarModel("야",0.4f, 0xFF1FF4AC));
+//                                mBarChart.addBar(new BarModel("야",4.f,  0xFF1BA4E6));
+                                if(i==5)break;
+                            }
+                            mBarChart.startAnimation();
+
+
+                        }catch(JSONException j)
+                        {
+                            j.printStackTrace();
+                        }
+                        RankingAdapter ra=new RankingAdapter(response.body());
+                        mRecyclerView.setAdapter(ra);
                     }
 
                     @Override
@@ -301,5 +428,9 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         viewLayout.setEnabled(true);
         mainLayout.setEnabled(false);
         Log.e(TAG, "메뉴버튼 클릭");
+    }
+
+    public void setBar(){
+
     }
 }
