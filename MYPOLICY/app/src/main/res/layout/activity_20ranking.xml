@@ -34,24 +34,41 @@
 
         </RelativeLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/rl_001"
+            android:id="@+id/l_001"
+            >
+            <Button
+                android:id="@+id/btn_day_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일일 조회수"
+                android:background="#ffffff"/>
+            <Button
+                android:id="@+id/btn_week_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금주 조회수"
+                android:background="#ffffff"/>
+            <Button
+                android:id="@+id/btn_month_ranking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이번달 조회수"
+                android:background="#ffffff"/>
 
+        </LinearLayout>
         <!--        액티비티 레이아웃 넣는 곳          -->
 
         <RelativeLayout
             android:id="@+id/rl_002"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_001">
-
-            <Spinner
-                android:id="@+id/sp_si"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:entries="@array/sorting"
-                />
+            android:layout_below="@+id/l_001">
 
         </RelativeLayout>
 
@@ -63,7 +80,10 @@
         <!--            android:background="#929292"-->
         <!--            android:layout_below="@+id/rl_002"/>-->
 
+
+
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

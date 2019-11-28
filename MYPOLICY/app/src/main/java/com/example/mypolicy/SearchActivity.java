@@ -239,7 +239,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
-
         sp_si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
