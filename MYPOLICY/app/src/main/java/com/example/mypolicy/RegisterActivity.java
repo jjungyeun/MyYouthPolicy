@@ -30,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity {
     private final String TAG ="RegisterActivity";
 
     EditText et_userEmail, et_userPW, et_userName, et_userAge;
+    EditText et_userRegion,et_userSex;
     Button btn_cancel, btn_join;
     LinearLayout ll;
     InputMethodManager imm;
@@ -49,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         et_userPW = findViewById(R.id.et_register_pw);
         et_userName = findViewById(R.id.et_register_name);
         et_userAge = findViewById(R.id.et_register_age);
+        et_userRegion=findViewById(R.id.et_register_location);
+        et_userSex=findViewById(R.id.et_register_sex);
         btn_cancel = findViewById(R.id.btn_register_cancel);
         btn_join = findViewById(R.id.btn_register_join);
 
@@ -116,6 +119,9 @@ public class RegisterActivity extends AppCompatActivity {
         userInfo.put("password", et_userPW.getText().toString());
         userInfo.put("name", et_userName.getText().toString());
         userInfo.put("age",et_userAge.getText().toString());
+        userInfo.put("sex",et_userSex.getText().toString());
+        userInfo.put("region",et_userRegion.getText().toString());
+
         db.collection("user")
                 .document(et_userEmail.getText().toString())
                 .set(userInfo)
