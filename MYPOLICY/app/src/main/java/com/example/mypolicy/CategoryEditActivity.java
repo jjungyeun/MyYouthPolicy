@@ -108,7 +108,7 @@ public class CategoryEditActivity extends AppCompatActivity {
                 // *****************************************************
                 // scoreList (int[]) 서버로 보내기
 
-
+                finish();
             }
         });
     }
