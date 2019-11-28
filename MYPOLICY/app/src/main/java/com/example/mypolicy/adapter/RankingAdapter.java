@@ -33,11 +33,11 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingViewHolder>{
         holder.title.setText(rList.get(position).getTitle());
         long tmp=rList.get(position).getP_code();
         
-        holder.views.setText(rList.get(position).getViews());
+        holder.views.setText(Integer.toString(rList.get(position).getViews()));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return rList.size();
     }
 }
