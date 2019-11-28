@@ -27,6 +27,7 @@
         <activity android:name=".SearchKeywordActivity"/>
         <activity android:name=".RankingActivity"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".CategoryEditActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

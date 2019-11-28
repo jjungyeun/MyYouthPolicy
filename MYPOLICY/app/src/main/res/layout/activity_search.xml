@@ -191,6 +191,33 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                >
+                <Button
+                    android:id="@+id/btn_apply_always"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상시 모집"
+                    android:background="#ffffff"/>
+                <Button
+                    android:id="@+id/btn_apply_before"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공고 전"
+                    android:background="#ffffff"/>
+                <Button
+                    android:id="@+id/btn_apply_after"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="공고 후"
+                    android:background="#ffffff"/>
+
+            </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"

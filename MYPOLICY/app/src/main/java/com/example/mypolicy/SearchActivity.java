@@ -196,7 +196,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-        search_region.add("전체");
+        search_region.add("전국");
         search_region.add("전체");
 
         sp_do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

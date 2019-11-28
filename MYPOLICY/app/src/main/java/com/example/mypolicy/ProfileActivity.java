@@ -75,6 +75,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
+        btn_edit_interest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileActivity.this,CategoryEditActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
