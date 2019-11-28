@@ -64,6 +64,24 @@
         </LinearLayout>
         <!--        액티비티 레이아웃 넣는 곳          -->
 
+        <org.eazegraph.lib.charts.BarChart
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/barChart"
+            android:layout_below="@id/l_001"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:egUseCubic="true"
+            app:egUseOverlapFill="true"
+            app:egCurveSmoothness="0.4"
+            app:egIndicatorLineColor="#FE6DA8"
+            app:egLegendHeight="40dp"
+            app:egShowStandardValue="true"/>
+
+
+
+
+
+
         <RelativeLayout
             android:id="@+id/rl_002"
             android:layout_width="match_parent"
@@ -81,16 +99,14 @@
         <!--            android:layout_below="@+id/rl_002"/>-->
 
 
-
         <androidx.recyclerview.widget.RecyclerView
 
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:layout_below="@+id/rl_002"
-
-            />
+            android:layout_below="@+id/barChart"
+            android:layout_marginTop="4dp"
+            android:padding="5dp" />
 
         <!--        액티비티 레이아웃 넣는 곳          -->
 

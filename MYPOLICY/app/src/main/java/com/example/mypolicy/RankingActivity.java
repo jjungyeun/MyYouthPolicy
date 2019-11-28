@@ -80,6 +80,8 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         final Call<ArrayList<RankingData>> rankingweekCall=iApiService.sortWeekViews();
         final Call<ArrayList<RankingData>> rankingmonthCall=iApiService.sortMonthViews();
 
+        //
+
         btn_day_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
