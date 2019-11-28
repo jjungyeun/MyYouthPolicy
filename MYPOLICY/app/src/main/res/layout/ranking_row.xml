@@ -23,16 +23,18 @@
                 android:gravity="end"
                 >
                 <TextView
-                    android:id="@+id/tv_001"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="조회수: "/>
                 <TextView
-                    android:id="@+id/tv_views"
+                    android:id="@+id/tv_ranking_view"
+                    android:text="12회"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimaryLight"/>
+                    android:textColor="@color/colorPrimaryLight"
+                    />
             </LinearLayout>
+
 
 
     <LinearLayout
@@ -48,14 +50,7 @@
             android:text="피코드"
             android:visibility="invisible" />
 
-        <TextView
-            android:id="@+id/tv_email_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="이메일"
-            android:visibility="invisible"
-            />
+
     </LinearLayout>
 
 </LinearLayout>

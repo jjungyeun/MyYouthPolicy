@@ -26,6 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import org.eazegraph.lib.charts.BarChart;
+import org.eazegraph.lib.models.BarModel;
+
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -80,7 +83,18 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         final Call<ArrayList<RankingData>> rankingweekCall=iApiService.sortWeekViews();
         final Call<ArrayList<RankingData>> rankingmonthCall=iApiService.sortMonthViews();
 
-        //
+        //그래프
+        BarChart mBarChart=findViewById(R.id.barChart);
+        mBarChart.addBar(new BarModel(2.3f, 0xFF123456));
+        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
+        mBarChart.addBar(new BarModel(3.3f, 0xFF563456));
+        mBarChart.addBar(new BarModel(1.1f, 0xFF873F56));
+        mBarChart.addBar(new BarModel(2.7f, 0xFF56B7F1));
+        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
+        mBarChart.addBar(new BarModel(0.4f, 0xFF1FF4AC));
+        mBarChart.addBar(new BarModel(4.f,  0xFF1BA4E6));
+
+        mBarChart.startAnimation();
 
         btn_day_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
