@@ -83,6 +83,10 @@ public class CategoryEditActivity extends AppCompatActivity {
         btn_house_minus.setOnClickListener(listener);
 
 
+        // ***********************************************
+        // score 초기값 불러오기
+
+
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,12 +102,6 @@ public class CategoryEditActivity extends AppCompatActivity {
                 scoreList[1] = Integer.parseInt(tv_business_score.getText().toString());
                 scoreList[2] = Integer.parseInt(tv_life_score.getText().toString());
                 scoreList[3] = Integer.parseInt(tv_house_score.getText().toString());
-
-                String str = "";
-                for(int i=0;i<4;i++){
-                    str += Integer.toString(scoreList[i]) + ", ";
-                }
-                Toast.makeText(CategoryEditActivity.this, str, Toast.LENGTH_SHORT).show();
 
                 // *****************************************************
                 // scoreList (int[]) 서버로 보내기
