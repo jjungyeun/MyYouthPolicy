@@ -24,6 +24,7 @@ import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.StoreData;
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
+import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
@@ -47,6 +48,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
 
     public ArrayList<StoreData> sList;
 
+
+    final HashMap<String,Object> clickHashMap=new HashMap<>();
+    Call<JSONObject> clickPolicyCall=iApiService.clickPolicy(clickHashMap);
+
+
     SimpleDateFormat sdf=new SimpleDateFormat("yyyy년 MM월 dd일");
     public StoreAdapter(ArrayList<StoreData> list) {
         sList=list;
@@ -62,6 +68,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull final StoreViewHolder holder, final int position) {
+        sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
+
         holder.tv_title.setText(sList.get(position).getTitle());
         Log.d("저장위치","위치"+sList.get(position).getP_code());
         final long pcode=sList.get(position).getP_code();
@@ -94,6 +102,23 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
+                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                clickHashMap.put("p_code",pcode);
+                Log.d("해쉬","스토어"+sharedPreferences.getString("userEmail",null)+" "+pcode);
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+///////////////////////////////////디테일 부분으로 이동////////////////////////////////////////////
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
 
@@ -102,7 +127,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
                 context.startActivity(intent);
             }
         });
-        sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
+
 //        Log.d("쉐어드",""+sharedPreferences.getString("userEmail",null));
 
 

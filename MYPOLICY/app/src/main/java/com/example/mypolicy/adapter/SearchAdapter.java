@@ -2,6 +2,7 @@ package com.example.mypolicy.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypolicy.DetailPolicyActivity;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.SearchData;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
 
@@ -27,6 +38,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
 
     public StringBuilder startSB=new StringBuilder();
     public StringBuilder endSB=new StringBuilder();
+
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+    final HashMap<String,Object> clickHashMap=new HashMap<>();
+    Call<JSONObject> clickPolicyCall=iApiService.clickPolicy(clickHashMap);
+    SharedPreferences sharedPreferences;
 
 
     public ArrayList<SearchData> sList;
@@ -43,6 +59,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
+
+        sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
 
         final long pCode=sList.get(position).getP_code();
         Log.d("피코드피코드피코드",""+pCode);
@@ -103,6 +121,24 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                /*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
+                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                clickHashMap.put("p_code",pCode);
+                Log.d("해쉬","키워드"+sharedPreferences.getString("userEmail",null)+" "+pCode);
+
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+                ///////////////////////////////////디테일 부분으로 이동////////////////////////////////////////////
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
                 intent.putExtra("position",pCode);

@@ -113,9 +113,12 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+/*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
 
                 clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
                 clickHashMap.put("p_code",pcode);
+                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
+
                 clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
                     @Override
                     public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
@@ -127,7 +130,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
                     }
                 });
-
+///////////////////////////////////디테일 부분으로 이동////////////////////////////////////////////
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
                 intent.putExtra("position",pcode);
