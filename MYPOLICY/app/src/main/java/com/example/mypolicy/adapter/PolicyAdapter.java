@@ -2,6 +2,7 @@ package com.example.mypolicy.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.mypolicy.DetailPolicyActivity;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     //    dataParser=new DataParser()
@@ -24,8 +35,14 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
 
     public ArrayList<Policy> pList;
+    SharedPreferences sharedPreferences;
+
     public StringBuilder startSB=new StringBuilder();
     public StringBuilder endSB=new StringBuilder();
+
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+    final HashMap<String,Object> clickHashMap=new HashMap<>();
+    Call<JSONObject> clickPolicyCall=iApiService.clickPolicy(clickHashMap);
 
     public PolicyAdapter(ArrayList<Policy> list) {
         pList = list;
@@ -39,6 +56,8 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PolicyViewHolder holder, final int position) {
+        sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
+
 //        String format=(pList.get(position).getApply_start());
         Log.d("d",""+pList.get(position).getApply_start());
         final long pcode=pList.get(position).getP_code();
@@ -82,12 +101,6 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             apply_start=date_parse(apply_start);
             apply_end=date_parse(apply_end);
 
-
-            Log.d("날짜",""+apply_start);
-            Log.d("날짜",""+apply_end);
-          //  Log.d("날짜",""+pList.get(position).getApply_start().toString());
-
-//
             holder.applyStart.setText(apply_start);
             holder.applyEnd.setText(apply_end);
         }
@@ -100,11 +113,27 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                clickHashMap.put("p_code",pcode);
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
                 intent.putExtra("position",pcode);
                 Log.d("주소주소",""+pcode);
                 context.startActivity(intent);
+
             }
         });
 

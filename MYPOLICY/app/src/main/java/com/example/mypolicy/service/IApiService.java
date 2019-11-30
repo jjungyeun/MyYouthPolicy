@@ -84,4 +84,15 @@ public interface IApiService {
     @GET("sorting/month_views")
     Call<ArrayList<RankingData>> sortMonthViews();
 
+
+
+
+    /*****===========정책당 클릭스 따로 구현==============*/
+    //경우의수 1. search에서 각각 누르면 디테일로 들어갈때
+    //        2. MyList에서 각각 누르면 디테일로 들어갈때
+    //        3.  Top20에서 각각 누르면 디테일로 들어갈때
+    @FormUrlEncoded
+    @POST("policy/click")
+    Call<JSONObject> clickPolicy(@FieldMap HashMap<String,Object> parameters);
+
 }

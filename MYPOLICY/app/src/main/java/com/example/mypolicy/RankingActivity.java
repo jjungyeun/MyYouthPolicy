@@ -96,6 +96,63 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         final BarChart mBarChart=findViewById(R.id.barChart);
 
 
+        mBarChart.clearChart();
+        rankingdayCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RankingData>> call, Response<ArrayList<RankingData>> response) {
+                Log.d("랭킹데이터","week"+new Gson().toJson(response.body()));
+                String rankingData=new Gson().toJson(response.body());
+                Map<String,String> dayMapTitle=new HashMap<>();
+                Map<String,Integer> dayMapValue=new HashMap<>();
+                dayMapTitle.clear();
+                dayMapValue.clear();
+                try {
+                    JSONArray jsonArray=new JSONArray(rankingData);
+                    String mapString="";
+                    int mapKeyValue=0;
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+
+                        mapString=jsonObject.getString("title");
+                        mapKeyValue=Integer.parseInt(jsonObject.get("views").toString());
+                        dayMapTitle.put("title"+i,mapString);
+                        dayMapValue.put("value"+i,mapKeyValue);
+                        Log.d("제이슨 타이틀",""+mapString);
+                        Log.d("제이슨 타이틀2",""+mapKeyValue);
+                    }
+
+                    for(int i=0;i<jsonArray.length();i++)
+                    {
+                        Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
+
+                        mBarChart.addBar(new BarModel(dayMapTitle.get("title"+i),(float)dayMapValue.get("value"+i), 0xFF56B7F1));
+
+//                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
+//                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
+//                                mBarChart.addBar(new BarModel("야",0.4f, 0xFF1FF4AC));
+//                                mBarChart.addBar(new BarModel("야",4.f,  0xFF1BA4E6));
+                        if(i==5)break;
+                    }
+                    mBarChart.startAnimation();
+
+
+                }catch(JSONException j)
+                {
+                    j.printStackTrace();
+                }
+                RankingAdapter ra=new RankingAdapter(response.body());
+                mRecyclerView.setAdapter(ra);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RankingData>> call, Throwable t) {
+
+            }
+        });
+
+
+
 
         btn_day_ranking.setOnClickListener(new View.OnClickListener() {
             @Override

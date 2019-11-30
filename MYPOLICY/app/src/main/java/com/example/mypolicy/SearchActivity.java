@@ -63,7 +63,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
     private String mClassName = getClass().getName().trim();
     private RecyclerView mRecyclerView;
-    final HashMap <String,Object> searchHashMap=new HashMap<>();
     final String[] categories = new String[]{"전체","취업지원","창업지원","생활/복지","주거/금융"};
     Button btn_select_category, btn_search;
     TextView tv_categories;
@@ -90,12 +89,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         Call<ArrayList<Policy>> call=iApiService.showAllPolicies();
 
 
+
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
                     try{
-                        Log.d("시작로그",""+new Gson().toJson(response.body()));
+
                         PolicyAdapter pa=new PolicyAdapter(response.body());
                         mRecyclerView.setAdapter(pa);
                     }catch(Exception e)
