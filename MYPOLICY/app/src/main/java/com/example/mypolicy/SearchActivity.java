@@ -65,6 +65,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private RecyclerView mRecyclerView;
     final String[] categories = new String[]{"전체","취업지원","창업지원","생활/복지","주거/금융"};
     Button btn_select_category, btn_search;
+    Button btn_apply_always,btn_apply_now,btn_apply_before,btn_apply_after;
     TextView tv_categories;
     EditText et_keyword;
     Spinner sp_do, sp_si, sp_age;
@@ -87,9 +88,29 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
         final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
         Call<ArrayList<Policy>> call=iApiService.showAllPolicies();
+        final Call<ArrayList<Policy>> alwaysCall=iApiService.showAllPolicies_always();
+        final Call<ArrayList<Policy>> nowCall=iApiService.showAllPolicies_nowPossible();
+        final Call<ArrayList<Policy>> beforeCall=iApiService.showAllPolicies_beforeApply();
+        final Call<ArrayList<Policy>> afterCall=iApiService.showAllPolicies_afterApply();
 
 
 
+
+
+
+        tv_categories = findViewById(R.id.tv_categories);
+        btn_select_category = findViewById(R.id.btn_select_category);
+        btn_search = findViewById(R.id.btn_search);
+        sp_do = findViewById(R.id.sp_do);
+        sp_si = findViewById(R.id.sp_si);
+        sp_age = findViewById(R.id.sp_age);
+        et_keyword = findViewById(R.id.et_search_keyword);
+        btn_apply_always=findViewById(R.id.btn_apply_always);
+        btn_apply_now=findViewById(R.id.btn_apply_now);
+        btn_apply_before=findViewById(R.id.btn_apply_before);
+        btn_apply_after=findViewById(R.id.btn_apply_after);
+
+/**********************************전체 정보 받아오는 부분**********************************************************************/
         try{
             call.enqueue(new Callback<ArrayList<Policy>>() {
                 @Override
@@ -106,7 +127,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
                 @Override
                 public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
-                        t.printStackTrace();
+                    t.printStackTrace();
                 }
             });
 
@@ -115,15 +136,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             e.printStackTrace();
         }
 
-
-        tv_categories = findViewById(R.id.tv_categories);
-        btn_select_category = findViewById(R.id.btn_select_category);
-        btn_search = findViewById(R.id.btn_search);
-        sp_do = findViewById(R.id.sp_do);
-        sp_si = findViewById(R.id.sp_si);
-        sp_age = findViewById(R.id.sp_age);
-        et_keyword = findViewById(R.id.et_search_keyword);
-
+/**************************************************키워드 클릭 검색********************************************/
         btn_select_category.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -301,6 +314,116 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
         });
+
+
+        /************************************시간별 버튼 4개에 대한 정책 정보 수집*********************************/
+        btn_apply_always.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alwaysCall.clone().enqueue(new Callback<ArrayList<Policy>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+                        Log.d("상시모집",""+new Gson().toJson(response.body()));
+                        try{
+
+                            PolicyAdapter pa=new PolicyAdapter(response.body());
+                            mRecyclerView.setAdapter(pa);
+                        }catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
+
+
+        btn_apply_now.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nowCall.clone().enqueue(new Callback<ArrayList<Policy>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+
+
+                        try{
+
+                            PolicyAdapter pa=new PolicyAdapter(response.body());
+                            mRecyclerView.setAdapter(pa);
+                        }catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
+
+        btn_apply_before.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                beforeCall.clone().enqueue(new Callback<ArrayList<Policy>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+
+
+                        try{
+
+                            PolicyAdapter pa=new PolicyAdapter(response.body());
+                            mRecyclerView.setAdapter(pa);
+                        }catch(Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        });
+        btn_apply_after.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    afterCall.clone().enqueue(new Callback<ArrayList<Policy>>() {
+                        @Override
+                        public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
+
+
+                            try{
+
+                                PolicyAdapter pa=new PolicyAdapter(response.body());
+                                mRecyclerView.setAdapter(pa);
+                            }catch(Exception e)
+                            {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
+
+                        }
+                    });
+            }
+        });
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     @Override

@@ -203,17 +203,24 @@
                     android:layout_height="wrap_content"
                     android:text="상시 모집"
                     android:background="#ffffff"/>
+
+                <Button
+                    android:id="@+id/btn_apply_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="현재 신청 가능"
+                    android:background="#ffffff"/>
                 <Button
                     android:id="@+id/btn_apply_before"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공고 전"
+                    android:text="공고 시작전"
                     android:background="#ffffff"/>
                 <Button
                     android:id="@+id/btn_apply_after"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공고 후"
+                    android:text="공고 종료"
                     android:background="#ffffff"/>
 
             </LinearLayout>
