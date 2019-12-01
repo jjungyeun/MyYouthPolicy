@@ -21,14 +21,14 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".DownloadActivity"/>
         <activity android:name=".ProfileActivity"/>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".DetailPolicyActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".EditPersonalInfoActivity"/>
         <activity android:name=".SearchKeywordActivity"/>
         <activity android:name=".RankingActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".CategoryEditActivity"/>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity" android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
