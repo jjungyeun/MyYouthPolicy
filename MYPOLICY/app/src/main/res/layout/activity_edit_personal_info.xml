@@ -51,21 +51,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="비밀번호"
-                android:textSize="20sp"/>
-
-            <EditText
-                android:id="@+id/et_profile_pw"
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                />
-
-            <TextView
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="이름"
                 android:textSize="20sp"/>
 
@@ -77,39 +62,85 @@
                 />
 
             <TextView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="나이"
+                android:text="성별"
                 android:textSize="20sp"/>
 
-            <EditText
-                android:id="@+id/et_profile_age"
-                android:layout_marginTop="10dp"
+            <RadioGroup
+                android:id="@+id/rg_gender"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                />
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_weight="1"
+                    android:text="남"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_weight="1"
+                    android:text="여"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
 
             <TextView
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="지역"
                 android:textSize="20sp"/>
 
-            <EditText
-                android:id="@+id/et_profile_region"
-                android:layout_marginTop="10dp"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <Spinner
+                    android:id="@+id/sp_profile_do"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/region"/>
+                <Spinner
+                    android:id="@+id/sp_profile_si"
+                    android:layout_weight="6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:autofillHints="소분류"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:textSize="20sp"/>
+
+            <Spinner
+                android:id="@+id/sp_profile_age"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:entries="@array/age"/>
+
+
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal">
 
                 <Button

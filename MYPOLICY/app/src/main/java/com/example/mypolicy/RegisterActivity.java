@@ -4,9 +4,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +34,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private final String TAG ="RegisterActivity";
 
-    EditText et_userEmail, et_userPW, et_userName, et_userAge;
-    EditText et_userRegion,et_userSex;
+    EditText et_userEmail, et_userPW, et_userName;
+    Spinner sp_do, sp_si, sp_age;
+    RadioButton rb_male, rb_female;
     Button btn_cancel, btn_join;
     LinearLayout ll;
     InputMethodManager imm;
+
+    String userEmail, userPW, userName, userAge, userSex;
+    String region_do, region_si;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -49,14 +58,93 @@ public class RegisterActivity extends AppCompatActivity {
         et_userEmail = findViewById(R.id.et_register_email);
         et_userPW = findViewById(R.id.et_register_pw);
         et_userName = findViewById(R.id.et_register_name);
-        et_userAge = findViewById(R.id.et_register_age);
-        et_userRegion=findViewById(R.id.et_register_location);
-        et_userSex=findViewById(R.id.et_register_sex);
+        sp_age = findViewById(R.id.sp_register_age);
+        sp_do=findViewById(R.id.sp_register_do);
+        sp_si = findViewById(R.id.sp_register_si);
+        rb_male=findViewById(R.id.rb_male);
+        rb_female = findViewById(R.id.rb_female);
         btn_cancel = findViewById(R.id.btn_register_cancel);
         btn_join = findViewById(R.id.btn_register_join);
 
         ll = findViewById(R.id.ll_register);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+
+        userAge = ""; region_do = ""; region_si = ""; userSex = "";
+        sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userAge = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                userAge = "";
+            }
+        });
+
+        sp_do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region_do = parent.getItemAtPosition(position).toString();
+                ArrayAdapter adapter= ArrayAdapter.createFromResource(
+                        getApplicationContext(),
+                        R.array.전체,
+                        android.R.layout.simple_list_item_1);
+                switch (region_do){
+                    case "서울":
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.서울,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                    case "경기":
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.경기,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                    default:
+
+                        adapter = ArrayAdapter.createFromResource(
+                                getApplicationContext(),
+                                R.array.전체,
+                                android.R.layout.simple_list_item_1);
+                        break;
+                }
+                sp_si.setAdapter(adapter);
+                sp_si.setSelection(0);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                region_do = "";
+            }
+        });
+
+        sp_si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region_si = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                region_si = "";
+            }
+        });
+
+        rb_male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userSex = "남";
+            }
+        });
+        rb_female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userSex = "여";
+            }
+        });
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,13 +156,15 @@ public class RegisterActivity extends AppCompatActivity {
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userEmail = et_userEmail.getText().toString();
-                String userPW = et_userPW.getText().toString();
-                String userName = et_userName.getText().toString();
-                String userAge = et_userAge.getText().toString();
+                userEmail = et_userEmail.getText().toString();
+                userPW = et_userPW.getText().toString();
+                userName = et_userName.getText().toString();
 
-                if(userEmail.isEmpty()||userPW.isEmpty()||userName.isEmpty()||userAge.isEmpty()){
+                if(userEmail.isEmpty()||userPW.isEmpty()||userName.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
+                }
+                else if(userAge.isEmpty()||region_do.isEmpty()||region_si.isEmpty()){
+                    Toast.makeText(RegisterActivity.this, "정보를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     mAuth.createUserWithEmailAndPassword(userEmail, userPW)
@@ -114,13 +204,16 @@ public class RegisterActivity extends AppCompatActivity {
 
     // user 정보 db에 넣기
     public void successRegister(FirebaseUser user){
+        ArrayList<String> userRegion =new ArrayList<>();
+        userRegion.add(region_do);
+        userRegion.add(region_si);
 
         Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("password", et_userPW.getText().toString());
-        userInfo.put("name", et_userName.getText().toString());
-        userInfo.put("age",et_userAge.getText().toString());
-        userInfo.put("sex",et_userSex.getText().toString());
-        userInfo.put("region",et_userRegion.getText().toString());
+        userInfo.put("password", userPW);
+        userInfo.put("name", userName);
+        userInfo.put("age",userAge);
+        userInfo.put("sex",userSex);
+        userInfo.put("region",userRegion);
 
         db.collection("user")
                 .document(et_userEmail.getText().toString())

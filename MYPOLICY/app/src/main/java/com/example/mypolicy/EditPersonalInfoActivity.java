@@ -5,8 +5,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -17,6 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,10 +32,17 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
 
     private String TAG = "EditPersonalInfoActivity";
 
-    EditText et_userEmail, et_userPW, et_userName, et_userAge, et_userRegion;
+    EditText et_userEmail, et_userName;
+    Spinner sp_do, sp_si, sp_age;
+    RadioButton rb_male, rb_female;
     Button btn_cancel, btn_change;
     FirebaseFirestore db;
     SharedPreferences sharedPreferences;
+
+    String userEmail, userPW, userName, userAge, userSex;
+    String region_do, region_si;
+
+    ArrayList<String> userRegion = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +52,14 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         et_userEmail = findViewById(R.id.et_profile_email);
-        et_userPW = findViewById(R.id.et_profile_pw);
         et_userName = findViewById(R.id.et_profile_name);
-        et_userAge = findViewById(R.id.et_profile_age);
-        et_userRegion = findViewById(R.id.et_profile_region);
         btn_cancel = findViewById(R.id.btn_profile_cancel);
         btn_change = findViewById(R.id.btn_profile_change);
+        sp_age = findViewById(R.id.sp_profile_age);
+        sp_do=findViewById(R.id.sp_profile_do);
+        sp_si = findViewById(R.id.sp_profile_si);
+        rb_male=findViewById(R.id.rb_male);
+        rb_female = findViewById(R.id.rb_female);
 
         et_userEmail.setText(sharedPreferences.getString("userEmail",null));
         DocumentReference userInfo = db.collection("user").document(sharedPreferences.getString("userEmail",null));
@@ -57,9 +71,26 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                     if (document.exists()) {
                         Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                         et_userName.setText(document.get("name").toString());
-                        et_userAge.setText(document.get("age").toString());
-                        if(document.get("region")!=null)
-                            et_userRegion.setText(document.get("region").toString());
+
+                        String region = document.get("region").toString();
+                        userRegion.add(region.substring(1,3));
+                        userRegion.add(region.substring(5,region.length()-1));
+                        Log.d(TAG, "region: "+userRegion);
+
+                        userAge = document.get("age").toString();
+                        userSex = document.get("sex").toString();
+                        userPW = document.get("password").toString();
+
+                        if(userSex.equals("남"))
+                            rb_male.toggle();
+                        else
+                            rb_female.toggle();
+
+                        ArrayAdapter ageAdapter = (ArrayAdapter) sp_age.getAdapter();
+                        ArrayAdapter doAdapter = (ArrayAdapter) sp_do.getAdapter();
+                        sp_age.setSelection(ageAdapter.getPosition(userAge));
+                        sp_do.setSelection(doAdapter.getPosition(userRegion.get(0)));
+                        setList(0);
                     } else {
                         Log.d(TAG, "No such document");
                     }
@@ -69,11 +100,61 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
             }
         });
 
+
+
+        sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                userAge = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                userAge = "";
+            }
+        });
+
+        sp_do.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region_do = parent.getItemAtPosition(position).toString();
+                setList(1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                region_do = "";
+            }
+        });
+
+        sp_si.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                region_si = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                region_si = "";
+            }
+        });
+
+        rb_male.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userSex = "남";
+            }
+        });
+        rb_female.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userSex = "여";
+            }
+        });
+
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(EditPersonalInfoActivity.this, ProfileActivity.class);
-//                startActivity(intent);
                 finish();
             }
         });
@@ -81,19 +162,18 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
         btn_change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userPW = et_userPW.getText().toString();
-                String userName = et_userName.getText().toString();
-                String userAge = et_userAge.getText().toString();
-                String userRegion = et_userRegion.getText().toString();
+                userEmail = et_userEmail.getText().toString();
+                userName = et_userName.getText().toString();
 
-                if(userPW.isEmpty()||userName.isEmpty()||userAge.isEmpty()){
+                if(userName.isEmpty()||userAge.isEmpty()){
                     Toast.makeText(EditPersonalInfoActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Map<String, Object> userInfo = new HashMap<>();
-                    userInfo.put("password", userPW);
                     userInfo.put("name", userName);
+                    userInfo.put("password", userPW);
                     userInfo.put("age",userAge);
+                    userInfo.put("sex",userSex);
                     userInfo.put("region", userRegion);
                     db.collection("user")
                             .document(et_userEmail.getText().toString())
@@ -119,5 +199,45 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setList(int mode){ //0: default, 1: select
+        ArrayAdapter adapter= ArrayAdapter.createFromResource(
+                getApplicationContext(),
+                R.array.전체,
+                android.R.layout.simple_list_item_1);
+        switch (region_do){
+            case "서울":
+                adapter = ArrayAdapter.createFromResource(
+                        getApplicationContext(),
+                        R.array.서울,
+                        android.R.layout.simple_list_item_1);
+                break;
+            case "경기":
+                adapter = ArrayAdapter.createFromResource(
+                        getApplicationContext(),
+                        R.array.경기,
+                        android.R.layout.simple_list_item_1);
+                break;
+            default:
+
+                adapter = ArrayAdapter.createFromResource(
+                        getApplicationContext(),
+                        R.array.전체,
+                        android.R.layout.simple_list_item_1);
+                break;
+        }
+        sp_si.setAdapter(adapter);
+
+        if(mode==1)
+            sp_si.setSelection(0);
+        else {
+            Log.d(TAG, "setList: "+ adapter.getPosition(userRegion.get(1)));
+            sp_si.setSelection(adapter.getPosition(userRegion.get(1)));
+            if(adapter.getPosition(userRegion.get(1))==-1){
+                sp_si.setSelection(0);
+                userRegion.set(1,"전체");
+            }
+        }
     }
 }
