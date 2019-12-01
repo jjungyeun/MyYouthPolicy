@@ -59,7 +59,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
         sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
 
 //        String format=(pList.get(position).getApply_start());
-        Log.d("d",""+pList.get(position).getApply_start());
+        Log.d("ddddddddddddddddddddd",""+pList.get(position).getP_code());
         final long pcode=pList.get(position).getP_code();
         Log.d("d",""+pList.get(position).getApply_end());
         holder.policyName.setOnClickListener(new View.OnClickListener() {

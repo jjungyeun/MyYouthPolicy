@@ -131,6 +131,38 @@
                     </LinearLayout>
                 </LinearLayout>
 
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.7dp"
+                    android:background="#929292"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="5dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_search"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:text="모집시기"/>
+                    <Spinner
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/sp_timesorting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/timeSorting"/>
+
+
+
+                </LinearLayout>
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
@@ -197,24 +229,32 @@
                 android:orientation="horizontal"
                 android:gravity="center_horizontal"
                 >
+
+                <Button
+                    android:id="@+id/btn_apply_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체"
+                    android:background="#ffffff"/>
+
                 <Button
                     android:id="@+id/btn_apply_always"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="상시 모집"
+                    android:text="상시모집"
                     android:background="#ffffff"/>
 
                 <Button
                     android:id="@+id/btn_apply_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="현재 신청 가능"
+                    android:text="현재신청"
                     android:background="#ffffff"/>
                 <Button
                     android:id="@+id/btn_apply_before"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공고 시작전"
+                    android:text="공고시작 전"
                     android:background="#ffffff"/>
                 <Button
                     android:id="@+id/btn_apply_after"

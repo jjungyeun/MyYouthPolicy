@@ -22,7 +22,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface IApiService {
-    @GET("policy/show_all_policies")//전체 공공정책 리스트
+    @GET("policy/selected_policies")//전체 공공정책 리스트
     Call<ArrayList<Policy>> showAllPolicies();
 
     @GET("policy/{number}")//세부 공공정책 사항
@@ -32,16 +32,16 @@ public interface IApiService {
     Call<ArrayList<Review>> showReview(@Path("number") long number);
 
     /**************************필터링 전 상시,현재 ,공고전,공고후****************************/
-    @GET("policy/show_all_policies")//전체 공공정책 리스트 공고 종료후
+    @GET("policy/after_apply_policies")//전체 공공정책 리스트 공고 종료후
     Call<ArrayList<Policy>> showAllPolicies_afterApply();
 
-    @GET("policy/show_all_policies")//전체 공공정책 리스트 공고 시작전
+    @GET("policy/before_apply_policies")//전체 공공정책 리스트 공고 시작전
     Call<ArrayList<Policy>> showAllPolicies_beforeApply();
 
-    @GET("policy/show_all_policies")//전체 공공정책 리스트 현재 신청 가능
+    @GET("policy/possible_apply_policies")//전체 공공정책 리스트 현재 신청 가능
     Call<ArrayList<Policy>> showAllPolicies_nowPossible();
 
-    @GET("policy/show_all_policies")//전체 공공정책 리스트 상시
+    @GET("policy/always_apply_policies")//전체 공공정책 리스트 상시
     Call<ArrayList<Policy>> showAllPolicies_always();
 
 

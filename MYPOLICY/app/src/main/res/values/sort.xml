@@ -6,4 +6,13 @@
         <item>선호순</item>
     </string-array>
 
+    <string-array name="timeSorting">
+        <item>전체</item>
+        <item>상시모집</item>
+        <item>현재신청</item>
+        <item>공고시작 전</item>
+        <item>공고기간 종료</item>
+
+    </string-array>
+
 </resources>
