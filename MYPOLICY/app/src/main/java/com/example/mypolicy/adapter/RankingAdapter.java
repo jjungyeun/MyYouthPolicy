@@ -86,6 +86,34 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingViewHolder>{
                 context.startActivity(intent);
             }
         });
+
+        holder.title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                /*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
+                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                clickHashMap.put("p_code",pcode);
+
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+                ///////////////////////////////////디테일 부분으로 이동////////////////////////////////////////////
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+
+                intent.putExtra("position",pcode);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -128,7 +128,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreViewHolder>{
             }
         });
 
-//        Log.d("쉐어드",""+sharedPreferences.getString("userEmail",null));
+
 
 
         holder.btn_storeDelete.setOnClickListener(new View.OnClickListener() {

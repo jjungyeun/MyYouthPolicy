@@ -31,14 +31,12 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
     //    dataParser=new DataParser()
     String[] eng_mon={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
-    String[] eng_day={"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
-    String[] kor_day={"월요일","화요일","수요일","목요일","금요일","토요일","일요일"};
+
 
     public ArrayList<Policy> pList;
     SharedPreferences sharedPreferences;
 
-    public StringBuilder startSB=new StringBuilder();
-    public StringBuilder endSB=new StringBuilder();
+
 
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> clickHashMap=new HashMap<>();
@@ -106,9 +104,35 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
         }
 
         holder.policyName.setText(pList.get(position).getTitle());
+///////*****************************정책 이름이 눌렸을때 detail로 이동********************************************************************////
+        holder.policyName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                clickHashMap.put("p_code",pcode);
+                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
 
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
 
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
 
+                    }
+                });
+//디테일 부분으로 이동/
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+                intent.putExtra("position",pcode);
+                Log.d("주소주소",""+pcode);
+                context.startActivity(intent);
+            }
+        });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////*****************************holder 자체를 눌렸을때 detail로 이동********************************************************************////
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +154,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
                     }
                 });
-///////////////////////////////////디테일 부분으로 이동////////////////////////////////////////////
+////디테일 부분으로 이동////
                 Context context=view.getContext();
                 Intent intent=new Intent(context, DetailPolicyActivity.class);
                 intent.putExtra("position",pcode);
@@ -139,7 +163,7 @@ public class PolicyAdapter extends RecyclerView.Adapter<PolicyViewHolder> {
 
             }
         });
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     private String date_parse(String rawDate) {
