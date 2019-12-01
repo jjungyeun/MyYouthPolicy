@@ -310,6 +310,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 extras.putString("search_category",search_category);
                 extras.putInt("age",age);
                 extras.putString("keyword",keyword);
+                extras.putString("time",selected_time);
                 intent.putExtras(extras);
                 startActivity(intent);
 //                final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword);

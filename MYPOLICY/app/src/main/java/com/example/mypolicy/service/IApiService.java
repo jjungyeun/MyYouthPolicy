@@ -86,7 +86,7 @@ public interface IApiService {
     @FormUrlEncoded
     @POST("search/test")
     Call<ArrayList<SearchData>> postSearchKeyword(@Field("location") ArrayList<String> location, @Field("category") String category
-    , @Field("age")int age, @Field("keyword") String keyword);
+    , @Field("age")int age, @Field("keyword") String keyword, @Field("apply_term") String apply_term);
 
     //조회수 별 일일 Top20
     @GET("sorting/day_views")
