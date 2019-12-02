@@ -159,12 +159,12 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
                         if(jsonObject.has("contents"))
                         {
-                            tv_detail.setText("-");
+                            String contents=jsonObject.getString("contents");
+                            tv_detail.setText(contents);
                         }
                         else
                         {
-                            String contents=jsonObject.getString("contents");
-                            tv_detail.setText(contents);
+                            tv_detail.setText("-");
                         }
 
 
