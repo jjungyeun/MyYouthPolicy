@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,9 +50,14 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
     private Boolean isExitFlag = false;
     private Button btn_store_delte;
     private RecyclerView mRecyclerView;
+    private String dateValue="";
+    Spinner sp_sort;
+
+
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> showStoreDataMap=new HashMap<>();
-    final HashMap<String,Object> deleteDataMap=new HashMap<>();
+    final HashMap<String,Object> sortMap=new HashMap<>();
+
     SharedPreferences sharedPreferences;
 
     @Override
@@ -68,8 +75,11 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         btn_store_delte=findViewById(R.id.btn_store_delete);
-        final Call<ArrayList<StoreData>> storeDataCall=iApiService.showallMyList(showStoreDataMap);
+        sp_sort=findViewById(R.id.sp_sort);
 
+
+        final Call<ArrayList<StoreData>> storeDataCall=iApiService.showallMyList(showStoreDataMap);
+        final Call<ArrayList<StoreData>> sortCall=iApiService.sortMyList(sortMap);
 
        //=========================서버에서 저장한거 가져오는 코드=========================//
         try {
@@ -98,7 +108,69 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
         }
 
 
+        /**********************************다운로드에서 정렬하기*****************************************************/
+
+        sp_sort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("소트값",""+sp_sort.getItemAtPosition(position));
+
+                //저장날짜와 지원 날짜로 sorting하기
+                // ***********************************값 널기*******************************//
+                if(sp_sort.getItemAtPosition(position).equals("저장날짜순"))
+                {
+                    Toast.makeText(mContext, "저장날짜", Toast.LENGTH_SHORT).show();
+                    dateValue=sp_sort.getItemAtPosition(position).toString();
+                }
+
+
+                if(sp_sort.getItemAtPosition(position).equals("지원날짜순"))
+                {
+                    Toast.makeText(mContext, "지원날짜", Toast.LENGTH_SHORT).show();
+                    dateValue=sp_sort.getItemAtPosition(position).toString();
+                }
+
+
+                sortMap.put("uID",sharedPreferences.getString("userEmail",null));
+                sortMap.put("Sort_by",dateValue);
+
+
+                Log.d("추가정렬전",""+sharedPreferences.getString("userEmail",null) + " " + dateValue);
+                //******************************통신하기****************************//
+                if(dateValue.equals("저장날짜순") || dateValue.equals("지원날짜순")) {
+                    try{
+                        sortCall.clone().enqueue(new Callback<ArrayList<StoreData>>() {
+                            @Override
+                            public void onResponse(Call<ArrayList<StoreData>> call, Response<ArrayList<StoreData>> response) {
+                                Log.d("추가정렬정보",""+new Gson().toJson(response.body()));
+                                StoreAdapter sa = new StoreAdapter(response.body());
+                                mRecyclerView.setAdapter(sa);
+                            }
+
+                            @Override
+                            public void onFailure(Call<ArrayList<StoreData>> call, Throwable t) {
+
+                            }
+                        });
+                    }catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
     }
+
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

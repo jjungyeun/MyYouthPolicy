@@ -2,8 +2,8 @@
 <resources>
     <string-array name="sorting">
         <item>정렬방식</item>
-        <item>시간순</item>
-        <item>선호순</item>
+        <item>저장날짜순</item>
+        <item>지원날짜순</item>
     </string-array>
 
     <string-array name="timeSorting">

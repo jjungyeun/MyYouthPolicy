@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -62,6 +63,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     private String mClassName = getClass().getName().trim();
     private RecyclerView mRecyclerView;
 
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -83,6 +85,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         btn_day_ranking=findViewById(R.id.btn_day_ranking);
         btn_week_ranking=findViewById(R.id.btn_week_ranking);
         btn_month_ranking=findViewById(R.id.btn_month_ranking);
+
 
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

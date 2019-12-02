@@ -44,7 +44,7 @@
             android:layout_below="@+id/rl_001">
 
             <Spinner
-                android:id="@+id/sp_si"
+                android:id="@+id/sp_sort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"

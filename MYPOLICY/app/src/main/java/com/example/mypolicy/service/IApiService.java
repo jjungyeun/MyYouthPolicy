@@ -100,6 +100,11 @@ public interface IApiService {
     @GET("sorting/month_views")
     Call<ArrayList<RankingData>> sortMonthViews();
 
+    // *********************저장에서 정렬**************************************//
+
+    @FormUrlEncoded
+    @POST("my_list/ordered_mylist")
+    Call<ArrayList<StoreData>>sortMyList(@FieldMap HashMap<String,Object> parameters);
 
 
 
