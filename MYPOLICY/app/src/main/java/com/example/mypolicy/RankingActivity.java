@@ -95,7 +95,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
         //그래프
         final BarChart mBarChart=findViewById(R.id.barChart);
 
-
+///////////////////////////****************디폴트 일일 랭킹값***************///////////////////////////////////////////
         mBarChart.clearChart();
         rankingdayCall.clone().enqueue(new Callback<ArrayList<RankingData>>() {
             @Override
@@ -164,6 +164,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+///////////////////////////**************** 일일 랭킹값***************///////////////////////////////////////////
 
         btn_day_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,6 +243,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                 });
             }
         });
+///////////////////////////****************주 랭킹값***************///////////////////////////////////////////
 
         btn_week_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -322,6 +324,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                 });
             }
         });
+///////////////////////////****************월 랭킹값***************///////////////////////////////////////////
 
         btn_month_ranking.setOnClickListener(new View.OnClickListener() {
 
@@ -371,8 +374,8 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                             {
                                 Log.d("제이슨 타이틀3",""+monthMapTitle.get("title"+i)+"   "+monthMapTitle.get("title"+i));
 
-                                mBarChart.addBar(new BarModel(monthMapTitle.get("title"+i),(float)monthMapValue.get("value"+i), 0xFF56B7F1));
-
+                                mBarChart.addBar(new BarModel(monthMapTitle.get("title"+i),(float)monthMapValue.get("value"+i),      0xFFCDA67F));
+//                                에메랄드0xFF63CBB0
 //                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
 //                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
 //                                mBarChart.addBar(new BarModel("야",0.4f, 0xFF1FF4AC));
