@@ -140,7 +140,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                     {
                         Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
 
-                        mBarChart.addBar(new BarModel(dayMapTitle.get("title"+i),(float)dayMapValue.get("value"+i), color1[i]));
+                        mBarChart.addBar(new BarModel(Integer.toString(i+1)+"위",(float)dayMapValue.get("value"+i), color1[i]));
                         //0xFF56B7F1
                         if(i==4)break;
                     }
@@ -218,7 +218,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                             {
                                 Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
 
-                                mBarChart.addBar(new BarModel(dayMapTitle.get("title"+i),(float)dayMapValue.get("value"+i), color2[i]));
+                                mBarChart.addBar(new BarModel(Integer.toString(i+1)+"위",(float)dayMapValue.get("value"+i), color2[i]));
 
 
                                 if(i==4)break;
@@ -297,7 +297,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                             {
                                 Log.d("제이슨 타이틀3",""+weekMapTitle.get("title"+i)+"   "+weekMapTitle.get("title"+i));
 
-                                mBarChart.addBar(new BarModel(weekMapTitle.get("title"+i),(float)weekMapValue.get("value"+i), color3[i]));
+                                mBarChart.addBar(new BarModel(Integer.toString(i+1)+"위",(float)weekMapValue.get("value"+i), color3[i]));
 
 //                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
 //                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));
@@ -381,7 +381,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                             {
                                 Log.d("제이슨 타이틀3",""+monthMapTitle.get("title"+i)+"   "+monthMapTitle.get("title"+i));
 
-                                mBarChart.addBar(new BarModel(monthMapTitle.get("title"+i),(float)monthMapValue.get("value"+i), color4[i]));
+                                mBarChart.addBar(new BarModel(Integer.toString(i+1)+"위",(float)monthMapValue.get("value"+i), color4[i]));
 //                                에메랄드0xFF63CBB0
 //                                mBarChart.addBar(new BarModel("야",2.7f, 0xFF56B7F1));
 //                                mBarChart.addBar(new BarModel("야",2.f,  0xFF343456));

@@ -2,15 +2,39 @@ package com.example.mypolicy;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class requestDialog {
     private Context context;
+    SharedPreferences sharedPreferences;
+    final HashMap<String,Object> requestHashMap=new HashMap<>();
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+    final Call<JSONObject> requestCall=iApiService.senqRequest(requestHashMap);
+    String category="";
+    Spinner sp_request;
 
     public requestDialog(Context context) {
         this.context = context;
@@ -36,9 +60,44 @@ public class requestDialog {
         final Button okButton = (Button) dlg.findViewById(R.id.btn_okButton);
         final Button cancelButton = (Button) dlg.findViewById(R.id.btn_cancelButton);
 
+        sharedPreferences=context.getSharedPreferences("session",Context.MODE_PRIVATE);
+
+        sp_request=dlg.findViewById(R.id.sp_request);
+        sp_request.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category=sp_request.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("리퀘스트",""+sharedPreferences.getString("userEmail",null)+" "+ message.getText().toString()+ " "+category);
+
+                requestHashMap.put("req_uID",sharedPreferences.getString("userEmail",null));
+                requestHashMap.put("req_category",category);
+                requestHashMap.put("req_contents",message.getText().toString());
+
+                requestCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+                Toasty.info(context.getApplicationContext(), "관리자에게 요청 성공!!", Toast.LENGTH_SHORT, true).show();
+                dlg.dismiss();
+
 
 
             }

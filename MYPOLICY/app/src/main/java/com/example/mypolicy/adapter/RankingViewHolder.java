@@ -12,7 +12,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder {
     public TextView p_code;
     public TextView title;
     public TextView views;
-
+    public TextView wee;
 
     public RankingViewHolder(@NonNull View itemView)
     {
@@ -23,6 +23,6 @@ public class RankingViewHolder extends RecyclerView.ViewHolder {
         p_code=(TextView)itemView.findViewById(R.id.tv_ranking_pcode);
         title=(TextView)itemView.findViewById(R.id.tv_ranking_title);
         views=(TextView)itemView.findViewById(R.id.tv_ranking_view);
-
+        wee=itemView.findViewById(R.id.tv_wee);
     }
 }

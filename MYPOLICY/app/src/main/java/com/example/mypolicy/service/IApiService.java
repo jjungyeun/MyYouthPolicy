@@ -126,4 +126,8 @@ public interface IApiService {
                                   @Field("Life_welfare_priority")int life_point,
                                   @Field("Residential_financial_priority")int res_point);
 
+    @FormUrlEncoded
+    @POST("request/send_req")
+    Call<JSONObject> senqRequest(@FieldMap HashMap<String,Object> parameters);
+
 }

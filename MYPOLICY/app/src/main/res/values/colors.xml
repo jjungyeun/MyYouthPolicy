@@ -6,6 +6,8 @@
     <color name="colorAccent">#053963</color>
     <color name="colorLight">#FDFBF3</color>
     <color name="wee">#EC3333</color>
+    <color name="request">#FF6CACE4</color>
+
 
     <drawable name="btn_save_selected">#DAE6EE</drawable>
     <drawable name="btn_save_default">#ffffff</drawable>

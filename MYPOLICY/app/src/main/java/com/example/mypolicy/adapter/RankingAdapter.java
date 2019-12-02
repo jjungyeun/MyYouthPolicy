@@ -51,7 +51,8 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RankingViewHolder holder, int position) {
         sharedPreferences=holder.itemView.getContext().getSharedPreferences("session",Context.MODE_PRIVATE);
-
+       ;
+        holder.wee.setText(Integer.toString(holder.getAdapterPosition()+1));
         holder.title.setText(rList.get(position).getTitle());
         final long pcode=rList.get(position).getP_code();
         
