@@ -50,7 +50,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     SharedPreferences sharedPreferences;
 
     TextView tv_profile_email;
-    TextView btn_edit_info, btn_edit_interest, btn_request;
+    TextView tv_edit_info, tv_edit_interest, tv_request,tv_center;
+    requestDialog rd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,24 +63,36 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
 
         tv_profile_email = findViewById(R.id.tv_profile_email);
-        btn_edit_info = findViewById(R.id.btn_edit_personal_info);
-        btn_edit_interest = findViewById(R.id.btn_edit_interest);
-        btn_request = findViewById(R.id.btn_request);
+        tv_edit_info = findViewById(R.id.tv_edit_personal_info);
+        tv_edit_interest = findViewById(R.id.tv_edit_interest);
+        tv_request = findViewById(R.id.tv_request);
+        tv_center=findViewById(R.id.tv_center);
+        rd=new requestDialog(this);
 
         tv_profile_email.setText(sharedPreferences.getString("userEmail",null));
 
-        btn_edit_info.setOnClickListener(new View.OnClickListener() {
+        tv_edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ProfileActivity.this, EditPersonalInfoActivity.class);
                 startActivity(intent);
             }
         });
-        btn_edit_interest.setOnClickListener(new View.OnClickListener() {
+
+
+        tv_edit_interest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileActivity.this,CategoryEditActivity.class);
                 startActivity(intent);
+            }
+        });
+
+
+        tv_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                rd.callFunction();
             }
         });
 

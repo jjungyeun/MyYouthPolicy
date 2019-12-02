@@ -1,18 +1,23 @@
 package com.example.mypolicy;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +38,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DownloadActivity extends AppCompatActivity implements View.OnClickListener {
-
+    saveDialog sd;
+    homeDialog hd;
     private String TAG = "DownloadActivity";
     private Context mContext = DownloadActivity.this;
 
@@ -48,9 +55,10 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
 
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
-    private Button btn_store_delte;
+    private Button btn_home_nav;
     private RecyclerView mRecyclerView;
     private String dateValue="";
+    ImageView hdImage;
     Spinner sp_sort;
 
 
@@ -71,15 +79,23 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
 
 
 
-        btn_store_delte=findViewById(R.id.btn_store_delete);
+
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        btn_store_delte=findViewById(R.id.btn_store_delete);
+        btn_home_nav=findViewById(R.id.btn_home_nav);
         sp_sort=findViewById(R.id.sp_sort);
+
 
 
         final Call<ArrayList<StoreData>> storeDataCall=iApiService.showallMyList(showStoreDataMap);
         final Call<ArrayList<StoreData>> sortCall=iApiService.sortMyList(sortMap);
+        sd = new saveDialog(this);
+        hd=new homeDialog(this);
+        DisplayMetrics dm = getApplicationContext().getResources().getDisplayMetrics(); //디바이스 화면크기를 구하기위해
+        final int width = dm.widthPixels; //디바이스 화면 너비
+        final int height = dm.heightPixels; //디바이스 화면 높이
+
+
 
        //=========================서버에서 저장한거 가져오는 코드=========================//
         try {
@@ -88,6 +104,14 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
                 @Override
                 public void onResponse(Call<ArrayList<StoreData>> call, Response<ArrayList<StoreData>> response) {
                     try {
+                        //디폴트에서 길이가 0이면
+                        if(response.body().size()==0)
+                        {
+
+
+                            sd.callFunction();
+
+                        }
                         StoreAdapter sa = new StoreAdapter(response.body());
                         mRecyclerView.setAdapter(sa);
                         Log.d("저장정보", "" + new Gson().toJson(response.body()));
@@ -142,6 +166,7 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
                         sortCall.clone().enqueue(new Callback<ArrayList<StoreData>>() {
                             @Override
                             public void onResponse(Call<ArrayList<StoreData>> call, Response<ArrayList<StoreData>> response) {
+
                                 Log.d("추가정렬정보",""+new Gson().toJson(response.body()));
                                 StoreAdapter sa = new StoreAdapter(response.body());
                                 mRecyclerView.setAdapter(sa);
@@ -325,5 +350,6 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
         mainLayout.setEnabled(false);
         Log.e(TAG, "메뉴버튼 클릭");
     }
+
 
 }

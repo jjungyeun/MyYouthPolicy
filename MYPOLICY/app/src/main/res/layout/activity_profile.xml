@@ -72,7 +72,7 @@
                     <TableRow
                         android:background="#929292">
                         <TextView
-                            android:id="@+id/btn_edit_personal_info"
+                            android:id="@+id/tv_edit_personal_info"
                             android:background="#ffffff"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                     <TableRow
                         android:background="#929292">
                         <TextView
-                            android:id="@+id/btn_edit_interest"
+                            android:id="@+id/tv_edit_interest"
                             android:background="#ffffff"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                     <TableRow
                         android:background="#929292">
                         <TextView
-                            android:id="@+id/btn_request"
+                            android:id="@+id/tv_request"
                             android:background="#ffffff"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
@@ -109,6 +109,7 @@
                     <TableRow
                         android:background="#929292">
                         <TextView
+                            android:id="@+id/tv_center"
                             android:background="#ffffff"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
