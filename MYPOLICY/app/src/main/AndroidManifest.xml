@@ -28,12 +28,17 @@
         <activity android:name=".RankingActivity"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".CategoryEditActivity"/>
-        <activity android:name=".LoginActivity" android:windowSoftInputMode="stateHidden">
+        <activity android:name=".LoginActivity" android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

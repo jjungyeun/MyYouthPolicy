@@ -62,6 +62,8 @@ public class DownloadActivity extends AppCompatActivity implements View.OnClickL
 
         addSideView();  //사이드바 add
 
+
+
         btn_store_delte=findViewById(R.id.btn_store_delete);
         mRecyclerView=findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
