@@ -12,6 +12,9 @@ public class Policy {
     private Date apply_start;
     private Date apply_end;
 
+    private int start_age;
+    private int end_age;
+
     private String contents;
     private String dor;
     private String si;
@@ -54,6 +57,22 @@ public class Policy {
 
     public void setApply_end(Date apply_end) {
         this.apply_end = apply_end;
+    }
+
+    public int getStart_age() {
+        return start_age;
+    }
+
+    public void setStart_age(int start_age) {
+        this.start_age = start_age;
+    }
+
+    public int getEnd_age() {
+        return end_age;
+    }
+
+    public void setEnd_age(int end_age) {
+        this.end_age = end_age;
     }
 
     public String getContents() {
