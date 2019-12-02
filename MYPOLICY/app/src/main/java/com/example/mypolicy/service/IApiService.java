@@ -112,4 +112,9 @@ public interface IApiService {
     @POST("policy/click")
     Call<JSONObject> clickPolicy(@FieldMap HashMap<String,Object> parameters);
 
+    /*****===========개인정보 수정 보내기==================**********/
+//    @FormUrlEncoded
+//    @POST("user/register")
+//    Call<JSONObject> userRegister(@Field );
+
 }

@@ -5,16 +5,44 @@
     android:background="@drawable/search_box"
     android:layout_margin="5dp"
     android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
         <TextView
-            android:id="@+id/tv_ranking_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:text="청년지원 프로젝트"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:text="1"
+            android:textColor="@color/wee"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위"
+            android:textSize="20dp"
+            android:textColor="@color/colorPrimaryLight"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_ranking_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:text="청년지원 프로젝트"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,20 +65,26 @@
 
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_ranking_pcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:text="피코드"
-            android:visibility="invisible" />
+                <TextView
+                    android:id="@+id/tv_ranking_pcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="피코드"
+                    android:visibility="invisible" />
 
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 </LinearLayout>
