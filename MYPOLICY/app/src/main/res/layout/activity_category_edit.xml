@@ -239,14 +239,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_btn_minus2"/>
+
                     <TextView
                         android:id="@+id/tv_house_score"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="20sp"
                         android:focusableInTouchMode="false"
-                        />
+                        android:text="0"
+                        android:textSize="20sp" />
                     <ImageView
                         android:id="@+id/btn_house_plus"
                         android:layout_width="wrap_content"

@@ -149,7 +149,7 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                 public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
                     String tmp=new Gson().toJson(response.body());
 
-                    Log.d("각각정보",""+position+tmp);
+                    Log.d("각각정보22",""+position+tmp);
                     //파싱코드
                     try{
                         JSONArray jsonArray=new JSONArray(tmp);
@@ -157,8 +157,16 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
                         String title=jsonObject.getString("title");
                         tv_title.setText(title);
 
-                        String contents=jsonObject.getString("contents");
-                        tv_detail.setText(contents);
+                        if(jsonObject.has("contents"))
+                        {
+                            tv_detail.setText("-");
+                        }
+                        else
+                        {
+                            String contents=jsonObject.getString("contents");
+                            tv_detail.setText(contents);
+                        }
+
 
                         String age=Integer.toString(jsonObject.getInt("start_age"));
                         if(age.equals("0"))

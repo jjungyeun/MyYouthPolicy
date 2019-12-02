@@ -118,8 +118,12 @@ public interface IApiService {
     Call<JSONObject> clickPolicy(@FieldMap HashMap<String,Object> parameters);
 
     /*****===========개인정보 수정 보내기==================**********/
-//    @FormUrlEncoded
-//    @POST("user/register")
-//    Call<JSONObject> userRegister(@Field );
+    @FormUrlEncoded
+    @POST("user/register")
+    Call<JSONObject> userRegister(@Field("uID") String uID, @Field("name") String name, @Field("region") ArrayList<String> location, @Field("age") int age
+            , @Field("sex") String sex, @Field("Employment_sup_priority") int emp_point,
+                                  @Field("Startup_sup_priority") int start_point,
+                                  @Field("Life_welfare_priority")int life_point,
+                                  @Field("Residential_financial_priority")int res_point);
 
 }

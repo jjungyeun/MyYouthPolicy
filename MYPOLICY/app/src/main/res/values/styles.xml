@@ -17,7 +17,7 @@
     </style>
     
     <style name="SplashTheme" parent="@style/AppTheme.NoActionBar">
-        <item name="android:windowBackground">@drawable/test</item>
+        <item name="android:windowBackground">@drawable/splash_logo</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
