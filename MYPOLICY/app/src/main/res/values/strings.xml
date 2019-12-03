@@ -8,4 +8,6 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_top20">Top 20</string>
     <string name="menu_logout">Logout</string>
+
+    <string name="edit_interest_info1"></string>
 </resources>

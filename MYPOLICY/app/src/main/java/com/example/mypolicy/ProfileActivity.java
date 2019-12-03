@@ -111,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         ll_edit_interest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ProfileActivity.this,CategoryEditActivity.class);
+                Intent intent=new Intent(ProfileActivity.this, EditCategoryActivity.class);
                 startActivity(intent);
             }
         });
