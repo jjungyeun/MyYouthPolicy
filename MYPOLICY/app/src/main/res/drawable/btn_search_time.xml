@@ -17,7 +17,7 @@
     <!-- 테두리 설정: 두께, 색상 -->
     <stroke
         android:width="2dp"
-        android:color="@color/barLight" />
+        android:color="#F7F7FF" />
 
 
 </shape>
