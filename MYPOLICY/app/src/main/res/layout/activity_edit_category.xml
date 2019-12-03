@@ -22,14 +22,13 @@
     </LinearLayout>
 
 
-
-
         <LinearLayout
             android:layout_below="@+id/rl_002"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp"
             android:orientation="vertical">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,11 +37,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-<!--                <ImageView-->
-<!--                    android:src="@drawable/android_happy"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="20sp"/>-->
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -59,6 +54,12 @@
                     android:text="@string/edit_interest_info2"
                     android:textColor="@color/colorText"/>
 
+                <ImageView
+                    android:src="@drawable/ic_heart"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"/>
             </LinearLayout>
 
 
@@ -84,8 +85,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="취업지원"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textSize="23sp"
+                        android:textColor="@color/colorText"/>
                 </LinearLayout>
 
 
@@ -107,8 +108,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textSize="20sp"
-                        android:focusableInTouchMode="false"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
                         />
                     <ImageView
                         android:id="@+id/btn_job_plus"
@@ -141,8 +143,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="창업지원"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textSize="23sp"
+                        android:textColor="@color/colorText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,8 +165,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textSize="20sp"
-                        android:focusableInTouchMode="false"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
                         />
                     <ImageView
                         android:id="@+id/btn_business_plus"
@@ -196,8 +199,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="생활/복지"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textSize="23sp"
+                        android:textColor="@color/colorText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -218,8 +221,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textSize="20sp"
-                        android:focusableInTouchMode="false"
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
                         />
                     <ImageView
                         android:id="@+id/btn_life_plus"
@@ -250,8 +254,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="주거/금융"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"/>
+                        android:textSize="23sp"
+                        android:textColor="@color/colorText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -274,7 +278,10 @@
                         android:layout_height="wrap_content"
                         android:focusableInTouchMode="false"
                         android:text="0"
-                        android:textSize="20sp" />
+                        android:textSize="23sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryLight"
+                        />
                     <ImageView
                         android:id="@+id/btn_house_plus"
                         android:layout_width="wrap_content"
