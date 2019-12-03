@@ -20,7 +20,7 @@
             android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="y@google.com"
-            android:textColor="#C8053963"
+            android:textColor="@color/colorText"
             />
 
         <TextView

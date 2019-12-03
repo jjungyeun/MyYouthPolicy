@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/btn_review"
-                android:layout_margin="5dp"
+                android:layout_margin="7dp"
                 android:padding="5dp">
 
                 <LinearLayout
@@ -66,6 +66,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="정책유형"/>
                     <Button
                         android:id="@+id/btn_select_category"
@@ -95,7 +96,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@color/barDeep"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -111,6 +112,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="지역"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -127,8 +129,7 @@
                             android:id="@+id/sp_si"
                             android:layout_weight="6"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="소분류"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -136,7 +137,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@color/barDeep"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -152,6 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="모집시기"/>
                     <Spinner
                         android:layout_marginLeft="10dp"
@@ -167,7 +169,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@color/barDeep"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,6 +185,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="나이"/>
                     <Spinner
                         android:id="@+id/sp_age"
@@ -194,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="키워드"/>
                     <EditText
                         android:id="@+id/et_search_keyword"
@@ -208,19 +212,21 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="@color/barDeep"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:padding="1dp"
-                    android:background="@color/barDeep"
+                    android:background="@color/barMiddle"
                     android:layout_gravity="center_horizontal">
                     <Button
                         android:id="@+id/btn_search"
-                        android:layout_width="100dp"
+                        android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:text="검색"
                         android:textSize="17sp"

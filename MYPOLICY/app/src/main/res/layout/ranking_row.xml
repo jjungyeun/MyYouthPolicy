@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="위"
-            android:textSize="20dp"
-            android:textColor="@color/colorPrimaryLight"/>
+            android:textSize="18dp"
+            android:textColor="@color/colorTextLight"/>
     </LinearLayout>
 
     <LinearLayout

@@ -50,7 +50,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:textSize="25sp"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:text="제목"
                 />
@@ -86,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/barDeep"/>
+                android:background="@color/barMiddle"/>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:paddingTop="15dp"
                             android:paddingLeft="15dp"
-                            android:textColor="#2E2E2E"
+                            android:textColor="@color/colorText"
                             android:textSize="17sp"
                             android:textStyle="bold"
                             android:text="상세 정보"
@@ -340,14 +340,14 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="7dp"
-                        android:background="@color/barDeep"/>
+                        android:background="@color/barMiddle"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="15dp"
                         android:paddingLeft="15dp"
-                        android:textColor="#2E2E2E"
+                        android:textColor="@color/colorText"
                         android:textSize="17sp"
                         android:textStyle="bold"
                         android:text="정책 리뷰"
