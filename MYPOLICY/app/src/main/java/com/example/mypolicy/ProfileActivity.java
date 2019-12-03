@@ -11,17 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-<<<<<<< HEAD
+
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-=======
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
->>>>>>> f5f1c64e774a8a2ce14657da76033b83f417818f
+
 import android.widget.TextView;
 import android.widget.Toast;
 
