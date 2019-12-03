@@ -14,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,10 +48,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
 
+    FirebaseFirestore db;
     SharedPreferences sharedPreferences;
 
-    TextView tv_profile_email;
-    TextView tv_edit_info, tv_edit_interest, tv_request,tv_center;
+    TextView tv_profile_email, tv_name;
+    TextView tv_edit_info,tv_center;
+    LinearLayout ll_request, ll_edit_interest;
     requestDialog rd;
 
     @Override
@@ -60,14 +63,34 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         init();
         addSideView();  //사이드바 add
 
+        db = FirebaseFirestore.getInstance();
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
 
+        tv_name = findViewById(R.id.tv_name);
         tv_profile_email = findViewById(R.id.tv_profile_email);
         tv_edit_info = findViewById(R.id.tv_edit_personal_info);
-        tv_edit_interest = findViewById(R.id.tv_edit_interest);
-        tv_request = findViewById(R.id.tv_request);
+        ll_edit_interest = findViewById(R.id.ll_edit_interest);
+        ll_request = findViewById(R.id.ll_request);
         tv_center=findViewById(R.id.tv_center);
         rd=new requestDialog(this);
+
+        DocumentReference userInfo = db.collection("user").document(sharedPreferences.getString("userEmail",null));
+        userInfo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        tv_name.setText(document.get("name").toString());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
         tv_profile_email.setText(sharedPreferences.getString("userEmail",null));
 
@@ -80,7 +103,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-        tv_edit_interest.setOnClickListener(new View.OnClickListener() {
+        ll_edit_interest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ProfileActivity.this,CategoryEditActivity.class);
@@ -89,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         });
 
 
-        tv_request.setOnClickListener(new View.OnClickListener() {
+        ll_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rd.callFunction();

@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="7dp"
                 android:layout_marginTop="20dp"
-                android:background="#E4E9EE"/>
+                android:background="@color/barDeep"/>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -341,7 +341,7 @@
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="7dp"
-                        android:background="#E4E9EE"/>
+                        android:background="@color/barDeep"/>
 
                     <TextView
                         android:layout_width="match_parent"

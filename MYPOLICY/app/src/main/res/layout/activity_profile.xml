@@ -43,82 +43,241 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="20dp"
                 android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:text="님"/>
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tv_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="111@naver.com"
-                    android:textSize="20sp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textSize="17sp"/>
 
-                <FrameLayout
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"
+                        android:layout_marginLeft="20dp">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="17sp"-->
+<!--                        android:text="서울"/>-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="5dp"-->
+<!--                        android:textSize="17sp"-->
+<!--                        android:text="강남구"/>-->
+<!--                </LinearLayout>-->
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0.7dp"
-                    android:background="#424242"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_height="60dp"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="5dp"
+                    android:background="@color/barLight">
 
-                <TableLayout
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorPrimaryLight"
+                        android:textStyle="bold"
+                        android:text="내 정보"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:background="#929292"
-                    android:padding="1dp"
-                    android:layout_marginTop="20dp"
-                    android:stretchColumns="*">
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_edit_personal_info"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="40dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorText"
+                        android:text="개인정보 수정"
+                        />
 
-                    <TableRow
-                        android:background="#929292">
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/barLight"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_edit_interest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="40dp"
+                        android:paddingBottom="10dp">
                         <TextView
-                            android:id="@+id/tv_edit_personal_info"
-                            android:background="#ffffff"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:padding="7dp"
-                            android:layout_margin="0.5dp"
-                            android:textSize="17sp"
-                            android:text="개인정보 수정"
-                            />
-                    </TableRow>
-                    <TableRow
-                        android:background="#929292">
-                        <TextView
-                            android:id="@+id/tv_edit_interest"
-                            android:background="#ffffff"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
-                            android:padding="7dp"
-                            android:layout_margin="0.5dp"
-                            android:textSize="17sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorText"
                             android:text="관심 정책 수정"/>
-                    </TableRow>
-                    <TableRow
-                        android:background="#929292">
                         <TextView
-                            android:id="@+id/tv_request"
-                            android:background="#ffffff"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="카테고리별 관심도를 설정합니다"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:paddingLeft="20dp"
+                        android:paddingBottom="5dp"
+                        android:background="@color/barLight">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:textStyle="bold"
+                            android:text="계정"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="40dp"
+                        android:paddingBottom="10dp">
+                        <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:padding="7dp"
-                            android:layout_margin="0.5dp"
-                            android:textSize="17sp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorText"
+                            android:text="자동 로그인 설정"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="앱을 실행할때 자동으로 로그인합니다"/>
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/barLight"/>
+
+                    <TextView
+                        android:id="@+id/tv_logout"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="40dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorText"
+                        android:text="로그아웃"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:paddingLeft="20dp"
+                        android:paddingBottom="5dp"
+                        android:background="@color/barLight">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorPrimaryLight"
+                            android:textStyle="bold"
+                            android:text="문의"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_request"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="10dp"
+                        android:paddingLeft="40dp"
+                        android:paddingBottom="10dp">
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorText"
                             android:text="관리자에게 문의"/>
-                    </TableRow>
-                    <TableRow
-                        android:background="#929292">
                         <TextView
-                            android:id="@+id/tv_center"
-                            android:background="#ffffff"
-                            android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
-                            android:padding="7dp"
-                            android:layout_margin="0.5dp"
-                            android:textSize="17sp"
-                            android:text="고객센터"/>
-                    </TableRow>
-                </TableLayout>
+                            android:layout_height="wrap_content"
+                            android:textSize="13sp"
+                            android:text="불편한 사항이 있으면 얘기해주세요"/>
+
+                    </LinearLayout>
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/barLight"/>
+
+                    <TextView
+                        android:id="@+id/tv_center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingLeft="40dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="20dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorText"
+                        android:text="고객센터"
+                        />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/barLight"/>
+                </LinearLayout>
+
+
+
+
 
             </LinearLayout>
 
