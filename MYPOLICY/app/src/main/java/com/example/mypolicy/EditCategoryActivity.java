@@ -1,15 +1,12 @@
 package com.example.mypolicy;
 
-import android.app.Notification;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
@@ -19,21 +16,18 @@ import com.google.firebase.firestore.DocumentReference;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CategoryEditActivity extends AppCompatActivity {
+public class EditCategoryActivity extends AppCompatActivity {
 
     TextView tv_job_score,tv_business_score,tv_life_score,tv_house_score;
     ImageView btn_job_plus, btn_job_minus, btn_business_plus, btn_business_minus,
@@ -52,7 +46,7 @@ public class CategoryEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_edit);
+        setContentView(R.layout.activity_edit_category);
         db = FirebaseFirestore.getInstance();
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
 

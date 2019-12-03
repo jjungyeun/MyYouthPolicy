@@ -4,10 +4,17 @@
     <color name="colorPrimaryLight">#0D5FA3</color>
     <color name="colorPrimaryDark">#042b4a</color>
     <color name="colorAccent">#053963</color>
-    <color name="colorLight">#FDFBF3</color>
-    <color name="wee">#EC3333</color>
+    <color name="colorLight">#F8FBFF</color>
+
+    <color name="wee">#CE2727</color>
     <color name="request">#FF6CACE4</color>
 
+    <color name="colorText">#414141</color>
+    <color name="colorTextLight">#4F7592</color>
+
+    <color name="barDeep">#D1DCE0</color>
+    <color name="barMiddle">#E4E9EE</color>
+    <color name="barLight">#F1F2F5</color>
 
     <drawable name="btn_save_selected">#DAE6EE</drawable>
     <drawable name="btn_save_default">#ffffff</drawable>

@@ -27,7 +27,7 @@
         <activity android:name=".SearchKeywordActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".RankingActivity" android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".MainActivity" android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".CategoryEditActivity" android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".EditCategoryActivity" android:windowSoftInputMode="stateHidden"/>
 
         <activity android:name=".LoginActivity" android:windowSoftInputMode="stateHidden"/>
 

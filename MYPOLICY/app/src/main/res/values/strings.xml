@@ -8,4 +8,11 @@
     <string name="menu_profile">Profile</string>
     <string name="menu_top20">Top 20</string>
     <string name="menu_logout">Logout</string>
+
+    <string name="edit_interest_info1">카테고리 별로 본인이 관심있는 만큼 \n점수를 설정 해주세요</string>
+    <string name="edit_interest_info2">설정된 점수는 개인별 맞춤 정책 추천에 활용됩니다</string>
+
+<!--    <string name="app_cc">Copyright 2019. MOJADOL. ALL rights Reserved.</string>-->
+    <string name="app_cc">Made in Korea by MOJADOL</string>
+    <string name="app_cc2">Thank you for using :) </string>
 </resources>

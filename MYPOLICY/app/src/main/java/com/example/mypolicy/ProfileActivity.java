@@ -11,26 +11,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+<<<<<<< HEAD
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+=======
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+>>>>>>> f5f1c64e774a8a2ce14657da76033b83f417818f
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,10 +47,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
 
-    SharedPreferences sharedPreferences;
+    FirebaseFirestore db;
+    SharedPreferences session, autoLogin;
 
-    TextView tv_profile_email;
-    TextView tv_edit_info, tv_edit_interest, tv_request,tv_center;
+    TextView tv_profile_email, tv_name;
+    TextView tv_edit_info,tv_center, tv_logout;
+    LinearLayout ll_request, ll_edit_interest;
+    Switch sw_autoLogin;
     requestDialog rd;
 
     @Override
@@ -61,16 +63,39 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         init();
         addSideView();  //사이드바 add
 
-        sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+        db = FirebaseFirestore.getInstance();
+        session = getSharedPreferences("session",MODE_PRIVATE);
+        autoLogin = getSharedPreferences("autoLogin",MODE_PRIVATE);
 
+        tv_name = findViewById(R.id.tv_name);
         tv_profile_email = findViewById(R.id.tv_profile_email);
         tv_edit_info = findViewById(R.id.tv_edit_personal_info);
-        tv_edit_interest = findViewById(R.id.tv_edit_interest);
-        tv_request = findViewById(R.id.tv_request);
+        ll_edit_interest = findViewById(R.id.ll_edit_interest);
         tv_center=findViewById(R.id.tv_center);
+        tv_logout = findViewById(R.id.tv_logout);
+        ll_request = findViewById(R.id.ll_request);
+        sw_autoLogin = findViewById(R.id.sw_autoLogin);
         rd=new requestDialog(this);
 
-        tv_profile_email.setText(sharedPreferences.getString("userEmail",null));
+        DocumentReference userInfo = db.collection("user").document(session.getString("userEmail",null));
+        userInfo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        tv_name.setText(document.get("name").toString());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+
+        tv_profile_email.setText(session.getString("userEmail",null));
 
         tv_edit_info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,21 +105,48 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-
-        tv_edit_interest.setOnClickListener(new View.OnClickListener() {
+        tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ProfileActivity.this,CategoryEditActivity.class);
+                session.edit().clear().apply();
+                Intent intent = new Intent(mContext, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        ll_edit_interest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ProfileActivity.this, EditCategoryActivity.class);
                 startActivity(intent);
             }
         });
 
 
-        tv_request.setOnClickListener(new View.OnClickListener() {
+        ll_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rd.callFunction();
 
+            }
+        });
+
+        if (autoLogin.getString("state","").equals("no"))
+            sw_autoLogin.setChecked(false);
+        sw_autoLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                SharedPreferences.Editor loginEditor = autoLogin.edit();
+                if(isChecked){
+                    loginEditor.putString("state", "yes");
+                } else {
+                    loginEditor.putString("state", "no");
+                }
+                loginEditor.apply();
+
+//                Toast.makeText(mContext, "autoLogin.state: "+autoLogin.getString("state",""), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -197,7 +249,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void btnLogout() {
-                sharedPreferences.edit().clear().apply();
+                session.edit().clear().apply();
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 startActivity(intent);
                 closeMenu();

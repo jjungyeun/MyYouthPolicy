@@ -4,7 +4,7 @@
     android:shape="rectangle">
 
     <!-- 테두리 내부 색상 설정 -->
-    <solid android:color="#FFF9F9" />
+    <solid android:color="#ffffff" />
 
 
     <!-- 테두리 내부 여백 설정 -->
@@ -17,12 +17,7 @@
     <!-- 테두리 설정: 두께, 색상 -->
     <stroke
         android:width="2dp"
-        android:color="#FA9D9D" />
+        android:color="#F7F7FF" />
 
-    <corners
-        android:bottomLeftRadius="12dp"
-        android:bottomRightRadius="12dp"
-        android:topLeftRadius="12dp"
-        android:topRightRadius="12dp" />
 
 </shape>

@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import es.dmoral.toasty.Toasty;
-
 public class LoginActivity extends AppCompatActivity {
 
     private final String TAG ="LoginActivity";
@@ -33,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences session, autoLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-        sharedPreferences = getSharedPreferences("session", MODE_PRIVATE);
+        session = getSharedPreferences("session", MODE_PRIVATE);
+        autoLogin = getSharedPreferences("autoLogin",MODE_PRIVATE);
 
         et_userEmail = findViewById(R.id.et_login_email);
         et_userPW = findViewById(R.id.et_login_pw);
@@ -109,10 +108,20 @@ public class LoginActivity extends AppCompatActivity {
 //        if(!currentUser.equals(null))
 //            successSignIn(currentUser);
 
-        String userEmail = sharedPreferences.getString("userEmail", "");
-        if(!userEmail.equals("")){
-            FirebaseUser currentUser = mAuth.getCurrentUser();
-            successLogIn(currentUser);
+        String doAutoLogin = autoLogin.getString("state","");
+        String userEmail = session.getString("userEmail", "");
+
+        if(doAutoLogin.equals("")){ // 앱 처음 실행
+            SharedPreferences.Editor loginEditor = autoLogin.edit();
+            loginEditor.putString("state", "yes");
+            loginEditor.apply();
+        }
+
+        if(!userEmail.equals("") && doAutoLogin.equals("yes")){  // session정보 있음 & 자동로그인 설정 yes
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                successLogIn(currentUser);
+        } else {
+            session.edit().clear().apply();
         }
     }
 
@@ -123,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         String userEmail = user.getEmail();
 
         // session에 필요한 값들 저장
-        SharedPreferences.Editor sessionEditor = sharedPreferences.edit();
+        SharedPreferences.Editor sessionEditor = session.edit();
         sessionEditor.putString("userEmail", userEmail);
         // ...
         sessionEditor.apply();

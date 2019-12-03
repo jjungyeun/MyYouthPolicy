@@ -26,13 +26,12 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/ic_menu"/>
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_title"
-                android:textColor="@color/colorLight"
+                android:padding="3dp"
                 android:layout_centerInParent="true"
-                android:textSize="30sp"/>
+                android:src="@drawable/logo_white"/>
 
         </RelativeLayout>
 
@@ -41,13 +40,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/rl_001"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#F7F7FF">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@drawable/btn_review"
+                android:layout_margin="7dp"
                 android:padding="5dp">
 
                 <LinearLayout
@@ -55,7 +57,6 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="10dp"
                     android:padding="5dp">
                     <ImageView
                         android:layout_width="wrap_content"
@@ -65,6 +66,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="정책유형"/>
                     <Button
                         android:id="@+id/btn_select_category"
@@ -73,8 +75,8 @@
                         android:padding="3dp"
                         android:text="선택"
                         android:textSize="17sp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:background="#ffffff"
+                        android:textColor="@color/colorText"
+                        android:background="@drawable/btn_save_selector"
                         />
 
                 </LinearLayout>
@@ -94,7 +96,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="#929292"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -110,6 +112,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="지역"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -126,8 +129,7 @@
                             android:id="@+id/sp_si"
                             android:layout_weight="6"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:autofillHints="소분류"/>
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -135,7 +137,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="#929292"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -151,6 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="모집시기"/>
                     <Spinner
                         android:layout_marginLeft="10dp"
@@ -166,7 +169,7 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="#929292"/>
+                    android:background="@color/barMiddle"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,6 +185,7 @@
                         android:layout_width="60dp"
                         android:layout_height="wrap_content"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="나이"/>
                     <Spinner
                         android:id="@+id/sp_age"
@@ -193,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:textSize="17sp"
+                        android:textColor="@color/colorTextLight"
                         android:text="키워드"/>
                     <EditText
                         android:id="@+id/et_search_keyword"
@@ -207,19 +212,29 @@
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="0.7dp"
-                    android:background="#929292"/>
+                    android:background="@color/barMiddle"/>
 
-                <Button
-                    android:id="@+id/btn_search"
-                    android:layout_marginTop="15dp"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="검색"
-                    android:textSize="17sp"
-                    android:textColor="@color/colorLight"
-                    android:background="@color/colorPrimaryDark"
-                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:padding="1dp"
+                    android:background="@color/barMiddle"
+                    android:layout_gravity="center_horizontal">
+                    <Button
+                        android:id="@+id/btn_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:text="검색"
+                        android:textSize="17sp"
+                        android:textColor="@color/colorText"
+                        android:background="@drawable/btn_save_selector"
+                        />
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -227,41 +242,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_horizontal"
+                android:gravity="center_vertical"
                 >
 
                 <Button
                     android:id="@+id/btn_apply_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:text="전체"
-                    android:background="#ffffff"/>
+                    android:background="@drawable/btn_search_time"/>
 
                 <Button
                     android:id="@+id/btn_apply_always"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:text="상시모집"
-                    android:background="#ffffff"/>
+                    android:background="@drawable/btn_search_time"/>
 
                 <Button
                     android:id="@+id/btn_apply_now"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:text="현재신청"
-                    android:background="#ffffff"/>
+                    android:background="@drawable/btn_search_time"/>
                 <Button
                     android:id="@+id/btn_apply_before"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:text="공고시작 전"
-                    android:background="#ffffff"/>
+                    android:background="@drawable/btn_search_time"/>
                 <Button
                     android:id="@+id/btn_apply_after"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="공고 종료"
-                    android:background="#ffffff"/>
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="공고 마감"
+                    android:background="@drawable/btn_search_time"/>
 
             </LinearLayout>
 
@@ -269,12 +289,11 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp" />
+                android:paddingLeft="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp"/>
         </LinearLayout>
         <!--        액티비티 레이아웃 넣는 곳          -->
 

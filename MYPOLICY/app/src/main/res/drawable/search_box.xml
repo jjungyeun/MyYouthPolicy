@@ -3,11 +3,11 @@
     android:padding="10dp"
     android:shape="rectangle"
     >
-    <solid android:color="#FFFFFFFF" />
+    <solid android:color="#00FFFFFF" />
 
     <stroke
         android:width="2px"
-        android:color="#929292" />
+        android:color="@color/barDeep" />
 
     <corners
         android:bottomLeftRadius="12dp"
