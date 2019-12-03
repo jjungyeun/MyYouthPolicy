@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class requestDialog {
     private Context context;
@@ -97,6 +100,7 @@ public class requestDialog {
                 });
                 Toasty.info(context.getApplicationContext(), "관리자에게 요청 성공!!", Toast.LENGTH_SHORT, true).show();
                 dlg.dismiss();
+
 
 
 
