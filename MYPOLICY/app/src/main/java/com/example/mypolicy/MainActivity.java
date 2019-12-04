@@ -14,14 +14,21 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.common.collect.Lists;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -56,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Boolean isMenuShow = false;
     private Boolean isExitFlag = false;
+    TextView tv_name, tv_name2;
 
+    FirebaseFirestore db;
     SharedPreferences sharedPreferences;
     ScrollerViewPager viewPager;
 //    SpringIndicator springIndicator;
@@ -71,7 +80,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         init();
 
+        db = FirebaseFirestore.getInstance();
         sharedPreferences = getSharedPreferences("session",MODE_PRIVATE);
+
+        tv_name = findViewById(R.id.tv_name_main);
+        tv_name2 = findViewById(R.id.tv_name_main2);
+
+        // 사용자 이름 불러오기
+        DocumentReference userInfo = db.collection("user").document(sharedPreferences.getString("userEmail",null));
+        userInfo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        tv_name.setText(document.get("name").toString());
+                        tv_name2.setText(document.get("name").toString());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
 
         final HashMap<String,Object> referralMap=new HashMap<>();
         referralMap.put("uID",sharedPreferences.getString("userEmail",null));
@@ -149,11 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 adapter = new ModelPagerAdapter(getSupportFragmentManager(), manager);
 
                 viewPager.setAdapter(adapter);
-                viewPager.fixScrollSpeed();
 
-
-                // just set viewPager
-                springIndicator.setViewPager(viewPager);
             }
         }, 1000);// 0.5초 정도 딜레이를 준 후 시작
 
