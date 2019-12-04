@@ -47,10 +47,18 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_policy_name_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            android:id="@+id/tv_policy_name_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="청년지원 프로젝트"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tv_policy_pcode_test"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:text="청년지원 프로젝트"
+                android:visibility="invisible"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
