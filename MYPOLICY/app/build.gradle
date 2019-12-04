@@ -55,4 +55,9 @@ dependencies {
     implementation 'com.github.blackfizz:eazegraph:1.2.2@aar'
     implementation 'com.nineoldandroids:library:2.4.0'
 
+
+    implementation'com.github.chenupt.android:springindicator:1.0.2@aar'//viewpager Test openSource git
+
+    implementation 'com.github.chenupt.android:multiplemodel:1.1.0@aar'
+    implementation 'com.google.guava:guava:18.0'
 }

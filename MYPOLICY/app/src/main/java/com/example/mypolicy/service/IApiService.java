@@ -2,6 +2,7 @@ package com.example.mypolicy.service;
 
 import com.example.mypolicy.model.Policy;
 import com.example.mypolicy.model.RankingData;
+import com.example.mypolicy.model.Referral;
 import com.example.mypolicy.model.Review;
 import com.example.mypolicy.model.SearchData;
 import com.example.mypolicy.model.StoreData;
@@ -129,5 +130,10 @@ public interface IApiService {
     @FormUrlEncoded
     @POST("request/send_req")
     Call<JSONObject> senqRequest(@FieldMap HashMap<String,Object> parameters);
+
+
+    @FormUrlEncoded
+    @POST("policy/test")
+    Call<ArrayList<Referral>> showReferral(@FieldMap HashMap<String,Object> parameters);
 
 }
