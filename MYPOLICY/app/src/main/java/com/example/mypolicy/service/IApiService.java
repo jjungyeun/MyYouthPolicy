@@ -1,6 +1,7 @@
 package com.example.mypolicy.service;
 
 import com.example.mypolicy.model.Policy;
+import com.example.mypolicy.model.Preference;
 import com.example.mypolicy.model.RankingData;
 import com.example.mypolicy.model.Referral;
 import com.example.mypolicy.model.Review;
@@ -132,8 +133,14 @@ public interface IApiService {
     Call<JSONObject> senqRequest(@FieldMap HashMap<String,Object> parameters);
 
 
+    //임시 사용자 추천 점수 알고리즘 적용
     @FormUrlEncoded
     @POST("policy/test")
     Call<ArrayList<Referral>> showReferral(@FieldMap HashMap<String,Object> parameters);
+
+    @FormUrlEncoded
+    @POST("user/my_priority")
+    Call<ArrayList<Preference>> showPreference(@FieldMap HashMap<String,Object> parameters);
+
 
 }
