@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewPager.setAdapter(adapter);
 
             }
-        }, 3000);// 0.5초 정도 딜레이를 준 후 시작
+        }, 2000);// 0.5초 정도 딜레이를 준 후 시작
 
 
 //        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
