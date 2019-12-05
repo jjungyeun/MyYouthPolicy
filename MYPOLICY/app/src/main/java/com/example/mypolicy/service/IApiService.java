@@ -134,11 +134,12 @@ public interface IApiService {
     Call<JSONObject> senqRequest(@FieldMap HashMap<String,Object> parameters);
 
 
-    //임시 사용자 추천 점수 알고리즘 적용
+    //임시 사용자 추천 점수 알고리즘 적용(딥러닝)
     @FormUrlEncoded
-    @POST("policy/test")
+    @POST("policy/referral")
     Call<ArrayList<Referral>> showReferral(@FieldMap HashMap<String,Object> parameters);
 
+    //저장된 점수 받아오기
     @FormUrlEncoded
     @POST("user/my_priority")
     Call<ArrayList<Preference>> showPreference(@FieldMap HashMap<String,Object> parameters);

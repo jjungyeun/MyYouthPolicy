@@ -31,7 +31,5 @@ public class PolicyViewHolder extends RecyclerView.ViewHolder {
         applyStart=(TextView)itemView.findViewById(R.id.tv_apply_start);
         applyEnd=(TextView)itemView.findViewById(R.id.tv_apply_end);
 
-
-
     }
 }

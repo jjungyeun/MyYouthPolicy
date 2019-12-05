@@ -115,12 +115,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call<ArrayList<Referral>> call, Response<ArrayList<Referral>> response) {
                 Log.d("여긴가",""+new Gson().toJson(response.body()));
                 try{
-                    JSONArray jsonArray=new JSONArray(new Gson().toJson(response.body()).toString());
-                    Date start;
-                    Date end;
+                    JSONArray jsonArray=new JSONArray(new Gson().toJson(response.body()));
+
                     long p_code;
-                    String uri;
                     String title;
+
                     Log.d("여긴가길이",""+jsonArray.length());
                     for(int i=0;i<jsonArray.length();i++)
                     {
@@ -128,13 +127,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         title=jsonObject.getString("title");
 
                         p_code=jsonObject.getLong("p_code");
-                        uri=jsonObject.getString("uri");
 
-                        Log.d("여긴가1",""+jsonObject.getString("apply_start"));
+                        Log.d("여긴가1",""+title+"  "+p_code);
 
 
-                        Log.d("여긴가길이",""+title + "  "+p_code+ " "+uri);
-                        Referral referral=new Referral(p_code,title,uri);
+                        Referral referral=new Referral(p_code,title);
                         referralList.add(referral);
                     }
                     Log.d("여긴가사이즈",""+referralList.size());
@@ -183,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 viewPager.setAdapter(adapter);
 
             }
-        }, 1000);// 0.5초 정도 딜레이를 준 후 시작
+        }, 3000);// 0.5초 정도 딜레이를 준 후 시작
 
 
 //        manager.addCommonFragment(GuideFragment.class, getBgRes(), getTitles());
