@@ -90,7 +90,19 @@ public class GuideFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-              Intent intent=new Intent(view.getContext(),DetailPolicyActivity.class);
+/**********************************클릭수 증가 *****************************************/
+                clickCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+                Intent intent=new Intent(view.getContext(),DetailPolicyActivity.class);
               intent.putExtra("position",referral.getP_code());
               startActivity(intent);
 
