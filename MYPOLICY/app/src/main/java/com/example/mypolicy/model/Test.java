@@ -7,7 +7,7 @@ public class Test {
     private String title;
     private String uri;
     private Date apply_start;
-    private Date apple_end;
+    private Date apply_end;
     private int policy_hits;
 
     public long getP_code() {
@@ -42,12 +42,12 @@ public class Test {
         this.apply_start = apply_start;
     }
 
-    public Date getApple_end() {
-        return apple_end;
+    public Date getApply_end() {
+        return apply_end;
     }
 
     public void setApple_end(Date apple_end) {
-        this.apple_end = apple_end;
+        this.apply_end = apple_end;
     }
 
     public int getPolicy_hits() {

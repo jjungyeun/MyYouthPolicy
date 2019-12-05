@@ -7,6 +7,7 @@ import com.example.mypolicy.model.Referral;
 import com.example.mypolicy.model.Review;
 import com.example.mypolicy.model.SearchData;
 import com.example.mypolicy.model.StoreData;
+import com.example.mypolicy.model.Test;
 
 import org.json.JSONObject;
 
@@ -138,6 +139,11 @@ public interface IApiService {
     @FormUrlEncoded
     @POST("policy/referral")
     Call<ArrayList<Referral>> showReferral(@FieldMap HashMap<String,Object> parameters);
+
+    //밑에 화면
+    @FormUrlEncoded
+    @POST("policy/test")
+    Call<ArrayList<Test>> showTest(@FieldMap HashMap<String,Object> parameters);
 
     //저장된 점수 받아오기
     @FormUrlEncoded
