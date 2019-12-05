@@ -24,6 +24,8 @@ import com.example.mypolicy.service.IApiService;
 import com.example.mypolicy.service.RestClient;
 import com.google.gson.JsonObject;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -40,7 +42,7 @@ public class GuideFragment extends Fragment {
     private TextView textView;
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> clickMap=new HashMap<>();
-
+    final Call<JSONObject> clickCall=iApiService.clickPolicy(clickMap);
 
     SharedPreferences sharedPreferences;
 
@@ -67,27 +69,31 @@ public class GuideFragment extends Fragment {
 
         //imageView = (ImageView) getView().findViewById(R.id.image);
         //imageView.setBackgroundResource(bgRes);
+        Activity myActivity=(Activity)(view.getContext());
+
+        sharedPreferences =myActivity.getSharedPreferences(
+                "session", Context.MODE_PRIVATE);
+
 
         textView=getView().findViewById(R.id.tv_policy_name_test);
         textView.setText(referral.getTitle());
-        Log.d("프래그먼트 ","피코드"+referral.getP_code());
-        final Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(R.id.tv_policy_pcode_test);
-        final Call<ArrayList<Policy>> detail_call=iApiService.showselectedPolicy(referral.getP_code());
-//        Log.d("체코드",""+GuideFragment.this.getActivity().getSharedPreferences("userEmail", Context.MODE_PRIVATE));
-//        clickMap.put("uID",share);
+
+        clickMap.put("uID",sharedPreferences.getString("userEmail",null));
         clickMap.put("p_code",referral.getP_code());
 
-//        final Call<JsonObject> clickCall=iApiService.clickPolicy()
+
 
 
 
         /*******************화면을 눌렀을때 상세정책으로 들어가는 부분************************************/
         view.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
               Intent intent=new Intent(view.getContext(),DetailPolicyActivity.class);
               intent.putExtra("position",referral.getP_code());
               startActivity(intent);
+
             }
         });
 
