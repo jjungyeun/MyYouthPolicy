@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("여긴가",""+new Gson().toJson(response.body()));
                 try{
                     JSONArray jsonArray=new JSONArray(new Gson().toJson(response.body()));
-
                     long p_code;
                     String title;
 
@@ -140,9 +139,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         title=jsonObject.getString("title");
 
                         p_code=jsonObject.getLong("p_code");
-
-                        Log.d("여긴가1",""+title+"  "+p_code);
-
 
                         Referral referral=new Referral(p_code,title);
                         referralList.add(referral);

@@ -46,6 +46,8 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     private RecyclerView mRecyclerView;
 
+    searchDialog sd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +70,18 @@ public class SearchKeywordActivity  extends AppCompatActivity implements View.On
         String keyword=extras.getString("keyword");
         String time=extras.getString("time");
 
+        sd=new searchDialog(this);
+
         final Call<ArrayList<SearchData>> postSearchcall=iApiService.postSearchKeyword(search_region,search_category,age,keyword,time);
         Log.d("뽑아낸","정보"+search_region+"  "+search_category+"  "+age+"  "+keyword+ "    "+time);
         try {
             postSearchcall.enqueue(new Callback<ArrayList<SearchData>>() {
                 @Override
                 public void onResponse(Call<ArrayList<SearchData>> call, Response<ArrayList<SearchData>> response) {
+                    if(response.body().size()==0)
+                    {
+                        sd.callFunction();
+                    }
                     Log.d("뽑아낸","전체정보"+new Gson().toJson(response.body()));
                     SearchAdapter sa=new SearchAdapter(response.body());
                     mRecyclerView.setAdapter(sa);

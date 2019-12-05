@@ -97,355 +97,369 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="15dp"
-                            android:paddingLeft="15dp"
-                            android:textColor="@color/colorText"
-                            android:textSize="17sp"
-                            android:textStyle="bold"
-                            android:text="상세 정보"
-                            />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="15dp"
+                        android:paddingTop="15dp"
+                        android:text="상세 정보"
+                        android:textColor="@color/colorText"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="7dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="7dp"
-                            android:orientation="vertical"
-                            >
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="시작날짜"
-                                    android:textSize="15sp"
-                                    android:padding="7dp"
-                                    />
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="시작날짜"
+                                android:textSize="15sp" />
 
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
 
-                                <TextView
-                                    android:id="@+id/tv_apply_start"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019년 10월 1일"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="16sp"
-                                    />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
+                            <TextView
+                                android:id="@+id/tv_apply_start"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="종료날짜"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
-
-                                <TextView
-                                    android:id="@+id/tv_apply_end"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="2019년 12월 1일"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="16sp"
-                                    />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="지원나이"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
-
-                                <TextView
-                                    android:id="@+id/tv_age_start"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="20살"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="16sp"
-                                    />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="마감나이"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
-
-                                <TextView
-                                    android:id="@+id/tv_age_end"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="23살"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="16sp"
-                                    />
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="상세내용"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
-
-                                <TextView
-                                    android:id="@+id/tv_policy_detail"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="묭묭묭"
-                                    android:textColor="@color/colorPrimary"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="16sp"
-                                    />
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                >
-                                <TextView
-                                    android:layout_weight="1"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="URI"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-
-                                <View
-                                    android:background="#C7C7C7"
-                                    android:layout_width="1dp"
-                                    android:layout_height="18dp"
-                                    android:layout_gravity="center_vertical"/>
-
-                                <TextView
-                                    android:id="@+id/tv_uri"
-                                    android:layout_weight="4"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="www.naver.com"
-                                    android:textColor="@color/colorPrimary"
-                                    android:linksClickable="true"
-                                    android:textColorLink="@color/colorPrimaryLight"
-                                    android:autoLink="web"
-                                    android:layout_marginLeft="5dp"
-                                    android:padding="7dp"
-                                    android:textSize="15sp"
-                                    />
-                            </LinearLayout>
-
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:padding="7dp"
+                                android:text="2019년 10월 1일"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="종료날짜"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
+
+                            <TextView
+                                android:id="@+id/tv_apply_end"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:padding="7dp"
+                                android:text="2019년 12월 1일"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="지원나이"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
+
+                            <TextView
+                                android:id="@+id/tv_age_start"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:padding="7dp"
+                                android:text="20살"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="마감나이"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
+
+                            <TextView
+                                android:id="@+id/tv_age_end"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:padding="7dp"
+                                android:text="23살"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="상세내용"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
+
+                            <TextView
+                                android:id="@+id/tv_policy_detail"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:padding="7dp"
+                                android:text="묭묭묭"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="7dp"
+                                android:text="URI"
+                                android:textSize="15sp" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center_vertical"
+                                android:background="#C7C7C7" />
+
+                            <TextView
+                                android:id="@+id/tv_uri"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_weight="4"
+                                android:autoLink="web"
+                                android:linksClickable="true"
+                                android:padding="7dp"
+                                android:text="www.naver.com"
+                                android:textColor="@color/colorPrimary"
+                                android:textColorLink="@color/colorPrimaryLight"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                     <LinearLayout
-                        android:layout_height="40dp"
                         android:layout_width="match_parent"
+                        android:layout_height="40dp"
                         android:layout_margin="10dp"
                         android:background="#DAE6EE">
+
                         <Button
                             android:id="@+id/btn_policy_save"
                             android:layout_width="match_parent"
                             android:layout_height="33dp"
                             android:layout_margin="2.5dp"
                             android:background="@drawable/btn_save_selector"
+                            android:text="정책 저장"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="18sp"
-                            android:text="정책 저장"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="7dp"
-                        android:background="@color/barMiddle"/>
+                        android:background="@color/barMiddle" />
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="15dp"
-                        android:paddingLeft="15dp"
-                        android:textColor="@color/colorText"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        android:text="정책 리뷰"
-                        />
+                        android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-                    <TextView
-                        android:id="@+id/tv_review_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:layout_marginRight="10dp"
-                        android:text="전체 댓글 개수"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="15dp"
+                            android:paddingRight="50dp"
+                            android:paddingTop="15dp"
+                            android:text="정책 리뷰"
+                            android:textColor="@color/colorText"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_review_blank"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="33"
-                        android:textColor="@color/colorPrimaryLight"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="개"
-                        android:textColor="@color/colorPrimaryLight"/>
-                </LinearLayout>
+                        <Button
+                            android:id="@+id/btn_refresh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="#cccccc"
+                            android:text="새로고침"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:paddingBottom="5dp"
-                        >
-                        <EditText
-                            android:id="@+id/et_comment"
-                            android:layout_weight="5"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:padding="7dp"
-                            android:background="@drawable/btn_review"
-                            android:layout_marginRight="5dp"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:hint="댓글 작성"/>
-                        <Button
-                            android:id="@+id/btn_review_insert"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/btn_review"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:text="전송"/>
+                        android:padding="10dp">
+
+                        <TextView
+                            android:id="@+id/tv_review_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="10dp"
+                            android:text="전체 댓글 개수" />
+
+                        <TextView
+                            android:id="@+id/tv_review_blank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="33"
+                            android:textColor="@color/colorPrimaryLight" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="개"
+                            android:textColor="@color/colorPrimaryLight" />
                     </LinearLayout>
 
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp">
+
+                        <EditText
+                            android:id="@+id/et_comment"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="5"
+                            android:background="@drawable/btn_review"
+                            android:hint="댓글 작성"
+                            android:padding="7dp"
+                            android:textColor="@color/colorPrimaryDark" />
+
+                        <Button
+                            android:id="@+id/btn_review_insert"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_review"
+                            android:text="전송"
+                            android:textColor="@color/colorPrimaryDark" />
+                    </LinearLayout>
+
+
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp" />
 
                 </LinearLayout>
 
             </ScrollView>
 
-<!--            <LinearLayout-->
-<!--                android:id="@+id/linearLayout2"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="55dp"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_alignParentBottom="true"-->
-<!--                android:background="#F0F5FF"-->
-<!--                android:padding="7dp"-->
-<!--                >-->
-<!--                <EditText-->
-<!--                    android:id="@+id/et_comment"-->
-<!--                    android:layout_weight="5"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:padding="5dp"-->
-<!--                    android:background="@drawable/btn_review"-->
-<!--                    android:layout_marginRight="5dp"-->
-<!--                    android:textColor="@color/colorPrimaryDark"-->
-<!--                    android:hint="댓글 작성"/>-->
-<!--                <Button-->
-<!--                    android:id="@+id/btn_review_insert"-->
-<!--                    android:layout_weight="1"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@drawable/btn_review"-->
-<!--                    android:textColor="@color/colorPrimaryDark"-->
-<!--                    android:text="전송"/>-->
-<!--            </LinearLayout>-->
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/linearLayout2"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="55dp"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                android:layout_alignParentBottom="true"-->
+            <!--                android:background="#F0F5FF"-->
+            <!--                android:padding="7dp"-->
+            <!--                >-->
+            <!--                <EditText-->
+            <!--                    android:id="@+id/et_comment"-->
+            <!--                    android:layout_weight="5"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:padding="5dp"-->
+            <!--                    android:background="@drawable/btn_review"-->
+            <!--                    android:layout_marginRight="5dp"-->
+            <!--                    android:textColor="@color/colorPrimaryDark"-->
+            <!--                    android:hint="댓글 작성"/>-->
+            <!--                <Button-->
+            <!--                    android:id="@+id/btn_review_insert"-->
+            <!--                    android:layout_weight="1"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:background="@drawable/btn_review"-->
+            <!--                    android:textColor="@color/colorPrimaryDark"-->
+            <!--                    android:text="전송"/>-->
+            <!--            </LinearLayout>-->
 
         </LinearLayout>
 
