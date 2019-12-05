@@ -2,6 +2,7 @@ package com.example.mypolicy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,7 @@ public class GuideFragment extends Fragment {
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> clickMap=new HashMap<>();
 
+
     SharedPreferences sharedPreferences;
 
     @Override
@@ -68,28 +70,24 @@ public class GuideFragment extends Fragment {
 
         textView=getView().findViewById(R.id.tv_policy_name_test);
         textView.setText(referral.getTitle());
-        Log.d("체코드",""+referral.getP_code());
+        Log.d("프래그먼트 ","피코드"+referral.getP_code());
         final Call<ArrayList<Policy>> call=iApiService.showselectedPolicy(R.id.tv_policy_pcode_test);
-
+        final Call<ArrayList<Policy>> detail_call=iApiService.showselectedPolicy(referral.getP_code());
 //        Log.d("체코드",""+GuideFragment.this.getActivity().getSharedPreferences("userEmail", Context.MODE_PRIVATE));
 //        clickMap.put("uID",share);
         clickMap.put("p_code",referral.getP_code());
+
 //        final Call<JsonObject> clickCall=iApiService.clickPolicy()
+
+
+
+        /*******************화면을 눌렀을때 상세정책으로 들어가는 부분************************************/
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                call.clone().enqueue(new Callback<ArrayList<Policy>>() {
-                    @Override
-                    public void onResponse(Call<ArrayList<Policy>> call, Response<ArrayList<Policy>> response) {
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<ArrayList<Policy>> call, Throwable t) {
-
-                    }
-                });
-
+              Intent intent=new Intent(view.getContext(),DetailPolicyActivity.class);
+              intent.putExtra("position",referral.getP_code());
+              startActivity(intent);
             }
         });
 

@@ -126,13 +126,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         title=jsonObject.getString("title");
-                        Log.d("여긴가1",""+title);
-                        p_code=jsonObject.getInt("p_code");
+
+                        p_code=jsonObject.getLong("p_code");
                         uri=jsonObject.getString("uri");
 
                         Log.d("여긴가1",""+jsonObject.getString("apply_start"));
-//                        start=transFormat.parse(jsonObject.getString("apply_start"));
-//                        end=transFormat.parse(jsonObject.getString("apply_end"));
+
 
                         Log.d("여긴가길이",""+title + "  "+p_code+ " "+uri);
                         Referral referral=new Referral(p_code,title,uri);
