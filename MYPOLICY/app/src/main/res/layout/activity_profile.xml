@@ -298,7 +298,7 @@
                         android:paddingBottom="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/colorText"
-                        android:text="고객센터"
+                        android:text="버젼확인"
                         />
 
                 </LinearLayout>

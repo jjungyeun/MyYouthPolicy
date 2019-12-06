@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -54,7 +55,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     LinearLayout ll_request, ll_edit_interest;
     Switch sw_autoLogin;
     requestDialog rd;
-
+    versionDialog vd;
+    ImageView versionImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         db = FirebaseFirestore.getInstance();
         session = getSharedPreferences("session",MODE_PRIVATE);
         autoLogin = getSharedPreferences("autoLogin",MODE_PRIVATE);
-
         tv_name = findViewById(R.id.tv_name);
         tv_profile_email = findViewById(R.id.tv_profile_email);
         tv_edit_info = findViewById(R.id.tv_edit_personal_info);
@@ -75,6 +76,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         ll_request = findViewById(R.id.ll_request);
         sw_autoLogin = findViewById(R.id.sw_autoLogin);
         rd=new requestDialog(this);
+        vd=new versionDialog(this);
+
 
         DocumentReference userInfo = db.collection("user").document(session.getString("userEmail",null));
         userInfo.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -122,6 +125,19 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
+
+        tv_center.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vd.callFunction();
+            }
+        });
+//        versionImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                vd.dismissFunction();
+//            }
+//        });
 
 
         ll_request.setOnClickListener(new View.OnClickListener() {
