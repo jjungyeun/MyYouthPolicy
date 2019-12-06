@@ -135,6 +135,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String title;
 
                     Log.d("여긴가길이",""+jsonArray.length());
+                    for(int i=0;i<referralList.size();i++)
+                    {
+                        if(referralList.get(i).getTitle().equals("caterogy_required"))
+                        {
+                            hd.callFunction();
+                            break;
+
+                        }
+                    }
+                    
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
@@ -145,15 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Referral referral=new Referral(p_code,title);
                         referralList.add(referral);
                     }
-                    for(int i=0;i<referralList.size();i++)
-                    {
-                        if(referralList.get(i).getTitle().equals("caterogy_required"))
-                        {
-                            hd.callFunction();
-                            break;
 
-                        }
-                    }
                     Log.d("여긴가사이즈",""+referralList.size());
                 }catch (Exception e)
                 {
