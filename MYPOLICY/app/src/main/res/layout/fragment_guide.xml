@@ -14,59 +14,47 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/image"
-        android:layout_centerInParent="true"
-        tools:src="@drawable/android_happy4"
-        android:scaleType="centerCrop"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-    <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:paddingBottom="100dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/recommend_box">
+        <ImageView
+            android:id="@+id/image"
+            tools:src="@drawable/android_happy4"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:orientation="vertical">
-
-            <TextView
+        <TextView
             android:id="@+id/tv_policy_name_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="청년지원 프로젝트"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
-            <TextView
-                android:id="@+id/tv_policy_pcode_test"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:text="청년지원 프로젝트"
-                android:visibility="invisible"
-                android:textColor="@color/colorPrimary"
-                android:textSize="20sp" />
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="25sp" />
 
-        </LinearLayout>
-        <!--            </androidx.cardview.widget.CardView>-->
-
+        <Button
+            android:id="@+id/btn_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="더 알아보기"
+            android:background="@drawable/review_box"
+            />
 
     </LinearLayout>
 
-</RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

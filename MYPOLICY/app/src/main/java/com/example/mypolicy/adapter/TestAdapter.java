@@ -15,6 +15,8 @@ import com.example.mypolicy.DetailPolicyActivity;
 import com.example.mypolicy.R;
 import com.example.mypolicy.model.StoreData;
 import com.example.mypolicy.model.Test;
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -33,7 +35,10 @@ public class TestAdapter extends RecyclerView.Adapter<TestViewHolder> {
     String[] kor_mon={"1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"};
     public ArrayList<Test> tList;
     SharedPreferences sharedPreferences;
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> testHashMap=new HashMap<>();
+    Call<JSONObject> clickPolicyCall=iApiService.clickPolicy(testHashMap);
+
 
     public TestAdapter(ArrayList<Test> list) {
         tList=list;
@@ -101,64 +106,64 @@ public class TestAdapter extends RecyclerView.Adapter<TestViewHolder> {
 
         holder.tv_title.setText(tList.get(position).getTitle());
 ///////*****************************정책 이름이 눌렸을때 detail로 이동********************************************************************////
-//        holder.tv_title.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
-//                clickHashMap.put("p_code",pcode);
-//                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
-//
-//                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
-//                    @Override
-//                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-//                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<JSONObject> call, Throwable t) {
-//
-//                    }
-//                });
-////디테일 부분으로 이동/
-//                Context context=view.getContext();
-//                Intent intent=new Intent(context, DetailPolicyActivity.class);
-//                intent.putExtra("position",pcode);
-//                Log.d("주소주소",""+pcode);
-//                context.startActivity(intent);
-//            }
-//        });
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////*****************************holder 자체를 눌렸을때 detail로 이동********************************************************************////
+        holder.tv_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                testHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                testHashMap.put("p_code",pcode);
+                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-///*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
-//
-//                clickHashMap.put("uID",sharedPreferences.getString("userEmail",null));
-//                clickHashMap.put("p_code",pcode);
-//                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
-//
-//                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
-//                    @Override
-//                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-//                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<JSONObject> call, Throwable t) {
-//
-//                    }
-//                });
-//////디테일 부분으로 이동////
-//                Context context=view.getContext();
-//                Intent intent=new Intent(context, DetailPolicyActivity.class);
-//                intent.putExtra("position",pcode);
-//                Log.d("주소주소",""+pcode);
-//                context.startActivity(intent);
-//
-//            }
-//        });
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+//디테일 부분으로 이동/
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+                intent.putExtra("position",pcode);
+                Log.d("주소주소",""+pcode);
+                context.startActivity(intent);
+            }
+        });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////*****************************holder 자체를 눌렸을때 detail로 이동********************************************************************////
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+/*******************************통신으로 클릭수 보내주고 디테일 부분으로 이동*///////////////////////////////////////
+
+                testHashMap.put("uID",sharedPreferences.getString("userEmail",null));
+                testHashMap.put("p_code",pcode);
+                Log.d("해쉬","폴리시"+sharedPreferences.getString("userEmail",null)+" "+pcode);
+
+                clickPolicyCall.clone().enqueue(new Callback<JSONObject>() {
+                    @Override
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+                        Log.d("디테일 클릭 조회",""+new Gson().toJson(response.body()));
+                    }
+
+                    @Override
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                    }
+                });
+////디테일 부분으로 이동////
+                Context context=view.getContext();
+                Intent intent=new Intent(context, DetailPolicyActivity.class);
+                intent.putExtra("position",pcode);
+                Log.d("주소주소",""+pcode);
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 

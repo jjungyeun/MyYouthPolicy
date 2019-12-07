@@ -44,7 +44,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/tv_name_main"
@@ -52,14 +53,15 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="30sp"
+                    android:textColor="@color/colorPrimary"
                     />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="님이 좋아하실만한 정책"
-                    android:layout_marginLeft="10dp"
                     android:textSize="30sp"
+                    android:textColor="@color/colorTextLight"
                     />
             </LinearLayout>
 
@@ -83,9 +85,12 @@
             <github.chenupt.springindicator.viewpager.ScrollerViewPager
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="200dp"
                 android:layout_below="@+id/indicator"
-
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 />
 
             <LinearLayout
@@ -94,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view_pager"
                 android:layout_margin="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
                 <TextView
                     android:id="@+id/tv_name_main2"
@@ -102,13 +108,15 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="30sp"
+                    android:textColor="@color/colorPrimary"
                     />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="님에게 딱 맞는 정책!!"
                     android:textSize="30sp"
+                    android:textColor="@color/colorTextLight"
                     />
             </LinearLayout>
 

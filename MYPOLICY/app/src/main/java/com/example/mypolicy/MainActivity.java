@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Context mContext = MainActivity.this;
 
-    static List<Referral> referralList = new ArrayList<>();
+    private List<Referral> referralList = new ArrayList<>();
 
     private ViewGroup mainLayout;   //사이드 나왔을때 클릭방지할 영역
     private ViewGroup viewLayout;   //전체 감싸는 영역
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     SharedPreferences sharedPreferences;
     ScrollerViewPager viewPager;
      RecyclerView mRecyclerView;
+     Button btn_more_info;
 //    SpringIndicator springIndicator;
 //    PagerModelManager manager;
 //    ModelPagerAdapter adapter;
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_name = findViewById(R.id.tv_name_main);
         tv_name2 = findViewById(R.id.tv_name_main2);
         hd=new homeDialog(this);
+        btn_more_info=findViewById(R.id.btn_more_info);
 
 
         // 사용자 이름 불러오기
@@ -125,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Call<ArrayList<Test>> testCall=iApiService.showTest(testMap);
 
         /*************************위에 뷰페이져 불러오는 부분***************************/
-        referralCall.clone().enqueue(new Callback<ArrayList<Referral>>() {
+        referralCall.enqueue(new Callback<ArrayList<Referral>>() {
             @Override
             public void onResponse(Call<ArrayList<Referral>> call, Response<ArrayList<Referral>> response) {
                 Log.d("여긴가",""+new Gson().toJson(response.body()));
@@ -134,21 +137,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     long p_code;
                     String title;
 
-                    Log.d("여긴가길이",""+jsonArray.length());
-                    for(int i=0;i<referralList.size();i++)
+                    Log.d("여긴가길이",""+jsonArray);
+//                    Toast.makeText(mContext, ""+referralList.get(0).getTitle().toString(), Toast.LENGTH_SHORT).show();
+                    String tmp="";
+                    for(int i=0;i<jsonArray.length();i++)
                     {
-                        if(referralList.get(i).getTitle().equals("caterogy_required"))
+                        JSONObject jsonObject=jsonArray.getJSONObject(i);
+                        tmp=jsonObject.getString("title");
+                        if(tmp.equals("caterogy_required"))
                         {
                             hd.callFunction();
                             break;
-
                         }
+
                     }
 
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         title=jsonObject.getString("title");
+                        if(title.equals("caterogy_required")) title= "아직 정책이 없네요";
 
                         p_code=jsonObject.getLong("p_code");
 
@@ -402,15 +410,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.e(TAG, "메뉴버튼 클릭");
     }
 
-    static List<String> getTitles(){
+    private List<String> getTitles(){
         return Lists.newArrayList("1", "2", "3", "4","5");
     }
 
-    static List<Integer> getBgRes(){
+    private List<Integer> getBgRes(){
         return Lists.newArrayList(R.drawable.bg1, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,R.drawable.bg1);
     }
 
-    static List<Referral> getNetwork(){
+    private List<Referral> getNetwork(){
         return Lists.newArrayList(referralList.get(0),referralList.get(1),referralList.get(2),referralList.get(3),referralList.get(4));
     }
 

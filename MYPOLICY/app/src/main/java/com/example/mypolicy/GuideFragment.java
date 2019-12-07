@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +41,8 @@ public class GuideFragment extends Fragment {
     private Referral referral;
     private ImageView imageView;
     private TextView textView;
+    private Button btn_more_info;
+
     final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
     final HashMap<String,Object> clickMap=new HashMap<>();
     final Call<JSONObject> clickCall=iApiService.clickPolicy(clickMap);
@@ -78,6 +81,8 @@ public class GuideFragment extends Fragment {
         textView=getView().findViewById(R.id.tv_policy_name_test);
         textView.setText(referral.getTitle());
 
+        btn_more_info=view.findViewById(R.id.btn_more_info);
+
         clickMap.put("uID",sharedPreferences.getString("userEmail",null));
         clickMap.put("p_code",referral.getP_code());
 
@@ -86,7 +91,7 @@ public class GuideFragment extends Fragment {
 
 
         /*******************화면을 눌렀을때 상세정책으로 들어가는 부분************************************/
-        view.setOnClickListener(new View.OnClickListener() {
+        btn_more_info.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
