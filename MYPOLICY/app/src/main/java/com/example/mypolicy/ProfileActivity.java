@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     TextView tv_profile_email, tv_name;
     TextView tv_edit_info,tv_center, tv_logout;
-    LinearLayout ll_request, ll_edit_interest;
+    LinearLayout ll_request, ll_edit_interest,ll_please_donate;
     Switch sw_autoLogin;
     requestDialog rd;
     versionDialog vd;
@@ -75,6 +75,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         tv_logout = findViewById(R.id.tv_logout);
         ll_request = findViewById(R.id.ll_request);
         sw_autoLogin = findViewById(R.id.sw_autoLogin);
+        ll_please_donate=findViewById(R.id.ll_please_donate);
+
         rd=new requestDialog(this);
         vd=new versionDialog(this);
 
@@ -138,6 +140,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 //                vd.dismissFunction();
 //            }
 //        });
+        ll_please_donate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "기부클릭", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         ll_request.setOnClickListener(new View.OnClickListener() {

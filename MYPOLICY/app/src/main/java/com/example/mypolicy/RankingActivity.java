@@ -135,7 +135,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                     }
 
                     //0x뒤 두자리는 FF면 투명도1
-                    int color1[] = {0xFF80C5FF,0xFF80C5DD, 0xFF80C5BB, 0xFF80C599, 0xFF80C577 };
+                    int color1[] = {0xFF7AB4FF,0xFF6B84E8, 0xFF8581FF, 0xFF9D78FF, 0xFFBF7AFF };
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
@@ -213,7 +213,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
                             }
 
                             //맨뒤 두자리는 FF면 투명도1,FFC763
-                            int color2[] = {0xFF80C5FF,0xFF80C5DD, 0xFF80C5BB, 0xFF80C599, 0xFF80C577 };
+                            int color2[] = {0xFF7AB4FF,0xFF6B84E8, 0xFF8581FF, 0xFF9D78FF, 0xFFBF7AFF };
                             for(int i=0;i<jsonArray.length();i++)
                             {
                                 Log.d("제이슨 타이틀3",""+dayMapTitle.get("title"+i)+"   "+dayMapTitle.get("title"+i));
