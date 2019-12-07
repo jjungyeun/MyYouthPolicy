@@ -30,6 +30,8 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import es.dmoral.toasty.Toasty;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private final String TAG ="RegisterActivity";
@@ -174,7 +176,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
                                         Log.d(TAG, "createUserWithEmail: success");
-                                        Toast.makeText(RegisterActivity.this, "회원가입 성공. 로그인 해주세요!", Toast.LENGTH_SHORT).show();
+                                        Toasty.info(RegisterActivity.this, "회원가입 성공. 로그인 해주세요!", Toast.LENGTH_SHORT, true).show();
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         successRegister(user);
                                     } else {

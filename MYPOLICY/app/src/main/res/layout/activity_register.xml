@@ -154,7 +154,7 @@
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:entries="@array/age"/>
+        android:entries="@array/firebase_age"/>
 
 
 

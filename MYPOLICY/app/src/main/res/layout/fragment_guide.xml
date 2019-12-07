@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="더 알아보기"
+            android:text="정책 상세내용"
             android:background="@drawable/review_box"
             />
 

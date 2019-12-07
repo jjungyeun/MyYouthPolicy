@@ -83,8 +83,12 @@ public class GuideFragment extends Fragment {
 
         btn_more_info=view.findViewById(R.id.btn_more_info);
 
+        Log.d("텍스트뷰",""+textView);
+
         clickMap.put("uID",sharedPreferences.getString("userEmail",null));
         clickMap.put("p_code",referral.getP_code());
+
+
 
 
 
