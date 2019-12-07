@@ -145,7 +145,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/android_happy"/>
+                        android:src="@drawable/blank"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
