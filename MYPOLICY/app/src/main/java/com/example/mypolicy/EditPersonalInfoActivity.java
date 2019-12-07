@@ -165,6 +165,9 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                 userEmail = et_userEmail.getText().toString();
                 userName = et_userName.getText().toString();
 
+                userRegion.set(0,region_do);
+                userRegion.set(1,region_si);
+
                 if(userName.isEmpty()||userAge.isEmpty()){
                     Toast.makeText(EditPersonalInfoActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
                 }

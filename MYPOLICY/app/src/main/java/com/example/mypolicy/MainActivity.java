@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
                     }
-                    
+
                     for(int i=0;i<jsonArray.length();i++)
                     {
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                          Log.d("위에화면",""+new Gson().toJson(response.body()));
                 if(response.body().size()==5)
                 {
-                    Toasty.error(MainActivity.this, "삭제완료!!", Toast.LENGTH_SHORT, true).show();
+                    Toasty.error(MainActivity.this, "밑에없음!!", Toast.LENGTH_SHORT, true).show();
                 }
 
                 else
