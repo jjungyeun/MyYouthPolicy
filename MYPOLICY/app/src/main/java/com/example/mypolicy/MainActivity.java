@@ -34,6 +34,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ScrollerViewPager viewPager;
      RecyclerView mRecyclerView;
      Button btn_more_info;
+     LinearLayout ll_no_content;
 //    SpringIndicator springIndicator;
 //    PagerModelManager manager;
 //    ModelPagerAdapter adapter;
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_name2 = findViewById(R.id.tv_name_main2);
         hd=new homeDialog(this);
         btn_more_info=findViewById(R.id.btn_more_info);
+        ll_no_content = findViewById(R.id.ll_no_content);
 
 
         // 사용자 이름 불러오기
@@ -187,11 +190,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                          Log.d("위에화면",""+new Gson().toJson(response.body()));
                 if(response.body().size()==5)
                 {
+                    ll_no_content.setVisibility(View.VISIBLE);
                     Toasty.error(MainActivity.this, "밑에없음!!", Toast.LENGTH_SHORT, true).show();
                 }
 
                 else
                 {
+                    ll_no_content.setVisibility(View.INVISIBLE);
                     TestAdapter ta = new TestAdapter(response.body());
                     mRecyclerView.setAdapter(ta);
                 }

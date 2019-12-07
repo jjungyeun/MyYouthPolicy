@@ -120,8 +120,7 @@
                     />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/ll_002"
@@ -129,7 +128,37 @@
                 android:paddingTop="8dp"
                 android:paddingEnd="8dp"
                 android:paddingRight="8dp"
-                android:paddingBottom="8dp"/>
+                android:paddingBottom="8dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_no_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="invisible">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/android_happy"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="40dp"
+                        android:text="텅 비어있음"/>
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+
 
         </RelativeLayout>
         <!--        액티비티 레이아웃 넣는 곳          -->
