@@ -355,7 +355,6 @@ public class DetailPolicyActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onClick(View view) {
-                Toasty.info(DetailPolicyActivity.this, "댓글새로고침 버튼 누름!!", Toast.LENGTH_SHORT, true).show();
                 Log.d("댓글피코드", "ㄹㄹㄹ" + position);
                 reviewCall.clone().enqueue(new Callback<ArrayList<Review>>() {
                     @Override

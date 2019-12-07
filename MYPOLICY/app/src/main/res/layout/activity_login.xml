@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/colorLight"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/btn_login"
                 android:text="회원가입"/>
 
 
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/colorLight"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/btn_login"
                 android:text="로그인"/>
         </LinearLayout>
 

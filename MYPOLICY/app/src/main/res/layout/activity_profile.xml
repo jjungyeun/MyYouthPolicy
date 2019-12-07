@@ -157,13 +157,11 @@
                 </LinearLayout>
 
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:paddingLeft="20dp"
-                        android:paddingBottom="5dp"
-                        android:background="@color/barLight">
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -243,8 +241,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:paddingLeft="20dp"
-                        android:paddingBottom="5dp"
-                        android:background="@color/barLight">
+                        android:paddingBottom="5dp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -253,7 +250,7 @@
                             android:textSize="20sp"
                             android:textColor="@color/colorPrimary"
                             android:textStyle="bold"
-                            android:text="문의"/>
+                            android:text="기타"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -283,25 +280,54 @@
 
                     </LinearLayout>
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="@color/barMiddle"/>
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@color/barMiddle"/>
+                        <LinearLayout
+                            android:id="@+id/ll_please_donate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="40dp"
+                            android:paddingBottom="10dp">
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:textSize="20sp"
+                                android:textColor="@color/colorText"
+                                android:text="1000원 후원하기"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="13sp"
+                                android:text="작은 마음이 저희에게 희망이 됩니다."/>
 
-                    <TextView
-                        android:id="@+id/tv_center"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:paddingLeft="40dp"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="20dp"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorText"
-                        android:text="버젼확인"
-                        />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="@color/barMiddle"/>
+
+                        <TextView
+                            android:id="@+id/tv_center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:paddingLeft="40dp"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="20dp"
+                            android:textSize="20sp"
+                            android:textColor="@color/colorText"
+                            android:text="버젼확인"
+                            />
 
                 </LinearLayout>
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
