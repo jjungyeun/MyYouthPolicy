@@ -195,13 +195,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 }
                             });
-//                    mAuth.useAppLanguage();
-//                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//
-//                        }
-//                    });
+
                 }
 
 
