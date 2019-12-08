@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.ActionCodeSettings;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -70,6 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         ll = findViewById(R.id.ll_register);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+
+
 
         userAge = ""; region_do = ""; region_si = ""; userSex = "";
         sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -155,12 +158,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+
+
         btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 userEmail = et_userEmail.getText().toString();
                 userPW = et_userPW.getText().toString();
                 userName = et_userName.getText().toString();
+
+
 
                 if(userEmail.isEmpty()||userPW.isEmpty()||userName.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
@@ -188,7 +195,15 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 }
                             });
+//                    mAuth.useAppLanguage();
+//                    mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//
+//                        }
+//                    });
                 }
+
 
 
             }

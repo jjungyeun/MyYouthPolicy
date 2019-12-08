@@ -13,7 +13,7 @@
         android:textSize="16dp"
 
         android:text="관리자에게 요청"
-        android:background="@color/request"/>
+        android:background="@color/colorPrimary"/>
 
     <View
         android:layout_width="match_parent"
