@@ -137,12 +137,12 @@ public interface IApiService {
 
     //임시 사용자 추천 점수 알고리즘 적용(딥러닝)
     @FormUrlEncoded
-    @POST("policy/referral")
+    @POST("policy/referral_test")
     Call<ArrayList<Referral>> showReferral(@FieldMap HashMap<String,Object> parameters);
 
     //밑에 화면
     @FormUrlEncoded
-    @POST("policy/test")
+    @POST("policy/user_based_referral_test")
     Call<ArrayList<Test>> showTest(@FieldMap HashMap<String,Object> parameters);
 
     //저장된 점수 받아오기
