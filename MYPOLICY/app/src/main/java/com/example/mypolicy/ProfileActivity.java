@@ -143,9 +143,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         ll_please_donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "기부클릭", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "1000원기부하기", Toast.LENGTH_LONG).show(); // 잠깐 뜨는 메세지
+                Log.d("기부버튼","눌렀다"); // 콘솔창에 뜸
+                Intent intent = new Intent(mContext, DonateActivity.class);
+                startActivity(intent);
             }
         });
+
 
 
         ll_request.setOnClickListener(new View.OnClickListener() {

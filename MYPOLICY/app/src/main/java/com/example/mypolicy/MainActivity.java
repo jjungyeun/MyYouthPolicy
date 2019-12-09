@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //    PagerModelManager manager;
 //    ModelPagerAdapter adapter;
     IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+
     homeDialog hd;
 
     @Override
@@ -223,10 +224,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         new Handler().postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
             {
+                @Override
+                public void run()
+                {
 
                 SpringIndicator springIndicator = (SpringIndicator) findViewById(R.id.indicator);
 

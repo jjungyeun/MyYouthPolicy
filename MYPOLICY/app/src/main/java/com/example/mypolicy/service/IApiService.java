@@ -150,5 +150,10 @@ public interface IApiService {
     @POST("user/my_priority")
     Call<ArrayList<Preference>> showPreference(@FieldMap HashMap<String,Object> parameters);
 
+    //아이디 보내기
+    @FormUrlEncoded
+    @POST("user/store_user")
+    Call<JSONObject> storeUser(@FieldMap HashMap<String,Object> parameters);
+
 
 }

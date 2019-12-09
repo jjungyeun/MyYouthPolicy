@@ -1,6 +1,7 @@
 package com.example.mypolicy;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -13,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -31,7 +34,12 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -72,7 +80,9 @@ public class RegisterActivity extends AppCompatActivity {
         ll = findViewById(R.id.ll_register);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
-
+        final HashMap<String,Object> userMap=new HashMap<>();
+        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+        final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
 
         userAge = ""; region_do = ""; region_si = ""; userSex = "";
         sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -197,6 +207,29 @@ public class RegisterActivity extends AppCompatActivity {
                             });
 
                 }
+
+                Log.d("회원가입 아이디",""+ et_userEmail.getText().toString());
+
+                userMap.put("uID",et_userEmail.getText().toString());
+
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        storeUserCall.enqueue(new Callback<JSONObject>() {
+                            @Override
+                            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                },3000);
+
 
 
 

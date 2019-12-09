@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,7 +26,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -48,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         session = getSharedPreferences("session", MODE_PRIVATE);
         autoLogin = getSharedPreferences("autoLogin",MODE_PRIVATE);
+
+
 
         et_userEmail = findViewById(R.id.et_login_email);
         et_userPW = findViewById(R.id.et_login_pw);
@@ -89,7 +100,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
             }
+
+
         });
+
+
+
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

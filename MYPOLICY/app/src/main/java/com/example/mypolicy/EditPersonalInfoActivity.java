@@ -3,6 +3,7 @@ package com.example.mypolicy;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.mypolicy.service.IApiService;
+import com.example.mypolicy.service.RestClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,7 +31,12 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import es.dmoral.toasty.Toasty;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditPersonalInfoActivity extends AppCompatActivity {
 
@@ -62,6 +70,11 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
         sp_si = findViewById(R.id.sp_profile_si);
         rb_male=findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
+
+        final HashMap<String,Object> userMap=new HashMap<>();
+        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+        final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
+
 
         et_userEmail.setText(sharedPreferences.getString("userEmail",null));
         DocumentReference userInfo = db.collection("user").document(sharedPreferences.getString("userEmail",null));
@@ -200,9 +213,27 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                                 }
                             });
                 }
+                userMap.put("uID",userEmail);
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        storeUserCall.enqueue(new Callback<JSONObject>() {
+                            @Override
+                            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                            }
+                        });
+                    }
+                },3000);
             }
         });
+
 
     }
 
