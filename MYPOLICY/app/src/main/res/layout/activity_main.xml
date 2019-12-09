@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textColor="@color/colorPrimary"
                     />
 
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="님이 좋아할만한 정책"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textColor="@color/colorTextLight"
                     />
             </LinearLayout>
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="25sp"
                     android:textColor="@color/colorPrimary"
                     />
 
@@ -115,7 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="님과 같은 연령대가 좋아하는 정책"
-                    android:textSize="20sp"
+                    android:textSize="19sp"
                     android:textColor="@color/colorTextLight"
                     />
             </LinearLayout>

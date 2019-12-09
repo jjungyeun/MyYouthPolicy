@@ -31,4 +31,7 @@
     <color name="indicator_3">#3377B1</color>
     <color name="indicator_4">#449FEE</color>
     <color name="indicator_5">#EAEEF1</color>
+
+
+    <color name="main_text_color">#CEFAFF</color>
 </resources>
