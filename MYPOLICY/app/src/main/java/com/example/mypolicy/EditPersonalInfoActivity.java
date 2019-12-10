@@ -218,7 +218,7 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        storeUserCall.enqueue(new Callback<JSONObject>() {
+                        storeUserCall.clone().enqueue(new Callback<JSONObject>() {
                             @Override
                             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
 
