@@ -126,6 +126,7 @@ public class EditCategoryActivity extends AppCompatActivity {
         setCategoryCall.clone().enqueue(new Callback<ArrayList<Preference>>() {
             @Override
             public void onResponse(Call<ArrayList<Preference>> call, Response<ArrayList<Preference>> response) {
+                Log.d("점수원본",""+new Gson().toJson(response.body()));
                 String score=new Gson().toJson(response.body());
                 int job,changup,life,jugeo;
                 try{
