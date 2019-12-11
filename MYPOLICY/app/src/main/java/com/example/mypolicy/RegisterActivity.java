@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner sp_do, sp_si, sp_age;
     RadioButton rb_male, rb_female;
     Button btn_cancel, btn_join;
+    ProgressBar pb_register;
     LinearLayout ll;
     InputMethodManager imm;
 
@@ -57,6 +59,9 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    final HashMap<String,Object> userMap=new HashMap<>();
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+    final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +81,12 @@ public class RegisterActivity extends AppCompatActivity {
         rb_female = findViewById(R.id.rb_female);
         btn_cancel = findViewById(R.id.btn_register_cancel);
         btn_join = findViewById(R.id.btn_register_join);
+        pb_register = findViewById(R.id.pb_register);
 
         ll = findViewById(R.id.ll_register);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
-        final HashMap<String,Object> userMap=new HashMap<>();
-        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
-        final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
+
 
         userAge = ""; region_do = ""; region_si = ""; userSex = "";
         sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -178,14 +182,14 @@ public class RegisterActivity extends AppCompatActivity {
                 userName = et_userName.getText().toString();
 
 
-
                 if(userEmail.isEmpty()||userPW.isEmpty()||userName.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
                 }
-                else if(userAge.isEmpty()||region_do.isEmpty()||region_si.isEmpty()){
+                else if(userAge.isEmpty()||region_do.isEmpty()||region_si.isEmpty()||userSex.isEmpty()){
                     Toast.makeText(RegisterActivity.this, "정보를 모두 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    pb_register.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(userEmail, userPW)
                             .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -199,7 +203,9 @@ public class RegisterActivity extends AppCompatActivity {
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                        pb_register.setVisibility(View.INVISIBLE);
                                         Toast.makeText(RegisterActivity.this, "회원가입 실패",
+
                                                 Toast.LENGTH_SHORT).show();
                                     }
 
@@ -211,27 +217,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.d("회원가입 아이디",""+ et_userEmail.getText().toString());
 
                 userMap.put("uID",et_userEmail.getText().toString());
-
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        storeUserCall.clone().enqueue(new Callback<JSONObject>() {
-                            @Override
-                            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-
-                            }
-
-                            @Override
-                            public void onFailure(Call<JSONObject> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                },3000);
-
-
-
 
             }
         });
@@ -266,6 +251,21 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "DocumentSnapshot successfully written!");
+                        userMap.put("uID",et_userEmail.getText().toString());
+
+                        pb_register.setVisibility(View.INVISIBLE);
+                        storeUserCall.clone().enqueue(new Callback<JSONObject>() {
+                            @Override
+                            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                            }
+                        });
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

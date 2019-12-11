@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.mypolicy.model.Preference;
@@ -52,6 +53,7 @@ public class EditCategoryActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,7 @@ public class EditCategoryActivity extends AppCompatActivity {
         btn_house_minus = (ImageView) findViewById(R.id.btn_house_minus);
 
         btn_profile_change=findViewById(R.id.btn_profile_change);
+
 
         listener = new View.OnClickListener() {
             @Override

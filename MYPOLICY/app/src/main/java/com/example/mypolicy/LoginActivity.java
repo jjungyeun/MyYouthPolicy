@@ -8,32 +8,19 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.example.mypolicy.service.IApiService;
-import com.example.mypolicy.service.RestClient;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-
-import es.dmoral.toasty.Toasty;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btn_register,btn_login;
     EditText et_userEmail, et_userPW;
-    LinearLayout ll;
+    ProgressBar pb_login;
+    RelativeLayout rl;
     InputMethodManager imm;
 
     private FirebaseAuth mAuth;
@@ -65,7 +53,9 @@ public class LoginActivity extends AppCompatActivity {
         btn_register=findViewById(R.id.btn_goto_register);
         btn_login=findViewById(R.id.btn_login);
 
-        ll = findViewById(R.id.ll_login);
+        pb_login = findViewById(R.id.pb_login);
+
+        rl = findViewById(R.id.rl_login);
         imm = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
 
 
@@ -79,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "이메일과 비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    pb_login.setVisibility(view.VISIBLE);
                     mAuth.signInWithEmailAndPassword(userEmail, userPW)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -88,11 +79,13 @@ public class LoginActivity extends AppCompatActivity {
                                         Log.d(TAG, "signInWithEmail:success");
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         successLogIn(user);
+                                        pb_login.setVisibility(View.INVISIBLE);
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Log.w(TAG, "signInWithEmail:failure", task.getException());
                                         Toast.makeText(LoginActivity.this, "로그인 실패",
                                                 Toast.LENGTH_SHORT).show();
+                                        pb_login.setVisibility(View.INVISIBLE);
                                     }
                                 }
                             });
@@ -114,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        ll.setOnClickListener(new View.OnClickListener() {
+        rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 imm.hideSoftInputFromWindow(et_userEmail.getWindowToken(), 0);

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -51,8 +52,12 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
 
     String userEmail, userPW, userName, userAge, userSex;
     String region_do, region_si;
+    ProgressBar pb_personal;
 
     ArrayList<String> userRegion = new ArrayList<>();
+    final HashMap<String,Object> userMap=new HashMap<>();
+    final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
+    final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,10 +75,9 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
         sp_si = findViewById(R.id.sp_profile_si);
         rb_male=findViewById(R.id.rb_male);
         rb_female = findViewById(R.id.rb_female);
+        pb_personal=findViewById(R.id.pb_personal);
 
-        final HashMap<String,Object> userMap=new HashMap<>();
-        final IApiService iApiService=new RestClient("http://49.236.136.213:3000/").getApiService();
-        final Call<JSONObject> storeUserCall=iApiService.storeUser(userMap);
+
 
 
         et_userEmail.setText(sharedPreferences.getString("userEmail",null));
@@ -187,6 +191,7 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                     Toast.makeText(EditPersonalInfoActivity.this, "빈칸을 모두 채워주세요", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    pb_personal.setVisibility(View.VISIBLE);
                     Map<String, Object> userInfo = new HashMap<>();
                     userInfo.put("name", userName);
                     userInfo.put("password", userPW);
@@ -199,38 +204,38 @@ public class EditPersonalInfoActivity extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
+                                    pb_personal.setVisibility(View.INVISIBLE);
                                     Log.d(TAG, "DocumentSnapshot successfully written!");
                                     Toasty.info(EditPersonalInfoActivity.this, "변경되었습니다!!", Toast.LENGTH_SHORT, true).show();
 //                                    Intent intent = new Intent(EditPersonalInfoActivity.this, ProfileActivity.class);
 //                                    startActivity(intent);
+                                    userMap.put("uID",et_userEmail.getText().toString());
+                                    storeUserCall.clone().enqueue(new Callback<JSONObject>() {
+                                        @Override
+                                        public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<JSONObject> call, Throwable t) {
+
+                                        }
+                                    });
                                     finish();
+
                                 }
                             })
                             .addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    pb_personal.setVisibility(View.INVISIBLE);
                                     Log.w(TAG, "Error writing document", e);
                                 }
                             });
                 }
                 userMap.put("uID",userEmail);
 
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        storeUserCall.clone().enqueue(new Callback<JSONObject>() {
-                            @Override
-                            public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
 
-                            }
-
-                            @Override
-                            public void onFailure(Call<JSONObject> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                },3000);
             }
         });
 

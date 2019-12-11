@@ -27,166 +27,184 @@
     android:layout_height="match_parent"
     android:layout_below="@+id/rl_002">
 
-<LinearLayout
-    android:id="@+id/ll_register"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="40dp">
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="이메일"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/et_register_email"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <ProgressBar
+            android:id="@+id/pb_register"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:theme="@style/progressbar_color_under_api21"
+            />
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="비밀번호"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/et_register_pw"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        />
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="이름"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/et_register_name"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        />
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="성별"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <RadioGroup
-        android:id="@+id/rg_gender"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
-
-        <RadioButton
-            android:id="@+id/rb_male"
-            android:layout_weight="1"
-            android:text="남"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <RadioButton
-            android:id="@+id/rb_female"
-            android:layout_weight="1"
-            android:text="여"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-    </RadioGroup>
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="지역"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-        <Spinner
-            android:id="@+id/sp_register_do"
-            android:layout_weight="4"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/ll_register"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/region"/>
-        <Spinner
-            android:id="@+id/sp_register_si"
-            android:layout_weight="6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:autofillHints="소분류"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="나이"
-        android:textStyle="bold"
-        android:textSize="20sp"/>
-
-    <Spinner
-        android:id="@+id/sp_register_age"
-        android:layout_width="105dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:entries="@array/firebase_age"/>
+            android:padding="40dp">
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이메일"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
 
-        <Button
-            android:id="@+id/btn_register_cancel"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorLight"
-            android:background="@color/colorPrimary"
-            android:text="취소"/>
+            <EditText
+                android:id="@+id/et_register_email"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="비밀번호"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/et_register_pw"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="이름"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/et_register_name"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <RadioGroup
+                android:id="@+id/rg_gender"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp">
+
+                <RadioButton
+                    android:id="@+id/rb_male"
+                    android:layout_weight="1"
+                    android:text="남"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <RadioButton
+                    android:id="@+id/rb_female"
+                    android:layout_weight="1"
+                    android:text="여"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="지역"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+                <Spinner
+                    android:id="@+id/sp_register_do"
+                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/region"/>
+                <Spinner
+                    android:id="@+id/sp_register_si"
+                    android:layout_weight="6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:autofillHints="소분류"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <Spinner
+                android:id="@+id/sp_register_age"
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:entries="@array/firebase_age"/>
 
 
-        <Button
-            android:id="@+id/btn_register_join"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/colorLight"
-            android:background="@color/colorPrimary"
-            android:text="가입"/>
-    </LinearLayout>
-</LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_register_cancel"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorLight"
+                    android:background="@color/colorPrimary"
+                    android:text="취소"/>
+
+
+                <Button
+                    android:id="@+id/btn_register_join"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorLight"
+                    android:background="@color/colorPrimary"
+                    android:text="가입"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
 </ScrollView>
 
 </RelativeLayout>
